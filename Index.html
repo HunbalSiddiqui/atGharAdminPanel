@@ -22,7 +22,7 @@
 
     <!-- Google Font  -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <title>Login-AtGhar-AdminPanel</title>
 </head>
 
@@ -33,9 +33,9 @@
             <!-- UserName/Email -->
             <div class="input-group input-group-lg m-5">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">UserName</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default"
+                <input type="text" class="form-control credential-email" aria-label="Default"
                     aria-describedby="inputGroup-sizing-default">
             </div>
             <!-- Passcode -->
@@ -43,19 +43,32 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">Passcode</span>
                 </div>
-                <input type="password" class="form-control" aria-label="Default"
+                <input type="password" class="form-control credential-passcode" aria-label="Default"
                     aria-describedby="inputGroup-sizing-default">
             </div>
+            <!-- Alert incase of successful verification -->
+            <div class="alert alert-success m-4 successAlert-display" role="alert">
+                Successfully verified,  redirecting &#128578;!
+            </div>
             <!-- Alert incase of wrong passcode -->
-            <div class="alert alert-danger m-4 dangerAlert-display" role="alert">
-                Invalid username or password &#128545;!
+            <div class="alert alert-danger m-4 invalidAlert-display dangerAlert-display" role="alert">
+                Invalid email or password &#128545;!
+            </div>
+            <!-- Alert incase of empty inputs -->
+            <div class="alert alert-danger m-4 emptyAlert-display dangerAlert-display" role="alert">
+                Please provide both credentials &#128530;!
             </div>
             <!-- Login button -->
-            <button type="button" class="btn btn-primary btn-lg btn-block m-4" aria-disabled="true">Let me in</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block m-4 login-btn">Let me in</button>
         </div>
     </div>
 
+
+    <!-- Axios -->
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+
     <script src="./js/index.js"></script>
+
 </body>
 
 </html>

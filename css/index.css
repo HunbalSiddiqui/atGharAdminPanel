@@ -14,7 +14,13 @@
     box-sizing: border-box;
     padding-left: 6rem;padding-right: 6rem;
     font-family: 'Fjalla One', sans-serif;
+    border-radius: 10px 10px;
 }
 .dangerAlert-display{
     display: none;
+    font-size: 1.1rem;
+}
+.successAlert-display{
+    display: none;
+    font-size: 1.1rem;
 }
