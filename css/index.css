@@ -1,0 +1,20 @@
+.login-container-wrapper{
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 100vh;
+    background-color: rgba(5, 49, 111,0.5);
+}
+
+.login-box{
+    width: 30%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-self: center;
+    align-self: center;
+    box-sizing: border-box;
+    padding-left: 6rem;padding-right: 6rem;
+    font-family: 'Fjalla One', sans-serif;
+}
+.dangerAlert-display{
+    display: none;
+}

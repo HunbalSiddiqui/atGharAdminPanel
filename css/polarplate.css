@@ -1,0 +1,227 @@
+* {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    text-decoration-style: none;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  html {
+    font-size: 62.5%;
+  }
+  
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .flex-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .flex-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .flex-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+  }
+  
+  .flex-col-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-flow: column;
+  }
+  
+  .flex-col-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: column;
+  }
+  
+  .pointer {
+    cursor: pointer;
+  }
+  
+  /* FONT SIZE AND WEIGHT*/
+  .f1 {
+    font-size: 1rem;
+  }
+  
+  .f1-5 {
+    font-size: 1.5rem;
+  }
+  
+  .f2 {
+    font-size: 2rem;
+  }
+  
+  .f3 {
+    font-size: 3rem;
+  }
+  
+  .f4 {
+    font-size: 4rem;
+  }
+  
+  .f5 {
+    font-size: 5rem;
+  }
+  
+  .f6 {
+    font-size: 6rem;
+  }
+  
+  .fb {
+    font-weight: bolder;
+  }
+  
+  .fbb {
+    font-weight: 900;
+  }
+  
+  .fl {
+    font-weight: lighter;
+  }
+  
+  .fll {
+    font-weight: 100;
+  }
+  
+  /* BACKGROUND AND FOREGROUND COLORS */
+  .red {
+    color: red;
+  }
+  
+  .black {
+    color: black;
+  }
+  
+  .white {
+    color: white;
+  }
+  
+  .blue {
+    color: #05316F;
+  }
+  
+  .Csilver {
+    color: #8E8D8D;
+  }
+  
+  .bg-dark {
+    background-color: black;
+  }
+  
+  .bg-white {
+    background-color: white;
+  }
+  
+  .bg-smoke {
+    background-color: whitesmoke;
+  }
+  
+  .bg-gray {
+    background-color: lightgray;
+  }
+  
+  .bg-blue {
+    background-color: #05316F;
+  }
+  
+  .bg-silver {
+    background-color: #8E8D8D;
+  }
+  
+  
+  
+  
+  
+  
+  body::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background-color: silver;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #05316F;
+  }
+  
+  
+  
+  /* Responsiveness */
+  /* @media screen and (max-width: 420px) {
+    html {
+      font-size: 22.5%;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    html {
+      font-size: 32.5%;
+    }
+  }
+  
+  @media screen and (max-width: 1000px) {
+    html {
+      font-size: 42.5%;
+    }
+  }
+  
+  @media screen and (max-width: 1200px) {
+    html {
+      font-size: 52.5%;
+    }
+  }
+  
+  @media screen and (max-width: 1400px) {
+    html {
+      font-size: 62.5%;
+    }
+  }
+  
+  @media screen and (min-width: 1500px) {
+    html {
+      font-size: 70%;
+    }
+  }
+  
+  @media screen and (min-width: 1600px) {
+    html {
+      font-size: 75%;
+    }
+  }
+  
+  @media screen and (min-width: 1700px) {
+    html {
+      font-size: 80%;
+    }
+  }
+  
+  @media screen and (min-width: 1800px) {
+    html {
+      font-size: 90%;
+    }
+  }
+  
+  @media screen and (min-width: 1900px) {
+    html {
+      font-size: 95%;
+    }
+  } */
