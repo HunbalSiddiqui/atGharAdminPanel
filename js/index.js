@@ -1,3 +1,9 @@
+// Verifyin if user is logout
+if(localStorage.getItem('jwt'))
+{
+    location.assign('./html/dashboard.html')
+}
+
 // Inputs
 const inputEmail = document.querySelector('.credential-email')
 const inputPasscode = document.querySelector('.credential-passcode')
@@ -12,6 +18,7 @@ loginButton.addEventListener('click', () => {
 
     // If yes display message
     if (inputEmail.value === '' || inputPasscode.value === '') {
+        invalidAlert.style.display = "none"
         emptyAlert.style.display = 'block'
     }
     // If no send request
@@ -39,6 +46,7 @@ function verifyCredentials(email, password) {
             }
         })
         .catch(error => {
+            emptyAlert.style.display = "none"
             invalidAlert.style.display = "block"
         });
 }
