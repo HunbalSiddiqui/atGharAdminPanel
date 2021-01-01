@@ -167,7 +167,7 @@
   
   
   /* Responsiveness */
-  /* @media screen and (max-width: 420px) {
+  @media screen and (max-width: 420px) {
     html {
       font-size: 22.5%;
     }
@@ -224,4 +224,4 @@
     html {
       font-size: 95%;
     }
-  } */
+  }

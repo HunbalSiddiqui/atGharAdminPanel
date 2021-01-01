@@ -1,4 +1,4 @@
-.dashboard-container-wrapper{
+.promocode-container-wrapper{
     display: grid;
     grid-template-columns: 20vw 80vw;
     grid-template-rows: 10vh 90vh;
@@ -19,7 +19,7 @@
     flex: 1;
     margin-left: 2%;margin-right: 2%;
 }
-.dashboard-container-nav{
+.promocode-container-nav{
     grid-area: nav;
     background-color: #2F363F;
     box-sizing: border-box;

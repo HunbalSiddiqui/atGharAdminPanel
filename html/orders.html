@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/polarplate.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/orders.css">
 
-    
+
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -24,25 +24,148 @@
     <!-- Google Font  -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-    <title>Admin-Dashboard</title>
+    <title>Admin-order</title>
 </head>
 
 <body>
-    <div class="dashboard-container-wrapper">
+    <div class="order-container-wrapper">
         <div class="top-bar-left white f3 flex">
             At Ghar
         </div>
         <div class="top-bar-right flex-end">
+            <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newpromocode">New
+                PromoCode</button>
+            <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newrider">New
+                Rider</button>
+            <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newadmin">New
+                Admin</button>
             <button type="button" class="btn btn-info btn-lg signout-btn">Signout</button>
         </div>
-        <div class="dashboard-container-nav flex-col-start">
-            <button type="button" name="dashboard" class="btn nav-custom-item btn-lg btn-block"> <p class="f2 flex">Dashboard</p> </button>
-            <button type="button" name="riders" class="btn nav-custom-item btn-lg btn-block"> <p class="f2 flex">Riders</p> </button>
-            <button type="button" name="orders" class="btn nav-custom-item btn-lg btn-block"> <p class="f2 flex">Orders</p> </button>
-            <button type="button" name="promocodes" class="btn nav-custom-item btn-lg btn-block"> <p class="f2 flex">Promo Codes</p> </button>
+        <div class="order-container-nav flex-col-start">
+            <button type="button" name="dashboard" class="btn nav-custom-item btn-lg btn-block">
+                <p class="f2 flex">Dashboard</p>
+            </button>
+            <button type="button" name="riders" class="btn nav-custom-item btn-lg btn-block">
+                <p class="f2 flex">Riders</p>
+            </button>
+            <button type="button" name="orders" class="btn nav-custom-item btn-lg btn-block">
+                <p class="f2 flex">Orders</p>
+            </button>
+            <button type="button" name="promocodes" class="btn nav-custom-item btn-lg btn-block">
+                <p class="f2 flex">Promo Codes</p>
+            </button>
 
         </div>
         <div class="content"></div>
+    </div>
+
+
+    <!-- Modals -->
+    <!-- new promo code -->
+    <div class="modal fade" id="newpromocode" tabindex="-1" role="dialog" aria-labelledby="newpromocode"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new promo code</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body flex-col">
+                    <!-- Promocode -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">PromoCode</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Discount in % -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Discount in %</span>
+                        </div>
+                        <input type="number" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Introduce</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- new rider -->
+    <div class="modal fade" id="newrider" tabindex="-1" role="dialog" aria-labelledby="newrider" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new promo code</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body flex-col">
+                    <!-- Promocode -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">PromoCode</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Discount in % -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Discount in %</span>
+                        </div>
+                        <input type="number" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Introduce</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- new admin -->
+    <div class="modal fade" id="newadmin" tabindex="-1" role="dialog" aria-labelledby="newadmin" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new promo code</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body flex-col">
+                    <!-- Promocode -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">PromoCode</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Discount in % -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Discount in %</span>
+                        </div>
+                        <input type="number" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Introduce</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Axios -->
