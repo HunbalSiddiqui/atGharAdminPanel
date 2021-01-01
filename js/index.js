@@ -41,7 +41,6 @@ function verifyCredentials(email, password) {
             if (response.data) {
                 invalidAlert.style.display = "none"
                 successAlert.style.display = "block"
-                console.log(response.data)
                 authenticate(response.data, () => {
                     location.assign('./html/dashboard.html')
                 })

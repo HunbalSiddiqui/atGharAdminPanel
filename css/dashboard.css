@@ -31,6 +31,9 @@
 .nav-custom-item:hover{
     background-color: red;
 }
+.nav-custom-item-active{
+    background-color: red;
+}
 .content{
     background-color: #CAC9C9;
 }
