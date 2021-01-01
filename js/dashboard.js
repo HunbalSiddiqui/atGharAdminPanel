@@ -5,13 +5,14 @@ if(!localStorage.getItem('jwt'))
 }
 const signoutButton = document.querySelector(".signout-btn")
 
-
+// On signout button click
 signoutButton.addEventListener('click',()=>{
     signout(()=>{
         location.assign('../index.html')
     })
 })
 
+// Signout from backend and frontend
 function signout(next){
     if (typeof window !== "undefined") {
         const userId = JSON.parse(localStorage.getItem("jwt")).user._id;

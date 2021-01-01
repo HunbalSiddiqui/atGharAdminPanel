@@ -13,6 +13,8 @@ const loginButton = document.querySelector('.login-btn')
 const emptyAlert = document.querySelector('.emptyAlert-display')
 const invalidAlert = document.querySelector('.invalidAlert-display')
 const successAlert = document.querySelector('.successAlert-display')
+
+// On button click
 loginButton.addEventListener('click', () => {
     // If both or any input is empty
 
