@@ -1,44 +1,104 @@
-.dashboard-container-wrapper{
+.dashboard-container-wrapper {
     display: grid;
     grid-template-columns: 20vw 80vw;
     grid-template-rows: 10vh 90vh;
     grid-template-areas: "top-bar-left top-bar-right"
-                         "nav content";
+        "nav content";
 }
-.top-bar-left{
+
+.top-bar-left {
     grid-area: top-bar-left;
     background-color: red;
-    font-family: 'Fjalla One', sans-serif;  
+    font-family: 'Fjalla One', sans-serif;
 }
-.top-bar-right{
+
+.top-bar-right {
     grid-area: top-bar-right;
     box-sizing: border-box;
     padding-right: 2rem;
 }
-.top-bar-right button{
+
+.top-bar-right button {
     flex: 1;
-    margin-left: 2%;margin-right: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
-.dashboard-container-nav{
+
+.dashboard-container-nav {
     grid-area: nav;
     background-color: #2F363F;
     box-sizing: border-box;
     padding-top: 2rem;
     font-family: 'Fjalla One', sans-serif;
 }
-.nav-custom-item{
+
+.nav-custom-item {
     color: #CAC9C9;
     background-color: transparent;
 }
+
 .nav-custom-item p {
-    width: 100%;height: 100%;
+    width: 100%;
+    height: 100%;
 }
-.nav-custom-item:hover{
+
+.nav-custom-item:hover {
     background-color: red;
 }
-.nav-custom-item-active{
+
+.nav-custom-item-active {
     background-color: red;
 }
-.content{
+
+.content {
     background-color: #CAC9C9;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10vh minmax(30vh, min-content) minmax(50vh, min-content);
+}
+
+/* Div 1 */
+/* Content Heading in content.css */
+/* Div 2 */
+.content-boxes {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, min-content));
+    grid-template-rows: minmax(30vh, min-content);
+    font-family: 'Bebas Neue', cursive;
+}
+
+/* Div 3 */
+/* New orders table */
+.content-new-orders-tables {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10vh minmax(40vh, min-content);
+    overflow-y: auto;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    font-size: 1.5rem;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+/* Scrollbar */
+.content-new-orders-tables::-webkit-scrollbar{
+    width: 5px;
+}
+.content-new-orders-tables::-webkit-scrollbar-thumb{
+    background-color: red;
 }

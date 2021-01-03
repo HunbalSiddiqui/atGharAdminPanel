@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/polarplate.css">
     <link rel="stylesheet" href="../css/orders.css">
-
+    <link rel="stylesheet" href="../css/content.css">
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -24,6 +24,8 @@
     <!-- Google Font  -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <!-- Fontawsome -->
+    <script src="https://kit.fontawesome.com/ddc246510f.js" crossorigin="anonymous"></script>
     <title>Admin-order</title>
 </head>
 
@@ -33,6 +35,8 @@
             At Ghar
         </div>
         <div class="top-bar-right flex-end">
+            <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newproduct">New
+                Product</button>
             <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newpromocode">New
                 PromoCode</button>
             <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newrider">New
@@ -56,11 +60,50 @@
             </button>
 
         </div>
-        <div class="content"></div>
+        <div class="content">
+            <div class="content-heading f2 flex-start"> <i class="fas fa-chart-line" style="color:red"></i> <span
+                style="margin-left: 1%;" class="fb">Orders</span></div>
+        </div>
     </div>
 
 
     <!-- Modals -->
+    <!-- new product -->
+    <div class="modal fade" id="newproduct" tabindex="-1" role="dialog" aria-labelledby="newproduct"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new promo code</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body flex-col">
+                    <!-- Promocode -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">PromoCode</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Discount in % -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Discount in %</span>
+                        </div>
+                        <input type="number" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Introduce</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- new promo code -->
     <div class="modal fade" id="newpromocode" tabindex="-1" role="dialog" aria-labelledby="newpromocode"
         aria-hidden="true">

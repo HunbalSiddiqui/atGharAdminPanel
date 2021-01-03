@@ -41,4 +41,7 @@
 }
 .content{
     background-color: #CAC9C9;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10vh minmax(30vh,min-content) minmax(50vh,min-content);
 }
