@@ -1,26 +1,94 @@
-.login-container-wrapper{
+.login-container-wrapper {
     display: grid;
     grid-template-columns: 100vw;
     grid-template-rows: 100vh;
-    background-color: rgba(5, 49, 111,0.5);
+    background-color: rgba(5, 49, 111, 0.5);
 }
 
-.login-box{
+.login-box {
     width: 30%;
     height: 50%;
     background-color: rgba(0, 0, 0, 0.6);
     justify-self: center;
     align-self: center;
     box-sizing: border-box;
-    padding-left: 6rem;padding-right: 6rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
     font-family: 'Fjalla One', sans-serif;
     border-radius: 10px 10px;
 }
-.dangerAlert-display{
+
+.dangerAlert-display {
     display: none;
     font-size: 1.1rem;
 }
-.successAlert-display{
+
+.successAlert-display {
     display: none;
     font-size: 1.1rem;
+}
+
+@media screen and (max-width: 1000px) {
+
+    /* Increasing width */
+    .login-box {
+        width: 50%;
+        height: 50%;
+        background-color: rgba(0, 0, 0, 0.6);
+        justify-self: center;
+        align-self: center;
+        box-sizing: border-box;
+        padding-left: 6rem;
+        padding-right: 6rem;
+        font-family: 'Fjalla One', sans-serif;
+        border-radius: 10px 10px;
+    }
+}
+@media screen and (max-width: 700px) {
+
+    /* Increasing width */
+    .login-box {
+        width: 60%;
+        height: 50%;
+        background-color: rgba(0, 0, 0, 0.6);
+        justify-self: center;
+        align-self: center;
+        box-sizing: border-box;
+        padding-left: 6rem;
+        padding-right: 6rem;
+        font-family: 'Fjalla One', sans-serif;
+        border-radius: 10px 10px;
+    }
+}
+@media screen and (max-width: 600px) {
+
+    /* Increasing width */
+    .login-box {
+        width: 70%;
+        height: 50%;
+        background-color: rgba(0, 0, 0, 0.6);
+        justify-self: center;
+        align-self: center;
+        box-sizing: border-box;
+        padding-left: 6rem;
+        padding-right: 6rem;
+        font-family: 'Fjalla One', sans-serif;
+        border-radius: 10px 10px;
+    }
+}
+@media screen and (max-width: 450px) {
+
+    /* Increasing width */
+    .login-box {
+        width: 100%;
+        height: 50%;
+        background-color: rgba(0, 0, 0, 0.6);
+        justify-self: center;
+        align-self: center;
+        box-sizing: border-box;
+        padding-left: 6rem;
+        padding-right: 6rem;
+        font-family: 'Fjalla One', sans-serif;
+        border-radius: 10px 10px;
+    }
 }

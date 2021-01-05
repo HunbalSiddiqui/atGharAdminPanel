@@ -16,6 +16,7 @@
     grid-area: top-bar-right;
     box-sizing: border-box;
     padding-right: 2rem;
+    flex-wrap: wrap;
 }
 
 .top-bar-right button {
@@ -64,10 +65,17 @@
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(25rem, min-content));
-    grid-template-rows: minmax(30vh, min-content);
+    grid-template-rows: minmax(15vh, min-content);
     font-family: 'Bebas Neue', cursive;
+    overflow-y: auto;
 }
-
+/* Scrollbar */
+.content-boxes::-webkit-scrollbar{
+    width: 5px;
+}
+.content-boxes::-webkit-scrollbar-thumb{
+    background-color: blue;
+}
 /* Div 3 */
 /* New orders table */
 .content-new-orders-tables {
@@ -102,3 +110,18 @@ tr:nth-child(even) {
 .content-new-orders-tables::-webkit-scrollbar-thumb{
     background-color: red;
 }
+
+
+/* Responsiveness */
+@media screen and (max-width: 800px) {
+    .dashboard-container-wrapper {
+        display: grid;
+        grid-template-columns: 100vw;
+        grid-template-rows: 10vh minmax(20vh,min-content) 10vh 80vh;
+        grid-template-areas: "top-bar-left"
+                            "nav"
+                            "top-bar-right"
+                            "content";
+    }
+    
+  }

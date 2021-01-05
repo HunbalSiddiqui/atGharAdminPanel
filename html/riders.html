@@ -34,10 +34,11 @@
         <div class="top-bar-left white f3 flex">
             At Ghar
         </div>
-        <div class="top-bar-right flex-end">
+        <div class="top-bar-right flex">
             <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newproduct">New
                 Product</button>
-            <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newpromocode">New
+            <button type="button" class="btn btn-dark btn-lg newpromocode" data-toggle="modal"
+                data-target="#newpromocode">New
                 PromoCode</button>
             <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newrider">New
                 Rider</button>
@@ -61,15 +62,15 @@
         </div>
         <div class="content">
             <div class="content-heading f2 flex-start"> <i class="fas fa-chart-line" style="color:red"></i> <span
-                style="margin-left: 1%;" class="fb">Riders</span></div>
+                    style="margin-left: 1%;" class="fb">Riders</span></div>
         </div>
+        <div class="loader"></div>
     </div>
 
 
     <!-- Modals -->
     <!-- new product -->
-    <div class="modal fade" id="newproduct" tabindex="-1" role="dialog" aria-labelledby="newproduct"
-        aria-hidden="true">
+    <div class="modal fade" id="newproduct" tabindex="-1" role="dialog" aria-labelledby="newproduct" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -109,7 +110,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new promo code</h5>
+                    <h5 class="modal-title">Intoduce new promo code</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -120,21 +121,27 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">PromoCode</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Default"
-                            aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control promocodename" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" id="promocodename">
                     </div>
                     <!-- Discount in % -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Discount in %</span>
                         </div>
-                        <input type="number" class="form-control" aria-label="Default"
-                            aria-describedby="inputGroup-sizing-default">
+                        <input type="number" class="form-control promocodediscount" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" id="promocodediscount">
+                    </div>
+                    <div class="alert alert-success promosuccess" style="display: none;" role="alert">
+                        New promo code has been introduced check it out!
+                    </div>
+                    <div class="alert alert-danger promofailure" style="display: none;" role="alert">
+                        New promo code can not be introduced!
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Introduce</button>
+                    <button type="button" class="btn btn-primary introducenewpromocode">Introduce</button>
                 </div>
             </div>
         </div>
@@ -185,21 +192,28 @@
                     </button>
                 </div>
                 <div class="modal-body flex-col">
-                    <!-- Promocode -->
+                    <!-- Admin email -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">PromoCode</span>
+                            <span class="input-group-text adminemail" id="inputGroup-sizing-default">Admin email</span>
                         </div>
                         <input type="text" class="form-control" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
-                    <!-- Discount in % -->
+                    <!-- Admin passcode % -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Discount in %</span>
+                            <span class="input-group-text adminpassword" id="inputGroup-sizing-default">Admin
+                                passcode</span>
                         </div>
                         <input type="number" class="form-control" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="alert alert-success adminsuccess" style="display: none;" role="alert">
+                        New admin has been introduced check it out!
+                    </div>
+                    <div class="alert alert-danger adminfailure" style="display: none;" role="alert">
+                        New admin code can not be introduced!
                     </div>
                 </div>
                 <div class="modal-footer">

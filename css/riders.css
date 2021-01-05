@@ -14,6 +14,7 @@
     grid-area: top-bar-right;
     box-sizing: border-box;
     padding-right: 2rem;
+    flex-wrap: wrap;
 }
 .top-bar-right button{
     flex: 1;
@@ -45,3 +46,17 @@
     grid-template-columns: 100%;
     grid-template-rows: 10vh minmax(30vh,min-content) minmax(50vh,min-content);
 }
+
+  /* Responsiveness */
+  @media screen and (max-width: 800px) {
+    .riders-container-wrapper {
+        display: grid;
+        grid-template-columns: 100vw;
+        grid-template-rows: 10vh minmax(20vh,min-content) 10vh 80vh;
+        grid-template-areas: "top-bar-left"
+                            "nav"
+                            "top-bar-right"
+                            "content";
+    }
+    
+  }
