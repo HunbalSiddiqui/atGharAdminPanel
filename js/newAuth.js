@@ -2,11 +2,11 @@
 if (!localStorage.getItem('jwt')) {
     location.assign('../index.html')
 }
-if (JSON.parse(localStorage.getItem("jwt")).user.role !== 1) {
+if (JSON.parse(localStorage.getItem("jwt")).user.role === 2) {
     // TODO: redirect to required page
     // location.assign('./orders.html')
 }
-
+console.log(JSON.parse(localStorage.getItem("jwt")).user.role)
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'

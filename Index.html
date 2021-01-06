@@ -49,6 +49,16 @@
                 <input type="password" class="form-control credential-passcode" aria-label="Default"
                     aria-describedby="inputGroup-sizing-default">
             </div>
+            <!-- Login as -->
+            <div class="input-group mt-5">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Login As</label>
+                </div>
+                <select class="custom-select loginas" id="inputGroupSelect01">
+                  <option value="admin" selected>Admin</option>
+                  <option value="rider">Rider</option>
+                </select>
+              </div>
             <!-- Alert incase of successful verification -->
             <div class="alert alert-success m-4 successAlert-display" role="alert">
                 Successfully verified, redirecting &#128578;!
@@ -64,6 +74,7 @@
             <!-- Login button -->
             <button type="button" class="btn btn-primary btn-lg btn-block m-4 login-btn">Let me in</button>
         </div>
+
     </div>
 
 

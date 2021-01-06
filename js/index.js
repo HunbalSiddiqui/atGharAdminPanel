@@ -13,7 +13,7 @@ const loginButton = document.querySelector('.login-btn')
 const emptyAlert = document.querySelector('.emptyAlert-display')
 const invalidAlert = document.querySelector('.invalidAlert-display')
 const successAlert = document.querySelector('.successAlert-display')
-
+const loginas = document.querySelector('.loginas')
 // On button click
 loginButton.addEventListener('click', () => {
     // If both or any input is empty
@@ -33,7 +33,9 @@ loginButton.addEventListener('click', () => {
 
 // Verify Credentials
 function verifyCredentials(email, password) {
-    axios.post('https://atghar-testing.herokuapp.com/api/admin/signin', {
+    if(loginas.value==='admin')
+    {
+        axios.post('https://atghar-testing.herokuapp.com/api/admin/signin', {
             email,
             password
         })
@@ -50,6 +52,27 @@ function verifyCredentials(email, password) {
             emptyAlert.style.display = "none"
             invalidAlert.style.display = "block"
         });
+    }
+    else if(loginas.value==='rider')
+    {
+        axios.post('https://atghar-testing.herokuapp.com/api/rider/signin', {
+            email,
+            password
+        })
+        .then(response => {
+            if (response.data) {
+                invalidAlert.style.display = "none"
+                successAlert.style.display = "block"
+                authenticate(response.data, () => {
+                    location.assign('./html/dashboard.html')
+                })
+            }
+        })
+        .catch(error => {
+            emptyAlert.style.display = "none"
+            invalidAlert.style.display = "block"
+        });
+    }
 }
 
 // to keep the user loggedin
