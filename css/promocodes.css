@@ -44,7 +44,42 @@
     background-color: #CAC9C9;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10vh minmax(30vh,min-content) minmax(50vh,min-content);
+    grid-template-rows: 10vh minmax(80vh,min-content);
+}
+/* Div 1 */
+/* Content Heading in content.css */
+/* Div 2 */
+/* New orders table */
+.content-promocodes-tables {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: minmax(80vh, min-content);
+    overflow-y: auto;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    font-size: 1.5rem;
+}
+
+/* tr:nth-child(even) {
+    background-color: #dddddd;
+} */
+
+/* Scrollbar */
+.content-promocodes-tables::-webkit-scrollbar{
+    width: 5px;
+}
+.content-promocodes-tables::-webkit-scrollbar-thumb{
+    background-color: red;
 }
 
 
