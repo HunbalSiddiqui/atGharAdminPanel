@@ -25,7 +25,7 @@ function getAllRiders() {
         <tr>
             <th></th>
             <th>Rider Name</th>
-            <th>Promo Name</th>
+            <th>Rider Email</th>
             <th></th>
         </tr>
         
