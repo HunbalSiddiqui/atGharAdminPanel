@@ -26,6 +26,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <!-- Fontawsome -->
     <script src="https://kit.fontawesome.com/ddc246510f.js" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <title>Admin-order</title>
 </head>
 
@@ -35,9 +38,11 @@
             At Ghar
         </div>
         <div class="top-bar-right flex-end">
-            <button type="button" class="btn btn-dark btn-lg newproduct" data-toggle="modal" data-target="#newproduct">New
+            <button type="button" class="btn btn-dark btn-lg newproduct" data-toggle="modal"
+                data-target="#newproduct">New
                 Product</button>
-            <button type="button" class="btn btn-dark btn-lg newpromocode" data-toggle="modal" data-target="#newpromocode">New
+            <button type="button" class="btn btn-dark btn-lg newpromocode" data-toggle="modal"
+                data-target="#newpromocode">New
                 PromoCode</button>
             <button type="button" class="btn btn-dark btn-lg newrider" data-toggle="modal" data-target="#newrider">New
                 Rider</button>
@@ -266,32 +271,46 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new promo code</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new rider</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body flex-col">
-                    <!-- Promocode -->
+                    <!-- Rider name -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">PromoCode</span>
+                            <span class="input-group-text" id="inputGroup-sizing-default">Rider name</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Default"
+                        <input type="text" class="form-control ridername" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
-                    <!-- Discount in % -->
+                    <!-- Rider email -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Discount in %</span>
+                            <span class="input-group-text" id="inputGroup-sizing-default">Rider email</span>
                         </div>
-                        <input type="number" class="form-control" aria-label="Default"
+                        <input type="email" class="form-control rideremail" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Rider Passcode -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Rider passcode</span>
+                        </div>
+                        <input type="password" class="form-control riderpassword" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="alert alert-success ridersuccess" style="display: none;" role="alert">
+                        New rider has been introduced check it out!
+                    </div>
+                    <div class="alert alert-danger riderfailure" style="display: none;" role="alert">
+                        New rider can not be introduced!
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Introduce</button>
+                    <button type="button" class="btn btn-primary newriderButton">Introduce</button>
                 </div>
             </div>
         </div>
@@ -301,26 +320,35 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new promo code</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new admin</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body flex-col">
+                    <!-- Admin name -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Admin name</span>
+                        </div>
+                        <input type="text" class="form-control adminname" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
                     <!-- Admin email -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text adminemail" id="inputGroup-sizing-default">Admin email</span>
+                            <span class="input-group-text" id="inputGroup-sizing-default">Admin email</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Default"
+                        <input type="text" class="form-control adminemail" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
                     <!-- Admin passcode % -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text adminpassword" id="inputGroup-sizing-default">Admin passcode</span>
+                            <span class="input-group-text" id="inputGroup-sizing-default">Admin
+                                passcode</span>
                         </div>
-                        <input type="number" class="form-control" aria-label="Default"
+                        <input type="password" class="form-control adminpassword" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="alert alert-success adminsuccess" style="display: none;" role="alert">
@@ -332,7 +360,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Introduce</button>
+                    <button type="button" class="btn btn-primary newadminButton">Introduce</button>
                 </div>
             </div>
         </div>
@@ -342,6 +370,8 @@
     <script src="../node_modules/axios/dist/axios.min.js"></script>
     <script src="../js/navfunctionality.js"></script>
     <script src="../js/dashboard.js"></script>
+    <script src="../js/newAuth.js"></script>
+
 </body>
 
 </html>

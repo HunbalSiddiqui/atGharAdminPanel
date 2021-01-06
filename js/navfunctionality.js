@@ -46,7 +46,7 @@ function signout(next) {
         const userId = JSON.parse(localStorage.getItem("jwt")).user._id;
         const token = JSON.parse(localStorage.getItem("jwt")).token
         loadLoader()
-        axios.get(`https://atghar-testing.herokuapp.com/api/signout/${userId}`, {
+        axios.get(`https://atghar-testing.herokuapp.com/api/admin/signout/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

@@ -33,7 +33,7 @@ loginButton.addEventListener('click', () => {
 
 // Verify Credentials
 function verifyCredentials(email, password) {
-    axios.post('https://atghar-testing.herokuapp.com/api/signin', {
+    axios.post('https://atghar-testing.herokuapp.com/api/admin/signin', {
             email,
             password
         })
