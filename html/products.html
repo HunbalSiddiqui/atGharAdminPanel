@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/polarplate.css">
-    <link rel="stylesheet" href="../css/promocodes.css">
+    <link rel="stylesheet" href="../css/products.css">
     <link rel="stylesheet" href="../css/content.css">
 
     <!-- Bootstrap CDN -->
@@ -26,18 +25,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <!-- Fontawsome -->
     <script src="https://kit.fontawesome.com/ddc246510f.js" crossorigin="anonymous"></script>
+
     <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <title>Admin-promocode</title>
+    <title>Admin-Products</title>
 </head>
 
 <body>
-    <div class="promocode-container-wrapper">
+    <div class="products-container-wrapper">
         <div class="top-bar-left white f3 flex">
             At Ghar
         </div>
-        <div class="top-bar-right flex-end">
+        <div class="top-bar-right flex">
             <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newproduct">New
                 Product</button>
             <button type="button" class="btn btn-dark btn-lg newpromocode" data-toggle="modal"
@@ -49,7 +49,7 @@
                 Admin</button>
             <button type="button" class="btn btn-info btn-lg signout-btn">Signout</button>
         </div>
-        <div class="promocode-container-nav flex-col-start">
+        <div class="products-container-nav flex-col-start">
             <button type="button" name="dashboard" class="btn nav-custom-item btn-lg btn-block">
                 <p class="f2 flex">Dashboard</p>
             </button>
@@ -71,17 +71,11 @@
         </div>
         <div class="content">
             <div class="content-heading f2 flex-start"> <i class="fas fa-chart-line" style="color:red"></i> <span
-                    style="margin-left: 1%;" class="fb">Promocodes</span></div>
-            <!-- Table -->
-            <div class="content-promocodes-tables">
-                <table class="promocodeTable">
-                    <!-- Will be dynamically rendered in promocodes.js-->
-                </table>
-            </div>
-
+                    style="margin-left: 1%;" class="fb">Products</span></div>
         </div>
         <div class="loader"></div>
     </div>
+
 
 
     <!-- Modals -->
@@ -186,7 +180,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Rider email</span>
                         </div>
-                        <input type="text" class="form-control rideremail" aria-label="Default"
+                        <input type="email" class="form-control rideremail" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
                     <!-- Rider Passcode -->
@@ -262,12 +256,10 @@
         </div>
     </div>
 
-    <!-- Axios -->
-    <script src="../node_modules/axios/dist/axios.min.js"></script>
     <script src="../js/navfunctionality.js"></script>
-    <script src="../js/promocodes.js"></script>
+    <script src="../js/products.js"></script>
     <script src="../js/newAuth.js"></script>
-
 </body>
+
 
 </html>
