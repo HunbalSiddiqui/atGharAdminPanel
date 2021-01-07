@@ -59,6 +59,31 @@
     background-color: white;
     position: absolute;
     top: 100%;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding-top: 2rem;
+}
+.suggestionBox-product-item{
+    width: 100%;min-height: 4rem;height: 4rem;max-height: 4rem;
+    border-bottom: 4px solid white;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding-left: 1rem;
+    background-color: #2F363F;
+    color: white;
+}
+.suggestionBox-product-item:hover{
+    background-color: white;
+    color: red;
+}
+.suggestionBox::-webkit-scrollbar{
+    width: 0.5rem;
+    background-color: red;
+}
+.suggestionBox::-webkit-scrollbar-thumb{
+    background-color: #2F363F;
 }
   /* Responsiveness */
   @media screen and (max-width: 800px) {
