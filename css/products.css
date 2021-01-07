@@ -44,44 +44,22 @@
     background-color: #CAC9C9;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10vh minmax(80vh,min-content);
+    grid-template-rows: 10vh 20vh minmax(60vh,min-content);
 }
 /* Div 1 */
 /* Content Heading in content.css */
 /* Div 2 */
-/* New orders table */
-.content-products-tables {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: minmax(80vh, min-content);
-    overflow-y: auto;
+.content-product-search{
+/* TODO: */
+/* position: relative; */
 }
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+.suggestionBox{
+    border-top: 1px solid red;
+    width: 90.5%;height: 30rem;
+    background-color: white;
+    position: absolute;
+    top: 100%;
 }
-
-td,
-th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-    font-size: 1.5rem;
-}
-
-/* tr:nth-child(even) {
-    background-color: #dddddd;
-} */
-
-/* Scrollbar */
-.content-products-tables::-webkit-scrollbar{
-    width: 5px;
-}
-.content-products-tables::-webkit-scrollbar-thumb{
-    background-color: red;
-}
-
   /* Responsiveness */
   @media screen and (max-width: 800px) {
     .products-container-wrapper {
