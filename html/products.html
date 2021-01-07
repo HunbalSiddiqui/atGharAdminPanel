@@ -82,13 +82,76 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Search</span>
                     </div>
-                <!-- SuggestionBox -->
-                <div class="suggestionBox flex-col">
-                    <div class="suggestionBox-product-item bg-silver"></div>
-                </div>
+                    <!-- SuggestionBox -->
+                    <div class="suggestionBox flex-col">
+                        <div class="suggestionBox-product-item bg-silver"></div>
+                    </div>
                 </div>
             </div>
-
+            <!-- Product edit -->
+            <div class="product-edit">
+                <div class="product-image">
+                    <!-- TODO: img will be rendered dynamically -->
+                </div>
+                <div class="product-details bg-silver">
+                    <!-- Name -->
+                    <div class="input-group input-group-lg mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                        </div>
+                        <input type="text" class="form-control productname" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Price -->
+                    <div class="input-group input-group-lg mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+                        </div>
+                        <input type="number" class="form-control productprice" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Featured -->
+                    <div class="input-group input-group-lg mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" class="featuredFlag"
+                                    aria-label="Checkbox for following text input">
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Text input with checkbox"
+                            placeholder="Featured Product" disabled>
+                    </div>
+                    <!-- Type -->
+                    <div class="input-group input-group-lg mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Type</span>
+                        </div>
+                        <input type="text" class="form-control producttype" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" disabled>
+                    </div>
+                    <!-- Category -->
+                    <div class="input-group input-group-lg mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
+                        </div>
+                        <input type="text" class="form-control productCategory" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" disabled>
+                    </div>
+                    <!-- Sub Category -->
+                    <div class="input-group input-group-lg mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Sub-Category</span>
+                        </div>
+                        <input type="text" class="form-control productsubCategory" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" disabled>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="input-group input-group-lg mb-3 flex">
+                        <button type="button" class="btn btn-lg btn-danger mr-3 removeproduct">Remove</button>
+                        <button type="button" class="btn btn-lg btn-info">Update</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="loader"></div>

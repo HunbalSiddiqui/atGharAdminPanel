@@ -1,7 +1,10 @@
 var usercount = document.querySelector('.usercount')
 
 function setUserCount() {
-    axios.get('https://atghar-testing.herokuapp.com/api/users/count')
+    const token = JSON.parse(localStorage.getItem("jwt")).token
+    axios.get('https://atghar-testing.herokuapp.com/api/users/count', {
+            Authorization: `Bearer ${token}`
+        })
         .then((response) => {
             if (usercount) {
                 usercount.innerHTML = ''
@@ -21,7 +24,10 @@ setUserCount()
 var totalorders = document.querySelector('.totalorders')
 
 function settotalOrders() {
-    axios.get('https://atghar-testing.herokuapp.com/api/orders/count')
+    const token = JSON.parse(localStorage.getItem("jwt")).token
+    axios.get('https://atghar-testing.herokuapp.com/api/orders/count', {
+            Authorization: `Bearer ${token}`
+        })
         .then((response) => {
             if (totalorders) {
                 totalorders.innerHTML = ''

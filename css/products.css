@@ -73,6 +73,7 @@
     padding-left: 1rem;
     background-color: #2F363F;
     color: white;
+    z-index: 10;
 }
 .suggestionBox-product-item:hover{
     background-color: white;
@@ -84,6 +85,18 @@
 }
 .suggestionBox::-webkit-scrollbar-thumb{
     background-color: #2F363F;
+}
+
+.product-edit{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: minmax(60vh,min-content);
+    grid-template-areas: "product-image product-details";
+    display: none;
+}
+.product-details{
+    box-sizing: border-box;
+    padding: 2rem 4rem;
 }
   /* Responsiveness */
   @media screen and (max-width: 800px) {
