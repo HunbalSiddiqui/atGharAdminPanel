@@ -39,8 +39,8 @@ function getAllRiders() {
                 data-target="#deleterider">Delete</button></th>
                 <th>${rider.name}</th>
                 <th>${rider.email}</th>
-                <th class="flex"><button type="button" class="btn btn-warning" data-toggle="modal"
-                data-target="#disablepromo">View History</button></th>
+                <th class="flex"><button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#riderhistory">View History</button></th>
             </tr>
                 `)
                 )

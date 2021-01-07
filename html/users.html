@@ -75,7 +75,7 @@
                     style="margin-left: 1%;" class="fb">Users</span></div>
             <!-- Table -->
             <div class="content-riders-tables">
-                <table class="riderTable">
+                <table class="userTable">
                     <!-- Will be dynamically rendered in promocodes.js-->
                 </table>
             </div>
@@ -254,6 +254,27 @@
                     <div class="alert alert-danger adminfailure" style="display: none;" role="alert">
                         New admin code can not be introduced!
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary newadminButton">Introduce</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- user history -->
+    <div class="modal fade" id="userhistory" tabindex="-1" role="dialog" aria-labelledby="userhistory"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new admin</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body flex-col userorderhistory">
+                    <!-- TODO: data will be dynamically rendered. -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

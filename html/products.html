@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,8 +73,23 @@
         <div class="content">
             <div class="content-heading f2 flex-start"> <i class="fas fa-chart-line" style="color:red"></i> <span
                     style="margin-left: 1%;" class="fb">Products</span></div>
+            <!-- SearchBar Div-->
+            <div class="content-product-search bg-dark flex-col">
+                <!-- Input -->
+                <div class="input-group input-group-lg" style="width: 60%;position: relative;">
+                    <input type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-lg">Search</span>
+                    </div>
+                <!-- SuggestionBox -->
+                <div class="suggestionBox"></div>
+                </div>
+            </div>
+
         </div>
-        <div class="loader"></div>
+    </div>
+    <div class="loader"></div>
     </div>
 
 

@@ -261,6 +261,57 @@
             </div>
         </div>
     </div>
+    <!-- rider history modal -->
+    <div class="modal fade" id="riderhistory" tabindex="-1" role="dialog" aria-labelledby="riderhistory"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new admin</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body flex-col">
+                    <!-- Admin name -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Admin name</span>
+                        </div>
+                        <input type="text" class="form-control adminname" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Admin email -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Admin email</span>
+                        </div>
+                        <input type="text" class="form-control adminemail" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Admin passcode % -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Admin
+                                passcode</span>
+                        </div>
+                        <input type="password" class="form-control adminpassword" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="alert alert-success adminsuccess" style="display: none;" role="alert">
+                        New admin has been introduced check it out!
+                    </div>
+                    <div class="alert alert-danger adminfailure" style="display: none;" role="alert">
+                        New admin code can not be introduced!
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary newadminButton">Introduce</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Axios -->
     <script src="../node_modules/axios/dist/axios.min.js"></script>

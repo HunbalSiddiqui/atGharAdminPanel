@@ -4,9 +4,8 @@ if (!localStorage.getItem('jwt')) {
 }
 if (JSON.parse(localStorage.getItem("jwt")).user.role === 2) {
     // TODO: redirect to required page
-    // location.assign('./orders.html')
+    location.assign('./riderDashboard.html')
 }
-console.log(JSON.parse(localStorage.getItem("jwt")).user.role)
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
