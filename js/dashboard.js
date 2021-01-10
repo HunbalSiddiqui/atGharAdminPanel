@@ -2,8 +2,11 @@ var usercount = document.querySelector('.usercount')
 
 function setUserCount() {
     const token = JSON.parse(localStorage.getItem("jwt")).token
-    axios.get('https://atghar-testing.herokuapp.com/api/users/count', {
-            Authorization: `Bearer ${token}`
+    const admin = JSON.parse(localStorage.getItem("jwt")).user
+    axios.get(`https://atghar-testing.herokuapp.com/api//admin/${admin._id}/users/count`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         })
         .then((response) => {
             if (usercount) {
@@ -25,8 +28,12 @@ var totalorders = document.querySelector('.totalorders')
 
 function settotalOrders() {
     const token = JSON.parse(localStorage.getItem("jwt")).token
-    axios.get('https://atghar-testing.herokuapp.com/api/orders/count', {
-            Authorization: `Bearer ${token}`
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    console.log(admin._id, token)
+    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/orders/count`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         })
         .then((response) => {
             if (totalorders) {

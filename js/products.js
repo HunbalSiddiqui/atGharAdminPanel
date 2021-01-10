@@ -89,16 +89,19 @@ var productimage = document.querySelector('.product-image')
 function getProductImg(productName) {
     axios.get(`https://atghar-testing.herokuapp.com/api/products/photo/${productName}`)
         .then((response) => {
-            // console.log(
-            //     response.data
-            // )
+            console.log(
+                response.data
+            )
             var image = new Image();
             image.id = "pic";
-            image.src = response.data.toDataURL();
-            console.log(image)
+            image.src = "data:image/jpeg;base64," + response.data;
+            // image.src = "data:image/png;base64," + System.Convert.ToBase64String(diagram.Diagram);
+
+            // console.log(image)
             // var image = new Image()
             // image.src = `data:image/jpeg;base64,${response.data}`
-            // productimage.style.background = myImage
+            // "data:text/plain;base64," + System.Convert.ToBase64String(diagram.Diagram)
+            // productimage.style.background = `data:image/png;base64, ${System.Convert.ToBase64String(diagram.Diagram)}`;
             // console.log("Done")
         })
         .catch((err) => {

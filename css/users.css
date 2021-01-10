@@ -82,6 +82,13 @@ th {
     background-color: red;
 }
 
+.userorderhistory-bar{
+    width: 100%;
+    min-height: 8rem;
+    height: 8rem;
+    background-color: #2F363F;
+    color: white;
+}
   /* Responsiveness */
   @media screen and (max-width: 800px) {
     .users-container-wrapper {
