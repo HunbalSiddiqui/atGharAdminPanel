@@ -1,3 +1,4 @@
+
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -36,7 +37,7 @@ function getAllRiders() {
                         `
                 <tr>
                 <th class="flex"><button type="button" class="btn btn-danger" data-toggle="modal"
-                data-target="#deleterider">Delete</button></th>
+                data-target="#deleterider" onclick="deleteRider('${rider._id}')">Delete</button></th>
                 <th>${rider.name}</th>
                 <th>${rider.email}</th>
                 <th class="flex"><button type="button" class="btn btn-primary" data-toggle="modal"
@@ -51,3 +52,23 @@ function getAllRiders() {
         })
 }
 getAllRiders()
+
+
+function deleteRider(riderId) {
+    loadLoader()
+    console.log(riderId)
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.delete(`https://atghar-testing.herokuapp.com/api//admin/${admin._id}/rider/${riderId}`,{
+        headers:{
+            Authorization : `Bearer ${token}`
+        }
+    })
+    .then((response)=>{
+        console.log(response.data)
+        getAllRiders()
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+}
