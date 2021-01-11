@@ -109,58 +109,8 @@
             <div class="content-new-orders-tables">
                 <h2 class="f2 flex-start fb" style="margin-left: 1%;">New Orders</h2>
 
-                <table>
-                    <tr>
-                        <th>Order</th>
-                        <th>Contact</th>
-                        <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></th>
-                    </tr>
-                    <tr>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
-                    <tr>
-                        <td>Centro comercial Moctezuma</td>
-                        <td>Francisco Chang</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-
-                    </tr>
-                    <tr>
-                        <td>Ernst Handel</td>
-                        <td>Roland Mendel</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-
-                    </tr>
-                    <tr>
-                        <td>Island Trading</td>
-                        <td>Helen Bennett</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-
-                    </tr>
-                    <tr>
-                        <td>Laughing Bacchus Winecellars</td>
-                        <td>Yoshi Tannamuri</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
-                    <tr>
-                        <td>Magazzini Alimentari Riuniti</td>
-                        <td>Giovanni Rovelli</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
-                    <tr>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
+                <table class="pendingordersTable">
+                    <!-- Data will be rendered dynamically -->
                 </table>
             </div>
 
@@ -368,7 +318,27 @@
             </div>
         </div>
     </div>
-
+    <!-- user history -->
+    <div class="modal fade" id="orderproducts" tabindex="-1" role="dialog" aria-labelledby="orderproducts"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Orders Hisotry</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body flex-col orderProducts">
+                    <!-- TODO: data will be dynamically rendered. -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary newadminButton">Introduce</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Axios -->
     <script src="../node_modules/axios/dist/axios.min.js"></script>
     <script src="../js/navfunctionality.js"></script>

@@ -56,7 +56,6 @@ getAllRiders()
 
 function deleteRider(riderId) {
     loadLoader()
-    console.log(riderId)
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
     axios.delete(`https://atghar-testing.herokuapp.com/api//admin/${admin._id}/rider/${riderId}`,{

@@ -79,9 +79,14 @@ function introduceNewpromocode() {
         offPercentage: promocodediscount.value
     }
     loadLoader()
+    const token = JSON.parse(localStorage.getItem('jwt')).token
     axios.post('https://atghar-testing.herokuapp.com/api/promocode/create', {
             name: promocodename.value,
             offPercentage: promocodediscount.value
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         })
         .then((response) => {
             closeLoader()
