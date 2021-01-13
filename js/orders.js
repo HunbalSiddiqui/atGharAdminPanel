@@ -38,7 +38,9 @@ function setConfirmedOrders() {
                     confirmedTable.insertAdjacentHTML('beforeend',
                         `
                 <tr>
-                    <th></th>
+                    <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},cancelled')" class="btn btn-danger" data-toggle="modal">Cancel</button></th>
+                    <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},dispatched')" class="btn btn-warning" data-toggle="modal">Dispatch</button></th>
+                    <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},delivered')" class="btn btn-success" data-toggle="modal">Delivered</button></th>
                     <th>${order.rider.name}</th>
                     <th>${order.user.fullname}</th>
                     <th>${order.amount}-PKR</th>
@@ -77,6 +79,7 @@ function setDispatchedOrders() {
             dispatchedTable.insertAdjacentHTML('beforeend',
                 `
             <tr>
+                <th></th>
                 <th>Rider Name</th>
                 <th>User Name</th>
                 <th>Total Amount</th>
@@ -89,7 +92,8 @@ function setDispatchedOrders() {
                     dispatchedTable.insertAdjacentHTML('beforeend',
                         `
                 <tr>
-                    
+                    <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},cancelled')" class="btn btn-danger" data-toggle="modal">Cancel</button></th>
+                    <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},delivered')" class="btn btn-success" data-toggle="modal">Delivered</button></th>
                     <th>${order.rider.name}</th>
                     <th>${order.user.fullname}</th>
                     <th>${order.amount}-PKR</th>
@@ -130,6 +134,7 @@ function setShippedOrders() {
             shippedTable.insertAdjacentHTML('beforeend',
                 `
         <tr>
+            <th></th>
             <th>Rider Name</th>
             <th>User Name</th>
             <th>Total Amount</th>
@@ -142,7 +147,7 @@ function setShippedOrders() {
                     shippedTable.insertAdjacentHTML('beforeend',
                         `
                 <tr>
-                    
+                    <th></th>
                     <th>${order.rider.name}</th>
                     <th>${order.user.fullname}</th>
                     <th>${order.amount}-PKR</th>
@@ -183,6 +188,7 @@ function setCancelledOrders() {
             cancelledTable.insertAdjacentHTML('beforeend',
                 `
         <tr>
+            <th></th>
             <th>Rider Name</th>
             <th>User Name</th>
             <th>Total Amount</th>
@@ -195,7 +201,7 @@ function setCancelledOrders() {
                     cancelledTable.insertAdjacentHTML('beforeend',
                         `
                 <tr>
-                    
+                    <th></th>
                     <th>${order.rider.name}</th>
                     <th>${order.user.fullname}</th>
                     <th>${order.amount}-PKR</th>
@@ -285,4 +291,27 @@ function displayOrderDetails(orderId) {
         .catch((err) => {
             console.log(err)
         })
+}
+
+
+function updateOrderStatus(statusObj){
+    const splitting = statusObj.split(',')
+    const orderId = splitting[0]
+    const statusL = splitting[1]
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    // console.log(statusL)
+    axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/changestatus/admin/${admin._id}`,{
+        status : statusL
+    },{
+        headers:{
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then((response)=>{
+        location.reload()
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
 }

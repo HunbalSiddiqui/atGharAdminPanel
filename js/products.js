@@ -10,7 +10,7 @@ function closeLoader() {
 var productsearcbar = document.querySelector('.productsearcbar')
 var suggestionBox = document.querySelector('.suggestionBox')
 var forminput = ""
-
+var updateProductBtn = document.querySelector('.updateProductBtn')
 
 productsearcbar.addEventListener('keyup', async () => {
     searchFunction()
@@ -55,10 +55,10 @@ var producttype = document.querySelector('.producttype')
 var productCategory = document.querySelector('.productCategory')
 var productsubCategory = document.querySelector('.productsubCategory')
 var productedit = document.querySelector('.product-edit')
+var productState = {}
+var productid = null
 
 function getProductDetails(productId) {
-
-    productedit.style.display = "grid"
     loadLoader()
     // console.log(productId)
     // Close suggestion box on click
@@ -66,9 +66,10 @@ function getProductDetails(productId) {
     searchFunction()
     axios.get(`https://atghar-testing.herokuapp.com/api/product/${productId}`)
         .then((response) => {
+            productedit.style.display = "grid"
             const product = response.data
-            getProductImg(product.productname)
             closeLoader()
+            productid = product._id
             productname.value = product.productname
             productprice.value = product.price
             product.featured ?
@@ -77,10 +78,35 @@ function getProductDetails(productId) {
             producttype.value = product.type
             productCategory.value = product.category
             productsubCategory.value = product.subcategory
+            // Setting product state
+            productState = {
+                productname: productname.value,
+                price: productprice.value,
+                featured: featuredFlag.checked,
+                category: product.category,
+                type: product.type,
+                subcategory: product.subcategory
+            }
         })
         .catch((err) => {
             console.log(err)
         })
+}
+
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#blah')
+                .attr('src', e.target.result)
+                .width("100%")
+                .height("100%");
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
 // Set image
@@ -107,4 +133,33 @@ function getProductImg(productName) {
         .catch((err) => {
             console.log(err)
         })
+}
+
+
+// Update product
+updateProductBtn.addEventListener('click', () => {
+    updateProduct()
+})
+
+function updateProduct() {
+    loadLoader()
+    productState.featured = featuredFlag.checked;
+    if (productid) {
+        const admin = JSON.parse(localStorage.getItem('jwt')).user
+        const token = JSON.parse(localStorage.getItem('jwt')).token
+        axios.put(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/${productid}`,
+                productState, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+            .then((response) => {
+                closeLoader()
+                console.log(response.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }
 }

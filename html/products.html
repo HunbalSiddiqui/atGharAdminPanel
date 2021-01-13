@@ -92,6 +92,7 @@
             <div class="product-edit">
                 <div class="product-image">
                     <!-- TODO: img will be rendered dynamically -->
+                    <img id="blah" src="#" alt="Upload new image" />
                 </div>
                 <div class="product-details bg-silver">
                     <!-- Name -->
@@ -145,10 +146,14 @@
                         <input type="text" class="form-control productsubCategory" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
                     </div>
+                    <!-- Image -->
+                    <div class="input-group input-group-lg mb-3">
+                        <input type="file" name="filename" accept="image/gif, image/jpeg, image/png" onchange="readURL(this);">
+                    </div>
                     <!-- Buttons -->
                     <div class="input-group input-group-lg mb-3 flex">
                         <button type="button" class="btn btn-lg btn-danger mr-3 removeproduct">Remove</button>
-                        <button type="button" class="btn btn-lg btn-info">Update</button>
+                        <button type="button" class="btn btn-lg btn-info updateProductBtn">Update</button>
                     </div>
                 </div>
             </div>

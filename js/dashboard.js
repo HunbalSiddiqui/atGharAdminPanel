@@ -196,3 +196,4 @@ function assignOrder(riderId) {
             alert("Can not assign this order.")
         })
 }
+

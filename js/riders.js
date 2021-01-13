@@ -71,3 +71,10 @@ function deleteRider(riderId) {
         console.log(err)
     })
 }
+
+// Rirder history popup
+const riderHistory = document.querySelector('.riderHistory')
+
+function displayRiderHistory(riderId){
+    
+}
