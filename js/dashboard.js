@@ -1,4 +1,3 @@
-const { default: axios } = require("axios")
 
 var usercount = document.querySelector('.usercount')
 
@@ -99,13 +98,13 @@ var pendingordersTable = document.querySelector('.pendingordersTable')
 function getPendingOrders() {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     loadLoader()
-    axios.get(`https://atghar-testing.herokuapp.com/api//admin/5ff6fd72e301d2483565adc1/Cancelled`, {
+    axios.get(`https://atghar-testing.herokuapp.com/api//admin/5ff6fd72e301d2483565adc1/Not processed`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
         .then((response) => {
-            // console.log(response.data)
+            console.log(response.data)
             closeLoader()
             pendingordersTable.innerHTML = ''
             pendingordersTable.insertAdjacentHTML('beforeend',
@@ -126,7 +125,7 @@ function getPendingOrders() {
                     <tr>
                         <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
                         data-target="#orderproducts" id="${order.name}"   onclick="displayOrderProducts('${order._id}')">View products</button></th>
-                        <th>${order.user.fullname}</th>
+                        <th>${order.user.name}</th>
                         <th>${order.user.phone}</th>
                         <th>${order.amount}-PKR</th>
                         <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
