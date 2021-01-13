@@ -63,11 +63,6 @@ var riderpassword = document.querySelector('.riderpassword')
 var newriderButton = document.querySelector('.newriderButton')
 // admin signup
 function riderSignup() {
-    console.log({
-        name: ridername.value,
-        email: rideremail.value,
-        password: riderpassword.value
-    })
     loadLoader()
     axios.post('https://atghar-testing.herokuapp.com/api/rider/signup', {
             name: ridername.value,
@@ -81,6 +76,7 @@ function riderSignup() {
                 ridersuccess.style.display = "block"
                 var riderfailure = document.querySelector('.riderfailure')
                 riderfailure.style.display = "none"
+                location.reload()
             }
         })
         .catch((error) => {

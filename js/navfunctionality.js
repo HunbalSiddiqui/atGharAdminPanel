@@ -95,6 +95,7 @@ function introduceNewpromocode() {
                 promosuccess.style.display = "block"
                 var promofailure = document.querySelector('.promofailure')
                 promofailure.style.display = "none"
+                location.reload()
             }
         })
         .catch((err) => {

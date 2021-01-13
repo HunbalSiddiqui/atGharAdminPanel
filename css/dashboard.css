@@ -111,6 +111,13 @@ tr:nth-child(even) {
     background-color: red;
 }
 
+.select-rider{
+    /*  */
+}
+.select-rider:hover{
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
 
 /* Responsiveness */
 @media screen and (max-width: 800px) {

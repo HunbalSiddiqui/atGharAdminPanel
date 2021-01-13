@@ -76,116 +76,30 @@
                     style="margin-left: 1%;" class="fb">Orders</span></div>
             <!-- Table Of Assignend Orders-->
             <div class="content-assigned-orders-tables">
-                <h2 class="f2 flex-start fb" style="padding-left: 1%;">Assigned Orders</h2>
-                <table>
-                    <tr>
-                        <th>Order</th>
-                        <th>Contact</th>
-                        <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></th>
-                    </tr>
-                    <tr>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
-                    <tr>
-                        <td>Centro comercial Moctezuma</td>
-                        <td>Francisco Chang</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-
-                    </tr>
-                    <tr>
-                        <td>Ernst Handel</td>
-                        <td>Roland Mendel</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-
-                    </tr>
-                    <tr>
-                        <td>Island Trading</td>
-                        <td>Helen Bennett</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-
-                    </tr>
-                    <tr>
-                        <td>Laughing Bacchus Winecellars</td>
-                        <td>Yoshi Tannamuri</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
-                    <tr>
-                        <td>Magazzini Alimentari Riuniti</td>
-                        <td>Giovanni Rovelli</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
-                    <tr>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
+                <h2 class="f2 flex-start fb" style="padding-left: 1%;">Confirmed Orders</h2>
+                <table class="confirmedTable">
+                    <!-- Table will be rendered dynamically -->
                 </table>
             </div>
             <!-- Table Of Delivered Orders-->
             <div class="content-delivered-orders-tables">
+                <h2 class="f2 flex-start fb" style="padding-left: 1%;">Dispatched Orders</h2>
+                <table class="dispatchedTable">
+                    <!-- Table will be rendered dynamically -->
+                </table>
+            </div>
+            <!-- Table of shipped orders -->
+            <div class="content-shipped-orders-tables">
                 <h2 class="f2 flex-start fb" style="padding-left: 1%;">Delivered Orders</h2>
-                <table>
-                    <tr>
-                        <th>Order</th>
-                        <th>Contact</th>
-                        <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></th>
-                    </tr>
-                    <tr>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
-                    <tr>
-                        <td>Centro comercial Moctezuma</td>
-                        <td>Francisco Chang</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-
-                    </tr>
-                    <tr>
-                        <td>Ernst Handel</td>
-                        <td>Roland Mendel</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-
-                    </tr>
-                    <tr>
-                        <td>Island Trading</td>
-                        <td>Helen Bennett</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-
-                    </tr>
-                    <tr>
-                        <td>Laughing Bacchus Winecellars</td>
-                        <td>Yoshi Tannamuri</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
-                    <tr>
-                        <td>Magazzini Alimentari Riuniti</td>
-                        <td>Giovanni Rovelli</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
-                    <tr>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                                data-target="#assignmodal">Assign</button></td>
-                    </tr>
+                <table class="shippedTable">
+                    <!-- Table will be rendered dynamically -->
+                </table>
+            </div>
+            <!-- Table Of Cancelled Orders -->
+            <div class="content-cancelled-orders-tables">
+                <h2 class="f2 flex-start fb" style="padding-left: 1%;">Cancelled Orders</h2>
+                <table class="cancelledTable">
+                    <!-- Table will be rendered dynamically -->
                 </table>
             </div>
         </div>
@@ -370,11 +284,51 @@
             </div>
         </div>
     </div>
-
+    <!-- order products -->
+    <div class="modal fade" id="orderproducts" tabindex="-1" role="dialog" aria-labelledby="orderproducts"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Orders Products</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body flex-col orderProducts">
+                    <!-- TODO: data will be dynamically rendered. -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- order details -->
+    <div class="modal fade" id="orderdetails" tabindex="-1" role="dialog" aria-labelledby="orderdetails"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Orders Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body flex-col orderDetails">
+                    <!-- TODO: data will be dynamically rendered. -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Axios -->
     <script src="../node_modules/axios/dist/axios.min.js"></script>
     <script src="../js/navfunctionality.js"></script>
     <script src="../js/newAuth.js"></script>
+    <script src="../js/orders.js"></script>
 
 </body>
 

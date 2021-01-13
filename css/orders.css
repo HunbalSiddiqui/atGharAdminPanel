@@ -55,7 +55,7 @@
     background-color: #CAC9C9;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10vh minmax(40vh, min-content) minmax(50vh, min-content);
+    grid-template-rows: 10vh minmax(40vh, min-content) minmax(50vh, min-content) minmax(50vh, min-content) minmax(50vh, min-content);
     overflow-y: auto;
 }
 
@@ -69,8 +69,12 @@
     overflow-y: auto;
 }
 
-.content-assigned-orders-tables h2{
+.content-assigned-orders-tables h2 {
     border-bottom: 2px solid red;
+    /* position: sticky; */
+    /* left: 0;right: 0;top: 0; */
+    /* z-index: 3; */
+    /* background-color: red; */
 }
 
 table {
@@ -107,7 +111,8 @@ tr:nth-child(even) {
     grid-template-rows: 10vh minmax(40vh, min-content);
     overflow-y: auto;
 }
-.content-delivered-orders-tables h2{
+
+.content-delivered-orders-tables h2 {
     border-bottom: 2px solid red;
 }
 
@@ -120,17 +125,73 @@ tr:nth-child(even) {
     background-color: red;
 }
 
+/* Div 4 */
+.content-shipped-orders-tables {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10vh minmax(40vh, min-content);
+    overflow-y: auto;
+}
 
-  /* Responsiveness */
-  @media screen and (max-width: 800px) {
+.content-shipped-orders-tables h2 {
+    border-bottom: 2px solid red;
+}
+
+/* Scrollbar */
+.content-shipped-orders-tables::-webkit-scrollbar {
+    width: 5px;
+}
+
+.content-shipped-orders-tables::-webkit-scrollbar-thumb {
+    background-color: red;
+}
+
+/* Div 5 */
+.content-cancelled-orders-tables {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10vh minmax(40vh, min-content);
+    overflow-y: auto;
+}
+
+.content-cancelled-orders-tables h2 {
+    border-bottom: 2px solid red;
+}
+
+/* Scrollbar */
+.content-cancelled-orders-tables::-webkit-scrollbar {
+    width: 5px;
+}
+
+.content-cancelled-orders-tables::-webkit-scrollbar-thumb {
+    background-color: red;
+}
+
+.product-bar{
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+.product-bar:hover{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.details-box{
+    width: 100%;
+    cursor: pointer;
+    height: 100%;
+    font-size: 1.4rem;
+}
+/* Responsiveness */
+@media screen and (max-width: 800px) {
     .order-container-wrapper {
         display: grid;
         grid-template-columns: 100vw;
-        grid-template-rows: 10vh minmax(20vh,min-content) 10vh 80vh;
+        grid-template-rows: 10vh minmax(20vh, min-content) 10vh 80vh;
         grid-template-areas: "top-bar-left"
-                            "nav"
-                            "top-bar-right"
-                            "content";
+            "nav"
+            "top-bar-right"
+            "content";
     }
-    
-  }
+
+}
