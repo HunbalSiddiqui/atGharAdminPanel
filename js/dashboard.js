@@ -127,7 +127,7 @@ function getPendingOrders() {
             }
         })
         .then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
             closeLoader()
             pendingordersTable.innerHTML = ''
             pendingordersTable.insertAdjacentHTML('beforeend',
@@ -191,9 +191,12 @@ function assignOrder(riderId) {
         })
         .then((response) => {
             getPendingOrders()
+            localStorage.removeItem('npo')
         })
         .catch((err) => {
             alert("Can not assign this order.")
         })
 }
+
+
 

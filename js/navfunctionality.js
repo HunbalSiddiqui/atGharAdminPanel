@@ -109,3 +109,138 @@ function introduceNewpromocode() {
 introducenewpromocode.addEventListener('click', () => {
     introduceNewpromocode()
 })
+
+// Add new product
+var productcategory = document.querySelector('.productcategory')
+// Cateogries
+function displayCategories() {
+    // Grocery
+    if (productcategory) {
+        productcategory.innerHTML = ''
+        productcategory.insertAdjacentHTML('beforeend',
+            `
+        <option selected>Choose</option>
+        
+        `)
+        axios.get(`https://atghar-testing.herokuapp.com/api/categories/grocery`)
+            .then((response) => {
+                response.data.map((category) => {
+                    return (
+                        productcategory.insertAdjacentHTML('beforeend',
+                            `
+                        <option value="${category.name}">${category.name}</option>
+                
+                        `)
+                    )
+                })
+
+            })
+        // Pharmacy
+        axios.get(`https://atghar-testing.herokuapp.com/api/categories/pharmacy`)
+            .then((response) => {
+                response.data.map((category) => {
+                    return (
+                        productcategory.insertAdjacentHTML('beforeend',
+                            `
+                    <option value="${category.name}">${category.name}</option>
+            
+                    `)
+                    )
+                })
+
+            })
+    }
+
+}
+displayCategories()
+// Subcateogries
+productcategory.addEventListener('change', () => {
+    displaySubCategories(productcategory.value)
+})
+var productsubcategory = document.querySelector('.productsubcategory')
+
+function displaySubCategories(category) {
+    // Grocery
+    productsubcategory.innerHTML = ''
+    axios.get(`https://atghar-testing.herokuapp.com/api/subcategories/${category}`)
+        .then((response) => {
+            response.data.map((category) => {
+                return (
+                    productsubcategory.insertAdjacentHTML('beforeend',
+                        `
+                    <option value="${category.name}">${category.name}</option>
+            
+                    `)
+                )
+            })
+
+        })
+}
+
+// Creating
+var productsubcategory = document.querySelector('.productsubcategory')
+var productcategory = document.querySelector('.productcategory')
+var productname = document.querySelector('.productname')
+var productprice = document.querySelector('.productprice')
+var producttype = document.querySelector('.producttype')
+var featuredFlag = document.querySelector('.featuredFlag')
+var productObj = {}
+var createProductBtn = document.querySelector('.createProductBtn')
+createProductBtn.addEventListener('click', () => {
+    productObj = {
+        productname: productname.value,
+        price: productprice.value,
+        type: producttype.value,
+        category: productcategory.value,
+        subcategory: productsubcategory.value,
+        featured: featuredFlag.checked
+    }
+    createProduct(productObj)
+})
+
+function createProduct(productDetails) {
+    loadLoader()
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.post(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/create/`,
+            productDetails, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        .then((response) => {
+            closeLoader()
+            var productsuccess = document.querySelector('.productsuccess')
+            productsuccess.style.display = "block"
+            var productfailure = document.querySelector('.productfailure')
+            productfailure.style.display = "none"
+            location.reload()
+        })
+        .catch((err) => {
+            closeLoader()
+            var productfailure = document.querySelector('.productfailure')
+            productfailure.style.display = "block"
+            var productsuccess = document.querySelector('.productsuccess')
+            productsuccess.style.display = "none"
+        })
+
+}
+
+
+var productimg = document.querySelector('.productimg')
+
+function uploadProductImage() {
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.post(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/uploadimage/`, {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((response) => {
+
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
