@@ -42,7 +42,7 @@ function setConfirmedOrders() {
                     <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},cancelled')" class="btn btn-danger" data-toggle="modal">Cancel</button></th>
                     <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},dispatched')" class="btn btn-warning" data-toggle="modal">Dispatch</button></th>
                     <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},delivered')" class="btn btn-success" data-toggle="modal">Delivered</button></th>
-                    <th>${order.user.fullname}</th>
+                    <th>${order.rider.name}</th>
                     <th>${order.user.fullname}</th>
                     <th>${order.amount}-PKR</th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"

@@ -169,8 +169,6 @@ getPendingOrders()
 // Setting not processed order to localstorage for time being for accesability
 function setNPOtoLS(orderId) {
     localStorage.setItem('npo', JSON.stringify(orderId))
-    // updating order status
-    updateOrderStatus(orderId)
 }
 
 var orderProducts = document.querySelector('.orderProducts')
@@ -192,6 +190,8 @@ function assignOrder(riderId) {
             }
         })
         .then((response) => {
+            // updating order status
+            updateOrderStatus(orderId)
             getPendingOrders()
             localStorage.removeItem('npo')
         })
@@ -201,25 +201,25 @@ function assignOrder(riderId) {
 }
 
 
-function updateOrderStatus(orderId){
+function updateOrderStatus(orderId) {
+    // Order status is getting automatically changed at backend.
+    // console.log(orderId)
     // const splitting = statusObj.split(',')
     // const orderId = splitting[0]
     // const statusL = splitting[1]
-    const token = JSON.parse(localStorage.getItem('jwt')).token
-    const admin = JSON.parse(localStorage.getItem('jwt')).user
-    axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/changestatus/admin/${admin._id}`,{
-        status : "confirmed"
-    },{
-        headers:{
-            Authorization: `Bearer ${token}`
-        }
-    })
-    .then((response)=>{
-        location.reload()
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
+    // const token = JSON.parse(localStorage.getItem('jwt')).token
+    // const admin = JSON.parse(localStorage.getItem('jwt')).user
+    // axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/changestatus/admin/${admin._id}`,{
+    //     status : "confirmed"
+    // },{
+    //     headers:{
+    //         Authorization: `Bearer ${token}`
+    //     }
+    // })
+    // .then((response)=>{
+    //     location.reload()
+    // })
+    // .catch((err)=>{
+    //     console.log(err)
+    // })
 }
-
-
