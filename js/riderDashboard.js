@@ -93,7 +93,7 @@ function displayCancelledOrders() {
                     <th>${order.user.phone}</th>
                     <th>${order.amount}-PKR</th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                    data-target="#orderproducts" id="${order.name}"   onclick="displayOrderProducts('${order._id}')">View products</button></th>
+                    data-target="#orderdetails" id="${order.name}"   onclick="displayOrderDetails('${order._id}')">View Details</button></th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
                     data-target="#orderproducts" id="${order.name}"   onclick="displayOrderProducts('${order._id}')">View products</button></th>
                 </tr>
@@ -199,7 +199,7 @@ function displayDeliveredOrders() {
                     <th>${order.user.phone}</th>
                     <th>${order.amount}-PKR</th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
-                    data-target="#orderproducts" id="${order.name}"   onclick="displayOrderProducts('${order._id}')">View products</button></th>
+                    data-target="#orderdetails" id="${order.name}"   onclick="displayOrderDetails('${order._id}')">View Details</button></th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
                     data-target="#orderproducts" id="${order.name}"   onclick="displayOrderProducts('${order._id}')">View products</button></th>
                 </tr>
@@ -296,6 +296,7 @@ function displayOrderProducts(orderId) {
                   <p>ProductName : ${product.productname}</p>
                   <p>Quantity : ${product.qt}</p>
                   <p>Price : ${product.price}</p>
+                  <button type="button" class="btn btn-danger" onclick="removeProductFromOrder('${product._id},${orderId}')">Remove</button>
                 </div>
                 `)
                 )
@@ -330,7 +331,6 @@ function updateOrderStatus(statusObj) {
 }
 // Order Details popup
 const orderDetails = document.querySelector('.orderDetails')
-console.log(orderDetails)
 
 function displayOrderDetails(orderId) {
     // console.log(orderId)
@@ -358,6 +358,62 @@ function displayOrderDetails(orderId) {
             </div>
             `)
             closeLoader()
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+
+// RemoveProduct
+function removeProductFromOrder(compound) {
+    loadLoader()
+    const splitting = compound.split(',')
+    const productToBeRemoved = splitting[0]
+    const orderId = splitting[1]
+    // Fetching order
+    const rider = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/rider/${rider._id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((response) => {
+            const order = response.data
+            // console.log(order)
+            const result = order.products.filter(product => product._id !== productToBeRemoved);
+            var amount = order.delivery
+            result.forEach(product => {
+                amount = amount + (product.price * product.qt)
+            });
+            const newOrderObject = {
+                amount: amount,
+                subtotal: amount - order.delivery,
+                delivery: order.delivery,
+                user: order.user,
+                products: result
+            }
+            updateOrder(newOrderObject, orderId)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+function updateOrder(orderObj, orderId) {
+    console.log(orderId)
+    const rider = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/updateorderrider/${rider._id}`,
+            orderObj, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        .then((response) => {
+            closeLoader()
+            location.reload()
         })
         .catch((err) => {
             console.log(err)
