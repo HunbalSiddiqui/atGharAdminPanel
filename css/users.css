@@ -84,8 +84,8 @@ th {
 
 .userorderhistory-bar{
     width: 100%;
-    min-height: 8rem;
-    height: 8rem;
+    min-height: 12rem;
+    height: 12rem;
     background-color: #2F363F;
     color: white;
 }

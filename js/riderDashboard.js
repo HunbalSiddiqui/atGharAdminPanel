@@ -6,6 +6,17 @@ if (JSON.parse(localStorage.getItem("jwt")).user.role === 1) {
     // TODO: redirect to required page
 }
 
+var message = document.querySelector('.message')
+function setWelcomeMessage(){
+    const user = JSON.parse(localStorage.getItem('jwt')).user
+    message.innerHTML = ''
+    message.insertAdjacentHTML('beforeend',
+    `
+    <h3 class="white f1-5">Welcome ${user.name}</h3>
+    `)
+}
+setWelcomeMessage()
+
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -367,6 +378,7 @@ function displayOrderDetails(orderId) {
 
 // RemoveProduct
 function removeProductFromOrder(compound) {
+    // TODO: amount calc is remaining.
     loadLoader()
     const splitting = compound.split(',')
     const productToBeRemoved = splitting[0]
@@ -402,7 +414,7 @@ function removeProductFromOrder(compound) {
 }
 
 function updateOrder(orderObj, orderId) {
-    console.log(orderId)
+    // console.log(orderId)
     const rider = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
     axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/updateorderrider/${rider._id}`,

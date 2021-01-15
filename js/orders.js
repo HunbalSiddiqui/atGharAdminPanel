@@ -250,6 +250,7 @@ function displayOrderProducts(orderId) {
                   <p>ProductName : ${product.productname}</p>
                   <p>Quantity : ${product.qt}</p>
                   <p>Price : ${product.price}</p>
+                  <button type="button" class="btn btn-danger" onclick="removeProductFromOrder('${product._id},${orderId}')">Remove</button>
                 </div>
                 `)
                 )
@@ -316,4 +317,62 @@ function updateOrderStatus(statusObj){
     .catch((err)=>{
         console.log(err)
     })
+}
+
+
+
+// RemoveProduct
+function removeProductFromOrder(compound) {
+    // TODO: amount calc bug for discount is remaining.
+    loadLoader()
+    const splitting = compound.split(',')
+    const productToBeRemoved = splitting[0]
+    const orderId = splitting[1]
+    // Fetching order
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/admin/${admin._id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((response) => {
+            const order = response.data
+            // console.log(order)
+            const result = order.products.filter(product => product._id !== productToBeRemoved);
+            var amount = order.delivery
+            result.forEach(product => {
+                amount = amount + (product.price * product.qt)
+            });
+            const newOrderObject = {
+                amount: amount,
+                subtotal: amount - order.delivery,
+                delivery: order.delivery,
+                user: order.user,
+                products: result
+            }
+            updateOrder(newOrderObject, orderId)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+function updateOrder(orderObj, orderId) {
+    // console.log(orderId)
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/updateorderadmin/${admin._id}`,
+            orderObj, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        .then((response) => {
+            closeLoader()
+            location.reload()
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 }

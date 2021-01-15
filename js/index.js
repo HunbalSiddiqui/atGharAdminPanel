@@ -60,6 +60,7 @@ function verifyCredentials(email, password) {
             password
         })
         .then(response => {
+            console.log(response.data)
             if (response.data) {
                 invalidAlert.style.display = "none"
                 successAlert.style.display = "block"

@@ -99,6 +99,7 @@ function displayOrderHistory(orderHist) {
             <span>T-Id: ${order.transaction_id}</span>
             <span>Amount: ${order.amount}</span>
             <span>Status: ${order.status}</span>
+            <button type="button" class="btn btn-light">ViewMore</button>
             </p>
             <div class="collapse" id="${order._id}">
               <div class="card card-body">
