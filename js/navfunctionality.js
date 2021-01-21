@@ -111,7 +111,7 @@ introducenewpromocode.addEventListener('click', () => {
 })
 
 // Add new product
-var productcategory = document.querySelector('.productcategory')
+var productcategory = document.querySelector('.new-productcategory')
 // Cateogries
 function displayCategories() {
     // Grocery
@@ -178,19 +178,19 @@ function displaySubCategories(category) {
 }
 
 // Creating
-var productsubcategory = document.querySelector('.productsubcategory')
-var productcategory = document.querySelector('.productcategory')
-var productname = document.querySelector('.productname')
-var productprice = document.querySelector('.productprice')
-var producttype = document.querySelector('.producttype')
-var featuredFlag = document.querySelector('.featuredFlag')
+var productsubcategory = document.querySelector('.new-productsubcategory')
+var productcategory = document.querySelector('.new-productcategory')
+var newproductname = document.querySelector('.new-productname')
+var newproductprice = document.querySelector('.new-productprice')
+var newproducttype = document.querySelector('.new-producttype')
+var featuredFlag = document.querySelector('.new-featuredFlag')
 var productObj = {}
 var createProductBtn = document.querySelector('.createProductBtn')
 createProductBtn.addEventListener('click', () => {
     productObj = {
-        productname: productname.value,
-        price: productprice.value,
-        type: producttype.value,
+        productname: newproductname.value,
+        price: newproductprice.value,
+        type: newproducttype.value,
         category: productcategory.value,
         subcategory: productsubcategory.value,
         featured: featuredFlag.checked
@@ -202,6 +202,7 @@ function createProduct(productDetails) {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
+    console.log(productDetails)
     axios.post(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/create/`,
             productDetails, {
                 headers: {
@@ -214,7 +215,7 @@ function createProduct(productDetails) {
             productsuccess.style.display = "block"
             var productfailure = document.querySelector('.productfailure')
             productfailure.style.display = "none"
-            location.reload()
+            uploadProductImage()
         })
         .catch((err) => {
             closeLoader()
@@ -223,7 +224,6 @@ function createProduct(productDetails) {
             var productsuccess = document.querySelector('.productsuccess')
             productsuccess.style.display = "none"
         })
-
 }
 
 
@@ -232,13 +232,22 @@ var productimg = document.querySelector('.productimg')
 function uploadProductImage() {
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.post(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/uploadimage/`, {}, {
+    const formData = new FormData()
+    formData.append('file',productimg.files[0]);
+    formData.append('name',productimg.files[0].name);
+    console.log(formData)
+    axios.post(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/uploadimage/`,
+    formData
+    , {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
             }
         })
         .then((response) => {
-
+            console.log(response)
+            closeLoader()
+            location.reload()
         })
         .catch((err) => {
             console.log(err)

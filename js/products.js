@@ -78,15 +78,7 @@ function getProductDetails(productId) {
             producttype.value = product.type
             productCategory.value = product.category
             productsubCategory.value = product.subcategory
-            // Setting product state
-            productState = {
-                productname: productname.value,
-                price: productprice.value,
-                featured: featuredFlag.checked,
-                category: product.category,
-                type: product.type,
-                subcategory: product.subcategory
-            }
+            getProductImg(productname.value)
         })
         .catch((err) => {
             console.log(err)
@@ -109,28 +101,26 @@ function readURL(input) {
     }
 }
 
-// Set image
-var productimage = document.querySelector('.product-image')
+
+var productimage = document.querySelector('.product-img')
 
 function getProductImg(productName) {
-    axios.get(`https://atghar-testing.herokuapp.com/api/products/photo/${productName}`)
-        .then((response) => {
-            console.log(
-                response.data
-            )
-            var image = new Image();
-            image.id = "pic";
-            image.src = "data:image/jpeg;base64," + response.data;
-            // image.src = "data:image/png;base64," + System.Convert.ToBase64String(diagram.Diagram);
 
-            // console.log(image)
-            // var image = new Image()
-            // image.src = `data:image/jpeg;base64,${response.data}`
-            // "data:text/plain;base64," + System.Convert.ToBase64String(diagram.Diagram)
-            // productimage.style.background = `data:image/png;base64, ${System.Convert.ToBase64String(diagram.Diagram)}`;
-            // console.log("Done")
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.get(`https://atghar-testing.herokuapp.com/api/admin/photo/${productName}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((response) => {
+            // productimage.style.background = `url(data:image/jpeg;base64,${response.data})`
+            productimage.insertAdjacentHTML(`beforeend`,
+                `
+        <img class="w100h80" src="data:image/jpeg;base64,${response.data}"/>
+        `)
         })
         .catch((err) => {
+            productimage.style.background = `https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png`
             console.log(err)
         })
 }
@@ -143,7 +133,15 @@ updateProductBtn.addEventListener('click', () => {
 
 function updateProduct() {
     loadLoader()
-    productState.featured = featuredFlag.checked;
+    // Setting product state
+    productState = {
+        productname: productname.value,
+        price: productprice.value,
+        featured: featuredFlag.checked,
+        category: productCategory.value,
+        type: producttype.value,
+        subcategory: productsubCategory.value
+    }
     if (productid) {
         const admin = JSON.parse(localStorage.getItem('jwt')).user
         const token = JSON.parse(localStorage.getItem('jwt')).token
@@ -162,4 +160,27 @@ function updateProduct() {
             })
 
     }
+}
+
+// Delete
+const removeproduct = document.querySelector('.removeproduct')
+removeproduct.addEventListener('click',()=>{
+    deleteProduct()
+})
+function deleteProduct() {
+    loadLoader()
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    axios.delete(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/${productid}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((response) => {
+            location.reload()
+        })
+        .catch((err) => {
+            loadLoader()
+            console.log(err)
+        })
 }

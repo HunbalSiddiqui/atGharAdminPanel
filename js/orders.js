@@ -250,7 +250,7 @@ function displayOrderProducts(orderId) {
                   <p>ProductName : ${product.productname}</p>
                   <p>Quantity : ${product.qt}</p>
                   <p>Price : ${product.price}</p>
-                  <button type="button" class="btn btn-danger" onclick="removeProductFromOrder('${product._id},${orderId}')">Remove</button>
+                  <button type="button" class="btn btn-danger" onclick="removeProductFromOrder('${product._id},${orderId},${product.price}')">Remove</button>
                 </div>
                 `)
                 )
@@ -326,8 +326,9 @@ function removeProductFromOrder(compound) {
     // TODO: amount calc bug for discount is remaining.
     loadLoader()
     const splitting = compound.split(',')
-    const productToBeRemoved = splitting[0]
+    const productToBeRemovedId = splitting[0]
     const orderId = splitting[1]
+    const productToBeRemovedPrice = splitting[2]
     // Fetching order
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
@@ -338,20 +339,22 @@ function removeProductFromOrder(compound) {
         })
         .then((response) => {
             const order = response.data
-            // console.log(order)
-            const result = order.products.filter(product => product._id !== productToBeRemoved);
+            console.log(order)
+            const result = order.products.filter(product => product._id !== productToBeRemovedId);
             var amount = order.delivery
             result.forEach(product => {
                 amount = amount + (product.price * product.qt)
             });
             const newOrderObject = {
-                amount: amount,
-                subtotal: amount - order.delivery,
+                amount: amount-order.discount+order.delivery,
+                subtotal: amount - order.delivery-order.discount,
                 delivery: order.delivery,
                 user: order.user,
-                products: result
+                products: result,
+                discoount:order.discount
             }
-            updateOrder(newOrderObject, orderId)
+            console.log(newOrderObject)
+            // updateOrder(newOrderObject, orderId)
         })
         .catch((err) => {
             console.log(err)
