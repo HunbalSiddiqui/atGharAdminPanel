@@ -174,8 +174,34 @@ function setNPOtoLS(orderId) {
 var orderProducts = document.querySelector('.orderProducts')
 
 function displayOrderProducts(orderId) {
-    console.log(orderId)
-    axios.get(`https://atghar-testing.herokuapp.com/api//order/5fd9f2155703b58e7dfd4b00/user/5fce32e5d317b530f4a057a0`)
+    orderProducts.innerHTML = ''
+    loadLoader()
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/admin/${admin._id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    .then((response)=>{
+        closeLoader()
+            response.data.products.map((product) => {
+                return (
+                    orderProducts.insertAdjacentHTML('beforeend',
+                        `
+                <div class="alert alert-dark flex-col product-bar" role="alert">
+                  <p>ProductName : ${product.productname}</p>
+                  <p>Quantity : ${product.qt}</p>
+                  <p>Price : ${product.price}</p>
+                  <button type="button" class="btn btn-danger" onclick="removeProductFromOrder('${product._id},${orderId},${product.price}')">Remove</button>
+                </div>
+                `)
+                )
+            })
+    })
+    .catch((err) => {
+        console.log(err)
+    })
 }
 
 // Assign selected order to selected rider
@@ -222,4 +248,77 @@ function updateOrderStatus(orderId) {
     // .catch((err)=>{
     //     console.log(err)
     // })
+}
+
+
+// RemoveProduct
+function removeProductFromOrder(compound) {
+    // TODO: amount calc bug for discount is remaining.
+    loadLoader()
+    const splitting = compound.split(',')
+    const productToBeRemovedId = splitting[0]
+    const orderId = splitting[1]
+    const productToBeRemovedPrice = splitting[2]
+    // Fetching order
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/admin/${admin._id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((response) => {
+            const order = response.data
+            // console.log(order)
+            var orignalAmountWithDiscount = order.delivery //init to discount i.e 100
+            order.products.forEach(product => {
+                orignalAmountWithDiscount = orignalAmountWithDiscount + (product.price * product.qt) // getting price products qwise
+            });
+            var discountinPercentage = ((order.discount)*100)/(orignalAmountWithDiscount-order.delivery); // calculating % is percentage
+            const result = order.products.filter(product => product._id !== productToBeRemovedId); // removing choosen product
+            // new amount for recalculating after removal of product i.e new array 
+            var amount = order.delivery //init to delivery price
+            result.forEach(product => {
+                amount = amount + (product.price * product.qt)
+            });
+            var newDiscountinPrice = ((amount-order.delivery)*discountinPercentage)/100 // calculating new discount in price after new priducts arr
+            const newOrderObject = {
+                amount: amount-newDiscountinPrice,//delivery price was already set during init
+                subtotal: amount - order.delivery-newDiscountinPrice, // subtotal only contains product wise amounts
+                delivery: order.delivery, // same  
+                user: order.user, // same
+                products: result, // setting new products arr
+                discount: newDiscountinPrice // updated discount in price
+            }
+            // console.log(newOrderObject)
+            updateOrder(newOrderObject, orderId)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+function updateOrder(orderObj, orderId) {
+    if(orderObj.amount <= 100)
+    {
+        alert("Can not remove more products. Please cancel the order instead.")
+        closeLoader()
+    }
+    else{
+        const admin = JSON.parse(localStorage.getItem('jwt')).user
+        const token = JSON.parse(localStorage.getItem('jwt')).token
+        axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/updateorderadmin/${admin._id}`,
+                orderObj, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+            .then((response) => {
+                closeLoader()
+                location.reload()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 }

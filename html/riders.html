@@ -101,7 +101,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">ProductName</span>
                         </div>
-                        <input type="text" class="form-control productname" aria-label="Default"
+                        <input type="text" class="form-control new-productname" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
                     <!-- product price -->
@@ -109,7 +109,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
                         </div>
-                        <input type="number" class="form-control productprice" aria-label="Default"
+                        <input type="number" class="form-control new-productprice" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
                     <!-- Product Type -->
@@ -117,7 +117,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Type</span>
                         </div>
-                        <select class="custom-select producttype" id="inputGroupSelect01">
+                        <select class="custom-select new-producttype" id="inputGroupSelect01">
                             <option value="grocery" selected>Grocery</option>
                             <option value="pharmacy">Pharmacy</option>
                         </select>
@@ -127,7 +127,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
                         </div>
-                        <select class="custom-select productcategory" id="inputGroupSelect01">
+                        <select class="custom-select new-productcategory" id="inputGroupSelect01">
                             <!-- Options will be rendered dynamically -->
                             <option value="" selected>Choose</option>
                         </select>
@@ -137,7 +137,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Sub-Category</span>
                         </div>
-                        <select class="custom-select productsubcategory" id="inputGroupSelect01">
+                        <select class="custom-select new-productsubcategory" id="inputGroupSelect01">
                             <!-- Options will be rendered dynamically -->
                         </select>
                     </div>
@@ -145,7 +145,7 @@
                     <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" class="featuredFlag"
+                                <input type="checkbox" class="new-featuredFlag"
                                     aria-label="Checkbox for following text input">
                             </div>
                         </div>
@@ -154,7 +154,8 @@
                     </div>
                     <!-- Image -->
                     <div class="input-group input-group-lg mb-3">
-                        <input class="productimg" type="file" name="filename" accept="image/jpeg, image/png" onchange="readURL(this);">
+                        <input class="productimg" type="file" name="filename" accept="image/jpeg, image/png"
+                            onchange="readURL(this);">
                     </div>
                     <div class="alert alert-success productsuccess" style="display: none;" role="alert">
                         New product code has been introduced check it out!
