@@ -5,7 +5,6 @@ if (!localStorage.getItem('jwt')) {
 if (JSON.parse(localStorage.getItem("jwt")).user.role === 1) {
     // TODO: redirect to required page
 }
-
 var message = document.querySelector('.message')
 function setWelcomeMessage(){
     const user = JSON.parse(localStorage.getItem('jwt')).user
@@ -26,7 +25,7 @@ function closeLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'none'
 }
-
+loadLoader()
 var refreshBtn = document.querySelector('.refreshBtn')
 refreshBtn.addEventListener('click', () => {
     loadLoader()
@@ -381,7 +380,7 @@ function removeProductFromOrder(compound) {
     // TODO: amount calc is remaining.
     loadLoader()
     const splitting = compound.split(',')
-    const productToBeRemoved = splitting[0]
+    const productToBeRemovedId = splitting[0]
     const orderId = splitting[1]
     // Fetching order
     const rider = JSON.parse(localStorage.getItem('jwt')).user
@@ -394,18 +393,27 @@ function removeProductFromOrder(compound) {
         .then((response) => {
             const order = response.data
             // console.log(order)
-            const result = order.products.filter(product => product._id !== productToBeRemoved);
-            var amount = order.delivery
+            var orignalAmountWithDiscount = order.delivery //init to discount i.e 100
+            order.products.forEach(product => {
+                orignalAmountWithDiscount = orignalAmountWithDiscount + (product.price * product.qt) // getting price products qwise
+            });
+            var discountinPercentage = ((order.discount)*100)/(orignalAmountWithDiscount-order.delivery); // calculating % is percentage
+            const result = order.products.filter(product => product._id !== productToBeRemovedId); // removing choosen product
+            // new amount for recalculating after removal of product i.e new array 
+            var amount = order.delivery //init to delivery price
             result.forEach(product => {
                 amount = amount + (product.price * product.qt)
             });
+            var newDiscountinPrice = ((amount-order.delivery)*discountinPercentage)/100 // calculating new discount in price after new priducts arr
             const newOrderObject = {
-                amount: amount,
-                subtotal: amount - order.delivery,
-                delivery: order.delivery,
-                user: order.user,
-                products: result
+                amount: amount-newDiscountinPrice,//delivery price was already set during init
+                subtotal: amount - order.delivery-newDiscountinPrice, // subtotal only contains product wise amounts
+                delivery: order.delivery, // same  
+                user: order.user, // same
+                products: result, // setting new products arr
+                discount: newDiscountinPrice // updated discount in price
             }
+            // console.log(newOrderObject)
             updateOrder(newOrderObject, orderId)
         })
         .catch((err) => {
@@ -414,20 +422,26 @@ function removeProductFromOrder(compound) {
 }
 
 function updateOrder(orderObj, orderId) {
-    // console.log(orderId)
-    const rider = JSON.parse(localStorage.getItem('jwt')).user
-    const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/updateorderrider/${rider._id}`,
-            orderObj, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+    if(orderObj.amount <= 100)
+    {
+        alert("Can not remove more products. Please cancel the order instead.")
+        closeLoader()
+    }
+    else{
+        const rider = JSON.parse(localStorage.getItem('jwt')).user
+        const token = JSON.parse(localStorage.getItem('jwt')).token
+        axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/updateorderrider/${rider._id}`,
+                orderObj, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+            .then((response) => {
+                closeLoader()
+                location.reload()
             })
-        .then((response) => {
-            closeLoader()
-            location.reload()
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 }
