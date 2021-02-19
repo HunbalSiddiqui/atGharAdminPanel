@@ -111,9 +111,22 @@ introducenewpromocode.addEventListener('click', () => {
 })
 
 // Add new product
+var productType = document.querySelector('.new-producttype')
+var productsubcategoryDiv = document.querySelector('.productsubcategoryDiv') // whole div
+var pharmacyProductFormDiv = document.querySelector('.pharmacyProductFormDiv') // PharmacyProduct Form i.e pack/strips
+productType.addEventListener('change', () => {
+    if (productType.value.toLowerCase() === 'pharmacy') {
+        productsubcategoryDiv.style.display = 'none' // sub category div
+        // pharmacyProductFormDiv.style.display = 'flex'
+    } else {
+        productsubcategoryDiv.style.display = 'flex' // sub category div
+        // pharmacyProductFormDiv.style.display = 'none'
+    }
+    displayCategories(productType.value)
+})
 var productcategory = document.querySelector('.new-productcategory')
 // Cateogries
-function displayCategories() {
+function displayCategories(type) {
     // Grocery
     if (productcategory) {
         productcategory.innerHTML = ''
@@ -122,37 +135,39 @@ function displayCategories() {
         <option selected>Choose</option>
         
         `)
-        axios.get(`https://atghar-testing.herokuapp.com/api/categories/grocery`)
-            .then((response) => {
-                response.data.map((category) => {
-                    return (
-                        productcategory.insertAdjacentHTML('beforeend',
-                            `
+        if (type.toLowerCase() === 'grocery') {
+            // Grocery
+            axios.get(`https://atghar-testing.herokuapp.com/api/categories/grocery`)
+                .then((response) => {
+                    response.data.map((category) => {
+                        return (
+                            productcategory.insertAdjacentHTML('beforeend',
+                                `
                         <option value="${category.name}">${category.name}</option>
                 
                         `)
-                    )
-                })
+                        )
+                    })
 
-            })
-        // Pharmacy
-        axios.get(`https://atghar-testing.herokuapp.com/api/categories/pharmacy`)
-            .then((response) => {
-                response.data.map((category) => {
-                    return (
-                        productcategory.insertAdjacentHTML('beforeend',
-                            `
+                })
+        } else {
+            // Pharmacy
+            axios.get(`https://atghar-testing.herokuapp.com/api/categories/pharmacy`)
+                .then((response) => {
+                    response.data.map((category) => {
+                        return (
+                            productcategory.insertAdjacentHTML('beforeend',
+                                `
                     <option value="${category.name}">${category.name}</option>
             
                     `)
-                    )
+                        )
+                    })
+
                 })
-
-            })
+        }
     }
-
 }
-displayCategories()
 // Subcateogries
 productcategory.addEventListener('change', () => {
     displaySubCategories(productcategory.value)
@@ -176,24 +191,41 @@ function displaySubCategories(category) {
 
         })
 }
-
 // Creating
-var productsubcategory = document.querySelector('.new-productsubcategory')
-var productcategory = document.querySelector('.new-productcategory')
-var newproductname = document.querySelector('.new-productname')
-var newproductprice = document.querySelector('.new-productprice')
-var newproducttype = document.querySelector('.new-producttype')
-var featuredFlag = document.querySelector('.new-featuredFlag')
+var productsubcategory = document.querySelector('.new-productsubcategory') // for grocery
+var productcategory = document.querySelector('.new-productcategory') // for both
+var newproductname = document.querySelector('.new-productname') // for both
+var newproductprice = document.querySelector('.new-productprice') // for both
+var newproducttype = document.querySelector('.new-producttype') // for both
+var featuredFlag = document.querySelector('.new-featuredFlag') // for both
+// var packForm = document.querySelector('.packForm') // for pharmacy
+// var stripForm = document.querySelector('.stripForm') // for pharmacy
 var productObj = {}
 var createProductBtn = document.querySelector('.createProductBtn')
 createProductBtn.addEventListener('click', () => {
-    productObj = {
-        productname: newproductname.value,
-        price: newproductprice.value,
-        type: newproducttype.value,
-        category: productcategory.value,
-        subcategory: productsubcategory.value,
-        featured: featuredFlag.checked
+    if (productType.value.toLowerCase() === 'grocery') {
+        productObj = {
+            productname: newproductname.value,
+            price: newproductprice.value,
+            type: newproducttype.value,
+            category: productcategory.value,
+            subcategory: productsubcategory.value,
+            featured: featuredFlag.checked
+        }
+    } else if (productType.value.toLowerCase() === 'pharmacy') {
+        let localVarForForm = null
+        if (packForm.checked)
+            localVarForForm = 'pack'
+        else if(stripForm.checked)
+            localVarForForm = 'strips'
+        productObj = {
+            productname: newproductname.value,
+            price: newproductprice.value,
+            type: newproducttype.value,
+            category: productcategory.value,
+            featured: featuredFlag.checked,
+
+        }
     }
     createProduct(productObj)
 })
@@ -233,17 +265,16 @@ function uploadProductImage() {
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const formData = new FormData()
-    formData.append('file',productimg.files[0]);
-    formData.append('name',productimg.files[0].name);
+    formData.append('file', productimg.files[0]);
+    formData.append('name', productimg.files[0].name);
     console.log(formData)
     axios.post(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/uploadimage/`,
-    formData
-    , {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data'
-            }
-        })
+            formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
         .then((response) => {
             console.log(response)
             closeLoader()

@@ -91,12 +91,61 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new promo code</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Intoduce new product</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body flex-col">
+                    <!-- Product Type -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Type</span>
+                        </div>
+                        <select class="custom-select new-producttype" id="inputGroupSelect01">
+                            <option value="grocery" selected>Choose</option>
+                            <option value="grocery" >Grocery</option>
+                            <option value="pharmacy">Pharmacy</option>
+                        </select>
+                    </div>
+                    <!-- Product Category -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
+                        </div>
+                        <select class="custom-select new-productcategory" id="inputGroupSelect01">
+                            <!-- Options will be rendered dynamically -->
+                            <option value="" selected>Choose</option>
+                        </select>
+                    </div>
+                    <!-- Product SubCategory -->
+                    <div class="input-group mb-3 productsubcategoryDiv" style="display: none;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Sub-Category</span>
+                        </div>
+                        <select class="custom-select new-productsubcategory" id="inputGroupSelect01">
+                            <!-- Options will be rendered dynamically -->
+                        </select>
+                    </div>
+                    <!-- Product form i.e strips or pack for pharmacy category -->
+                    <!-- <div class="input-group input-group-lg mb-3 flex pharmacyProductFormDiv" style="display: none;">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" class="packForm"
+                                    aria-label="Checkbox for following text input">
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Text input with checkbox"
+                            placeholder="Pack" disabled>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" class="stripForm"
+                                    aria-label="Checkbox for following text input">
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Text input with checkbox"
+                            placeholder="Strips" disabled>
+                    </div>                     -->
                     <!-- ProductName -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -112,35 +161,6 @@
                         </div>
                         <input type="number" class="form-control new-productprice" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
-                    </div>
-                    <!-- Product Type -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Type</span>
-                        </div>
-                        <select class="custom-select new-producttype" id="inputGroupSelect01">
-                            <option value="grocery" selected>Grocery</option>
-                            <option value="pharmacy">Pharmacy</option>
-                        </select>
-                    </div>
-                    <!-- Product Category -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
-                        </div>
-                        <select class="custom-select new-productcategory" id="inputGroupSelect01">
-                            <!-- Options will be rendered dynamically -->
-                            <option value="" selected>Choose</option>
-                        </select>
-                    </div>
-                    <!-- Product SubCategory -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Sub-Category</span>
-                        </div>
-                        <select class="custom-select new-productsubcategory" id="inputGroupSelect01">
-                            <!-- Options will be rendered dynamically -->
-                        </select>
                     </div>
                     <!-- Featured -->
                     <div class="input-group input-group-lg mb-3">
