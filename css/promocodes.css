@@ -88,7 +88,7 @@ th {
     .promocode-container-wrapper {
         display: grid;
         grid-template-columns: 100vw;
-        grid-template-rows: 10vh minmax(20vh,min-content) 10vh 80vh;
+        grid-template-rows: 10vh minmax(20vh,min-content) 10vh minmax(80vh,min-content);
         grid-template-areas: "top-bar-left"
                             "nav"
                             "top-bar-right"
