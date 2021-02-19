@@ -27,9 +27,7 @@ function getUsers() {
                 `
     <tr>
         <th>User Name</th>
-        <th>User Email</th>
         <th>Contact</th>
-        <th>Address</th>
         <th></th>
     </tr>
     
@@ -41,9 +39,7 @@ function getUsers() {
                         `
             <tr>
             <th>${user.firstname} ${user.lastname}</th>
-            <th>${user.email}</th>
             <th>${user.phone}</th>
-            <th>${user.address}</th>
             <th class="flex"><button type="button" class="btn btn-primary" data-toggle="modal"
             data-target="#userhistory" onclick="setOrderHistory('${user._id}')">View History</button></th>
         </tr>
