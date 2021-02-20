@@ -70,7 +70,13 @@ var priceStrip = document.querySelector('.priceStrip')
 var usedFor = document.querySelector('.usedFor')
 var vendor = document.querySelector('.vendor')
 var company = document.querySelector('.company')
-
+var discount = document.querySelector('.discount') // for pharmacy
+console.log(discount.value)
+var formula = document.querySelector('.formula') // for pharmacy
+var packSize = document.querySelector('.packSize') // for pharmacy
+var strips = document.querySelector('.strips') // for pharmacy
+var tabPerStrip = document.querySelector('.tabletsPerStrip') // for pharmacy
+var prescription = document.querySelector('.prescription') // for pharmacy
 function getProductDetails(productId) {
     loadLoader()
     // console.log(productId)
@@ -96,6 +102,12 @@ function getProductDetails(productId) {
                 usedFor.value = product.usedfor
                 vendor.value = product.vendor
                 company.value = product.company
+                discount.value = product.discount
+                formula.value = product.formula
+                packSize.value = product.packsize
+                strips.value = product.strips
+                tabPerStrip.value = product.tabletsperstrip
+                prescription.value = product.prescription
             }
             console.log(product)
             productid = product._id
@@ -185,12 +197,27 @@ function updateProduct() {
             featured: featuredFlag.checked,
             category: productCategory.value,
             type: producttype.value,
+            // cp : costPrice.value,
+            // cpStrip : costPriceStrip.value,  
+            // mrp : mrp.value,
+            // mrpStrip : mrpStrip.value,
+            // priceStrip : priceStrip.value,
+            // usedfor : usedFor.value,
+            // vendor : vendor.value,
+            // company : company.value,
+            // discount : discount.value,
+            // packsize : packSize.value,
+            // strips : strips.value,
+            // tabletsperstrip : tabPerStrip.value,
+            // prescription : prescription.value,
+            // formula : formula.value,
         }
     }
 
     if (productid) {
         const admin = JSON.parse(localStorage.getItem('jwt')).user
         const token = JSON.parse(localStorage.getItem('jwt')).token
+        console.log(productState)
         axios.put(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/${productid}`,
                 productState, {
                     headers: {
@@ -199,7 +226,8 @@ function updateProduct() {
                 })
             .then((response) => {
                 closeLoader()
-                console.log(response.data)
+                // console.log(response.data)
+                location.reload()
             })
             .catch((err) => {
                 console.log(err)

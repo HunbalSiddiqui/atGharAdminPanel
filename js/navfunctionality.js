@@ -203,26 +203,26 @@ function displaySubCategories(category) {
         })
 }
 // Creating
-var productsubcategory = document.querySelector('.new-productsubcategory') // for grocery
-var productcategory = document.querySelector('.new-productcategory') // for both
+var newnproductsubcategory = document.querySelector('.new-productsubcategory') // for grocery
+var newproductcategory = document.querySelector('.new-productcategory') // for both
 var newproductname = document.querySelector('.new-productname') // for both
 var newproductprice = document.querySelector('.new-productprice') // for both
 var newproducttype = document.querySelector('.new-producttype') // for both
-var featuredFlag = document.querySelector('.new-featuredFlag') // for both
-var costprice = document.querySelector('.new-costprice') // for both
-var costPriceStrip = document.querySelector('.new-costpriceStrip') // for pharmacy 
-var mrp = document.querySelector('.new-mrp') // for pharmacy
-var mrpStrip = document.querySelector('.new-mrpStrip') // for pharmacy
-var priceStrip = document.querySelector('.new-priceStrip') // for pharmacy
-var usedFor = document.querySelector('.new-usedFor') // for pharmacy
-var vendor = document.querySelector('.new-vendor') // for pharmacy
-var company = document.querySelector('.new-company') // for pharmacy
-var discount = document.querySelector('.new-discount') // for pharmacy
-var formula = document.querySelector('.new-formula') // for pharmacy
-var packSize = document.querySelector('.new-packSize') // for pharmacy
-var strips = document.querySelector('.new-strips') // for pharmacy
-var tabPerStrip = document.querySelector('.new-tabPerStrip') // for pharmacy
-var prescription = document.querySelector('.new-prescription') // for pharmacy
+var newfeaturedFlag = document.querySelector('.new-featuredFlag') // for both
+var newcostprice = document.querySelector('.new-costprice') // for both
+var newcostPriceStrip = document.querySelector('.new-costpriceStrip') // for pharmacy 
+var newmrp = document.querySelector('.new-mrp') // for pharmacy
+var newmrpStrip = document.querySelector('.new-mrpStrip') // for pharmacy
+var newpriceStrip = document.querySelector('.new-priceStrip') // for pharmacy
+var newusedFor = document.querySelector('.new-usedFor') // for pharmacy
+var newvendor = document.querySelector('.new-vendor') // for pharmacy
+var newcompany = document.querySelector('.new-company') // for pharmacy
+var newdiscount = document.querySelector('.new-discount') // for pharmacy
+var newformula = document.querySelector('.new-formula') // for pharmacy
+var newpackSize = document.querySelector('.new-packSize') // for pharmacy
+var newstrips = document.querySelector('.new-strips') // for pharmacy
+var newtabPerStrip = document.querySelector('.new-tabPerStrip') // for pharmacy
+var newprescription = document.querySelector('.new-prescription') // for pharmacy
 // var packForm = document.querySelector('.packForm') // for pharmacy
 // var stripForm = document.querySelector('.stripForm') // for pharmacy
 
@@ -233,6 +233,7 @@ createProductBtn.addEventListener('click', () => {
         productObj = {
             productname: newproductname.value,
             price: newproductprice.value,
+            cp : costprice.value,
             type: newproducttype.value,
             category: productcategory.value,
             subcategory: productsubcategory.value,
@@ -241,24 +242,24 @@ createProductBtn.addEventListener('click', () => {
     } else if (productType.value.toLowerCase() === 'pharmacy') {
         productObj = {
             productname: newproductname.value,
-            formula : formula.value,
+            formula : newformula.value,
             price: newproductprice.value,
             type: newproducttype.value,
-            category: productcategory.value,
-            featured: featuredFlag.checked,
-            cp : costprice.value,
-            cpStrip : costPriceStrip.value,  
-            mrp : mrp.value,
-            mrpStrip : mrpStrip.value,
-            priceStrip : priceStrip.value,
-            usedfor : usedFor.value,
-            vendor : vendor.value,
-            company : company.value,
-            discount : discount.value,
-            packSize : packSize.value,
-            strips : strips.value,
-            tabletsperstrip : tabPerStrip.value,
-            prescription : prescription.value
+            category: newproductcategory.value,
+            featured: newfeaturedFlag.checked,
+            cp : newcostprice.value,
+            cpStrip : newcostPriceStrip.value,  
+            mrp : newmrp.value,
+            mrpStrip : newmrpStrip.value,
+            priceStrip : newpriceStrip.value,
+            usedfor : newusedFor.value,
+            vendor : newvendor.value,
+            company : newcompany.value,
+            discount : newdiscount.value,
+            packsize : newpackSize.value,
+            strips : newstrips.value,
+            tabletsperstrip : newtabPerStrip.value,
+            prescription : newprescription.value
         }
     }
     createProduct(productObj)
@@ -268,7 +269,7 @@ function createProduct(productDetails) {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    console.log(productDetails)
+    // console.log(productDetails)
     axios.post(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/create/`,
             productDetails, {
                 headers: {
@@ -310,7 +311,7 @@ function uploadProductImage() {
                 }
             })
         .then((response) => {
-            console.log(response)
+            // console.log(response)
             closeLoader()
             location.reload()
         })

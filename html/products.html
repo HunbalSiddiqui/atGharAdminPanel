@@ -150,6 +150,38 @@
                         <input type="number" class="form-control priceStrip" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
+                    <!-- discount -->
+                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Discount</span>
+                        </div>
+                        <input type="text" class="form-control discount" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>     
+                    <!-- packsize -->
+                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">PackSize</span>
+                        </div>
+                        <input type="number" class="form-control packSize" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>    
+                    <!-- strips -->
+                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Strips</span>
+                        </div>
+                        <input type="number" class="form-control strips" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>            
+                    <!-- tablets per strip -->
+                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">TabPerStrip</span>
+                        </div>
+                        <input type="number" class="form-control tabletsPerStrip" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>                                                                        
                     <!-- UsedFor -->
                     <div class="input-group input-group-lg mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
@@ -158,6 +190,14 @@
                         <input type="text" class="form-control usedFor" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
+                    <!-- Formula -->
+                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Formula</span>
+                        </div>
+                        <input type="text" class="form-control formula" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>                    
                     <!-- Vendor -->
                     <div class="input-group input-group-lg mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
@@ -185,6 +225,16 @@
                         <input type="text" class="form-control" aria-label="Text input with checkbox"
                             placeholder="Featured Product" disabled>
                     </div>
+                    <!-- prescription -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Prescription</span>
+                        </div>
+                        <select class="custom-select prescription" id="inputGroupSelect01">
+                            <option value="yes" >yes</option>
+                            <option value="no">no</option>
+                        </select>
+                    </div>                    
                     <!-- Type -->
                     <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
@@ -429,6 +479,7 @@
             </div>
         </div>
     </div>
+
     <!-- new promo code -->
     <div class="modal fade" id="newpromocode" tabindex="-1" role="dialog" aria-labelledby="newpromocode"
         aria-hidden="true">
