@@ -62,6 +62,7 @@ pharmacyDiv.forEach(element => {
     element.style.display = 'none' // hiding all the div by default. in case of grocery this will remain same, in case of pharmacy product this will be altered
 });
 var costPrice = document.querySelector('.costPrice')
+// pharmacy div
 var costPriceStrip = document.querySelector('.costPriceStrip')
 var mrp = document.querySelector('.mrp')
 var mrpStrip = document.querySelector('.mrpStrip')

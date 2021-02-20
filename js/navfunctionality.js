@@ -114,13 +114,31 @@ introducenewpromocode.addEventListener('click', () => {
 var productType = document.querySelector('.new-producttype')
 var productsubcategoryDiv = document.querySelector('.productsubcategoryDiv') // whole div
 var pharmacyProductFormDiv = document.querySelector('.pharmacyProductFormDiv') // PharmacyProduct Form i.e pack/strips
+var pharmacyDiv = document.querySelectorAll('.pharmacyDiv') // all pharmacy specific div
+pharmacyDiv.forEach(element => {
+    element.style.display = 'none' // hiding all the div by default. in case of grocery this will remain same, in case of pharmacy product this will be altered
+});
+var costprice = document.querySelector('.new-costprice') // for pharmacy
+var costPriceStrip = document.querySelector('.new-costPriceStrip') // for pharmacy 
+var mrp = document.querySelector('.new-mrp') // for pharmacy
+var mrpStrip = document.querySelector('.new-mrpStrip') // for pharmacy
+var priceStrip = document.querySelector('.new-priceStrip') // for pharmacy
+var usedFor = document.querySelector('.new-usedFor') // for pharmacy
+var vendor = document.querySelector('.new-vendor') // for pharmacy
+var company = document.querySelector('.new-company') // for pharmacy
 productType.addEventListener('change', () => {
     if (productType.value.toLowerCase() === 'pharmacy') {
         productsubcategoryDiv.style.display = 'none' // sub category div
+        pharmacyDiv.forEach(element => {
+            element.style.display = 'flex' // hiding all the div by default. in case of grocery this will remain same, in case of pharmacy product this will be altered
+        });
         // pharmacyProductFormDiv.style.display = 'flex'
-    } else {
+    } else if (productType.value.toLowerCase() === 'grocery'){
         productsubcategoryDiv.style.display = 'flex' // sub category div
         // pharmacyProductFormDiv.style.display = 'none'
+        pharmacyDiv.forEach(element => {
+            element.style.display = 'none' // hiding all the div by default. in case of grocery this will remain same, in case of pharmacy product this will be altered
+        });
     }
     displayCategories(productType.value)
 })
@@ -200,6 +218,7 @@ var newproducttype = document.querySelector('.new-producttype') // for both
 var featuredFlag = document.querySelector('.new-featuredFlag') // for both
 // var packForm = document.querySelector('.packForm') // for pharmacy
 // var stripForm = document.querySelector('.stripForm') // for pharmacy
+
 var productObj = {}
 var createProductBtn = document.querySelector('.createProductBtn')
 createProductBtn.addEventListener('click', () => {
@@ -213,18 +232,18 @@ createProductBtn.addEventListener('click', () => {
             featured: featuredFlag.checked
         }
     } else if (productType.value.toLowerCase() === 'pharmacy') {
-        let localVarForForm = null
-        if (packForm.checked)
-            localVarForForm = 'pack'
-        else if(stripForm.checked)
-            localVarForForm = 'strips'
+        // let localVarForForm = null
+        // if (packForm.checked)
+        //     localVarForForm = 'pack'
+        // else if(stripForm.checked)
+        //     localVarForForm = 'strips'
         productObj = {
             productname: newproductname.value,
             price: newproductprice.value,
             type: newproducttype.value,
             category: productcategory.value,
             featured: featuredFlag.checked,
-
+            
         }
     }
     createProduct(productObj)
