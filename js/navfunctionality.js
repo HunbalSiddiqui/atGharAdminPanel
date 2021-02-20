@@ -118,14 +118,7 @@ var pharmacyDiv = document.querySelectorAll('.pharmacyDiv') // all pharmacy spec
 pharmacyDiv.forEach(element => {
     element.style.display = 'none' // hiding all the div by default. in case of grocery this will remain same, in case of pharmacy product this will be altered
 });
-var costprice = document.querySelector('.new-costprice') // for pharmacy
-var costPriceStrip = document.querySelector('.new-costPriceStrip') // for pharmacy 
-var mrp = document.querySelector('.new-mrp') // for pharmacy
-var mrpStrip = document.querySelector('.new-mrpStrip') // for pharmacy
-var priceStrip = document.querySelector('.new-priceStrip') // for pharmacy
-var usedFor = document.querySelector('.new-usedFor') // for pharmacy
-var vendor = document.querySelector('.new-vendor') // for pharmacy
-var company = document.querySelector('.new-company') // for pharmacy
+
 productType.addEventListener('change', () => {
     if (productType.value.toLowerCase() === 'pharmacy') {
         productsubcategoryDiv.style.display = 'none' // sub category div
@@ -216,6 +209,20 @@ var newproductname = document.querySelector('.new-productname') // for both
 var newproductprice = document.querySelector('.new-productprice') // for both
 var newproducttype = document.querySelector('.new-producttype') // for both
 var featuredFlag = document.querySelector('.new-featuredFlag') // for both
+var costprice = document.querySelector('.new-costprice') // for both
+var costPriceStrip = document.querySelector('.new-costpriceStrip') // for pharmacy 
+var mrp = document.querySelector('.new-mrp') // for pharmacy
+var mrpStrip = document.querySelector('.new-mrpStrip') // for pharmacy
+var priceStrip = document.querySelector('.new-priceStrip') // for pharmacy
+var usedFor = document.querySelector('.new-usedFor') // for pharmacy
+var vendor = document.querySelector('.new-vendor') // for pharmacy
+var company = document.querySelector('.new-company') // for pharmacy
+var discount = document.querySelector('.new-discount') // for pharmacy
+var formula = document.querySelector('.new-formula') // for pharmacy
+var packSize = document.querySelector('.new-packSize') // for pharmacy
+var strips = document.querySelector('.new-strips') // for pharmacy
+var tabPerStrip = document.querySelector('.new-tabPerStrip') // for pharmacy
+var prescription = document.querySelector('.new-prescription') // for pharmacy
 // var packForm = document.querySelector('.packForm') // for pharmacy
 // var stripForm = document.querySelector('.stripForm') // for pharmacy
 
@@ -232,18 +239,26 @@ createProductBtn.addEventListener('click', () => {
             featured: featuredFlag.checked
         }
     } else if (productType.value.toLowerCase() === 'pharmacy') {
-        // let localVarForForm = null
-        // if (packForm.checked)
-        //     localVarForForm = 'pack'
-        // else if(stripForm.checked)
-        //     localVarForForm = 'strips'
         productObj = {
             productname: newproductname.value,
+            formula : formula.value,
             price: newproductprice.value,
             type: newproducttype.value,
             category: productcategory.value,
             featured: featuredFlag.checked,
-            
+            cp : costprice.value,
+            cpStrip : costPriceStrip.value,  
+            mrp : mrp.value,
+            mrpStrip : mrpStrip.value,
+            priceStrip : priceStrip.value,
+            usedfor : usedFor.value,
+            vendor : vendor.value,
+            company : company.value,
+            discount : discount.value,
+            packSize : packSize.value,
+            strips : strips.value,
+            tabletsperstrip : tabPerStrip.value,
+            prescription : prescription.value
         }
     }
     createProduct(productObj)

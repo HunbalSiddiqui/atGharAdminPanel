@@ -126,26 +126,6 @@
                             <!-- Options will be rendered dynamically -->
                         </select>
                     </div>
-                    <!-- Product form i.e strips or pack for pharmacy category -->
-                    <!-- <div class="input-group input-group-lg mb-3 flex pharmacyProductFormDiv" style="display: none;">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" class="packForm"
-                                    aria-label="Checkbox for following text input">
-                            </div>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Text input with checkbox"
-                            placeholder="Pack" disabled>
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" class="stripForm"
-                                    aria-label="Checkbox for following text input">
-                            </div>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Text input with checkbox"
-                            placeholder="Strips" disabled>
-                    </div>                     -->
-                    <!-- ProductName -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">ProductName</span>
@@ -170,7 +150,7 @@
                             aria-describedby="inputGroup-sizing-default">
                     </div>
                     <!-- cost priceStrip -->
-                    <div class="input-group mb-3 pharmacyDi">
+                    <div class="input-group mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">CostPriceStrip</span>
                         </div>
@@ -201,12 +181,20 @@
                         <input type="number" class="form-control new-priceStrip" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
+                    <!-- discount -->
+                    <div class="input-group mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Discount</span>
+                        </div>
+                        <input type="number" class="form-control new-discount" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>  
                     <!-- used for -->
                     <div class="input-group mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">UsedFor</span>
                         </div>
-                        <input type="number" class="form-control new-usedFor" aria-label="Default"
+                        <input type="text" class="form-control new-usedFor" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
                     <!-- vendor -->
@@ -214,7 +202,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Vendor</span>
                         </div>
-                        <input type="number" class="form-control new-vendor" aria-label="Default"
+                        <input type="text" class="form-control new-vendor" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>                    
                     <!-- company -->
@@ -222,9 +210,51 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Company</span>
                         </div>
-                        <input type="number" class="form-control new-company" aria-label="Default"
+                        <input type="text" class="form-control new-company" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
-                    </div>                                                                                                                                  
+                    </div>  
+                    <!-- formula -->
+                    <div class="input-group mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Formula</span>
+                        </div>
+                        <input type="text" class="form-control new-formula" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>  
+                    <!-- packsize -->
+                    <div class="input-group mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">PackSize</span>
+                        </div>
+                        <input type="number" class="form-control new-packSize" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- strips -->
+                    <div class="input-group mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Strips</span>
+                        </div>
+                        <input type="number" class="form-control new-strips" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- tables per strip -->
+                    <div class="input-group mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">TabletsPerStrip</span>
+                        </div>
+                        <input type="number" class="form-control new-tabPerStrip" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>                                                                                               
+                    <!-- Prescription -->
+                    <div class="input-group mb-3 pharmacyDiv">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Prescription</span>
+                        </div>
+                        <select class="custom-select new-prescription" id="inputGroupSelect01">
+                            <option value="yes">yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>                                                                                                                                                 
                     <!-- Featured -->
                     <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
