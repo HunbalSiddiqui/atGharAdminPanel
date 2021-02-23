@@ -95,7 +95,11 @@
     display: none;
     
 }
+.product-img {
+    grid-area: product-img ;
+}
 .product-details{
+    grid-area: product-details;
     box-sizing: border-box;
     padding: 2rem 4rem;
 }

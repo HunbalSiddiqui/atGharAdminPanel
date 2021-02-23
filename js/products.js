@@ -159,7 +159,7 @@ function getProductImg(productName) {
             // productimage.style.background = `url(data:image/jpeg;base64,${response.data})`
                 productimage.insertAdjacentHTML(`beforeend`,
                     `
-            <img style="width:"100%";height:"50vh"" src="data:image/jpeg;base64,${response.data}"/>
+            <img style="width: 100%;height: 50%;" src="data:image/jpeg;base64,${response.data}"/>
             `)
         })
         .catch((err) => {

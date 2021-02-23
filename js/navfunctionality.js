@@ -1,3 +1,4 @@
+
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -302,7 +303,7 @@ function uploadProductImage() {
     const formData = new FormData()
     formData.append('file', productimg.files[0]);
     formData.append('name', productimg.files[0].name);
-    console.log(formData)
+    // console.log(formData)
     axios.post(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/uploadimage/`,
             formData, {
                 headers: {
@@ -318,4 +319,39 @@ function uploadProductImage() {
         .catch((err) => {
             console.log(err)
         })
+}
+
+
+
+
+// New deal
+
+var newBannerType = document.querySelector('.new-bannerType')
+var introducenewdeal = document.querySelector('.introducenewdeal')
+var dealImg = document.querySelector('.dealImg')
+
+introducenewdeal.addEventListener('click',()=>{
+    addNewBanner()
+})
+var addNewBanner = () => {
+    loadLoader()
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    const formData = new FormData()
+    formData.append('file', dealImg.files[0]);
+    formData.append('name', newBannerType.value);
+    // console.log(formData)
+    axios.post(`https://atghar-testing.herokuapp.com/api/admin/5ff6fd72e301d2483565adc1/product/uploadbanner/`,
+    formData,{
+        headers:{
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+    .then((response)=>{
+        location.reload()
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
 }

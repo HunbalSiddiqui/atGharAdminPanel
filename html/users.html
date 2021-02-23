@@ -44,6 +44,9 @@
             <button type="button" class="btn btn-dark btn-lg newpromocode" data-toggle="modal"
                 data-target="#newpromocode">New
                 PromoCode</button>
+            <button type="button" class="btn btn-dark btn-lg newdeal" data-toggle="modal"
+            data-target="#newdeal">New
+            Deal</button>    
             <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newrider">New
                 Rider</button>
             <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#newadmin">New
@@ -328,6 +331,48 @@
             </div>
         </div>
     </div>
+    <!-- new deal -->
+    <div class="modal fade" id="newdeal" tabindex="-1" role="dialog" aria-labelledby="newdeal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Intoduce new deal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body flex-col">
+                    <!-- deal -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">BannerType</span>
+                        </div>
+                        <select class="custom-select new-bannerType" id="inputGroupSelect01">
+                            <option value="banner1" selected>banner1</option>
+                            <option value="banner2" >banner2</option>
+                            <option value="banner3">banner3</option>
+                        </select>
+                    </div>
+                    <!-- Image -->
+                    <div class="input-group input-group-lg mb-3">
+                        <input class="dealImg" type="file" name="filename" accept="image/jpeg, image/jpg"
+                            onchange="readURL(this);">
+                    </div>
+                    <div class="alert alert-success dealsuccess" style="display: none;" role="alert">
+                        New deal code has been introduced check it out!
+                    </div>
+                    <div class="alert alert-danger dealfailure" style="display: none;" role="alert">
+                        New deal code can not be introduced!
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary introducenewdeal">Introduce</button>
+                </div>
+            </div>
+        </div>
+    </div>   
     <!-- new rider -->
     <div class="modal fade" id="newrider" tabindex="-1" role="dialog" aria-labelledby="newrider" aria-hidden="true">
         <div class="modal-dialog" role="document">
