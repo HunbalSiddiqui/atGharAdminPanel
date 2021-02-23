@@ -1,0 +1,141 @@
+.addProductsInOrder-container-wrapper {
+    display: grid;
+    grid-template-columns: 20vw 80vw;
+    grid-template-rows: 10vh 90vh;
+    grid-template-areas: "top-bar-left top-bar-right"
+        "nav content";
+}
+
+.top-bar-left {
+    grid-area: top-bar-left;
+    background-color: red;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.top-bar-right {
+    grid-area: top-bar-right;
+    box-sizing: border-box;
+    padding-right: 2rem;
+    flex-wrap: wrap;
+}
+
+.top-bar-right button {
+    flex: 1;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.addProductsInOrder-container-nav {
+    grid-area: nav;
+    background-color: #2F363F;
+    box-sizing: border-box;
+    padding-top: 2rem;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.nav-custom-item {
+    color: #CAC9C9;
+    background-color: transparent;
+}
+
+.nav-custom-item p {
+    width: 100%;
+    height: 100%;
+}
+
+.nav-custom-item:hover {
+    background-color: red;
+}
+
+.nav-custom-item-active {
+    background-color: red;
+}
+
+.content {
+    background-color: #CAC9C9;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: minmax(90vh,min-content);
+}
+/* Div 1 */
+.content-order-products{
+    background-color: blueviolet;
+    display: flex;
+    flex-flow: column;
+}
+/* Div 2  */
+.content-order-add-products{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20% 80%;
+    background-color: burlywood;
+}
+.content-order-add-products-search-bar{
+    background-color: #2C3335;
+}
+.order-products-display-bar{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: min-content;
+    max-height: min-content;
+    background-color: #4C4B4B;
+    margin-top: 1rem;
+    box-sizing: border-box;
+    padding: 1rem 1rem;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.5s ease-in;
+}
+
+.order-products-display-bar:hover{
+    background-color: #2C3335;
+}
+
+.suggestionBox2{
+    border-top: 1px solid red;
+    width: 86%;height: 30rem;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding-top: 2rem;
+}
+.suggestionBox2-product-item{
+    width: 100%;min-height: 4rem;height: 4rem;max-height: 4rem;
+    border-bottom: 4px solid white;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding-left: 1rem;
+    background-color: #2F363F;
+    color: white;
+    z-index: 10;
+}
+.suggestionBox2-product-item:hover{
+    background-color: white;
+    color: red;
+}
+.suggestionBox2::-webkit-scrollbar{
+    width: 0.5rem;
+    background-color: red;
+}
+.suggestionBox2::-webkit-scrollbar-thumb{
+    background-color: #2F363F;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 800px) {
+    .addProductsInOrder-container-wrapper {
+        display: grid;
+        grid-template-columns: 100vw;
+        grid-template-rows: 10vh minmax(20vh, min-content) 10vh minmax(80vh,min-content);
+        grid-template-areas: "top-bar-left"
+            "nav"
+            "top-bar-right"
+            "content";
+    }
+
+}
