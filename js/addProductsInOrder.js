@@ -1,3 +1,6 @@
+const orderId = window.location.hash.split('#')[1]
+if(!orderId||orderId===undefined)
+    location.assign('./orders.html')
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -7,7 +10,6 @@ function closeLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'none'
 }
-const orderId = window.location.hash.split('#')[1]
 var contentOrderProducts = document.querySelector('.content-order-products')
 function getOrderDetails () {
     loadLoader()
