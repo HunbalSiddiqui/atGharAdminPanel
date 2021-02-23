@@ -71,12 +71,12 @@ var usedFor = document.querySelector('.usedFor')
 var vendor = document.querySelector('.vendor')
 var company = document.querySelector('.company')
 var discount = document.querySelector('.discount') // for pharmacy
-console.log(discount.value)
 var formula = document.querySelector('.formula') // for pharmacy
 var packSize = document.querySelector('.packSize') // for pharmacy
 var strips = document.querySelector('.strips') // for pharmacy
 var tabPerStrip = document.querySelector('.tabletsPerStrip') // for pharmacy
 var prescription = document.querySelector('.prescription') // for pharmacy
+var deliverytime = document.querySelector('.deliverytime') // for both
 function getProductDetails(productId) {
     loadLoader()
     // console.log(productId)
@@ -109,7 +109,6 @@ function getProductDetails(productId) {
                 tabPerStrip.value = product.tabletsperstrip
                 prescription.value = product.prescription
             }
-            console.log(product)
             productid = product._id
             productname.value = product.productname
             productprice.value = product.price
@@ -119,7 +118,7 @@ function getProductDetails(productId) {
                 featuredFlag.checked = false
             producttype.value = product.type
             productCategory.value = product.category
-
+            deliverytime.value = product.deliverytime
             getProductImg(productname.value)
         })
         .catch((err) => {
@@ -188,7 +187,12 @@ function updateProduct() {
             featured: featuredFlag.checked,
             category: productCategory.value,
             type: producttype.value,
-            subcategory: productsubCategory.value
+            subcategory: productsubCategory.value,
+            cp : costPrice.value,
+            mrp : mrp.value,
+            discount : discount.value,
+            vendor : vendor.value,
+            deliverytime: deliverytime.value
         }
     } else if (producttype.value.toLowerCase() === 'pharmacy') {
         // TODO : add all the fields in productState which shall be sent while updating.
@@ -212,13 +216,14 @@ function updateProduct() {
             tabletsperstrip : tabPerStrip.value,
             prescription : prescription.value,
             formula : formula.value,
+            deliverytime: deliverytime.value
         }
     }
 
     if (productid) {
         const admin = JSON.parse(localStorage.getItem('jwt')).user
         const token = JSON.parse(localStorage.getItem('jwt')).token
-        console.log(productState)
+        // console.log(productState)
         axios.put(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/${productid}`,
                 productState, {
                     headers: {
