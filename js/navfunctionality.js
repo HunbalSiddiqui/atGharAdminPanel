@@ -184,7 +184,7 @@ function displayCategories(type) {
 productcategory.addEventListener('change', () => {
     displaySubCategories(productcategory.value)
 })
-var productsubcategory = document.querySelector('.productsubcategory')
+var productsubcategory = document.querySelector('.new-productsubcategory')
 
 function displaySubCategories(category) {
     // Grocery
@@ -212,18 +212,19 @@ var newproducttype = document.querySelector('.new-producttype') // for both
 var newfeaturedFlag = document.querySelector('.new-featuredFlag') // for both
 var newcostprice = document.querySelector('.new-costprice') // for both
 var newcostPriceStrip = document.querySelector('.new-costpriceStrip') // for pharmacy 
-var newmrp = document.querySelector('.new-mrp') // for pharmacy
+var newmrp = document.querySelector('.new-mrp') // for both
 var newmrpStrip = document.querySelector('.new-mrpStrip') // for pharmacy
 var newpriceStrip = document.querySelector('.new-priceStrip') // for pharmacy
 var newusedFor = document.querySelector('.new-usedFor') // for pharmacy
-var newvendor = document.querySelector('.new-vendor') // for pharmacy
+var newvendor = document.querySelector('.new-vendor') // for both
 var newcompany = document.querySelector('.new-company') // for pharmacy
-var newdiscount = document.querySelector('.new-discount') // for pharmacy
+var newdiscount = document.querySelector('.new-discount') // for both
 var newformula = document.querySelector('.new-formula') // for pharmacy
 var newpackSize = document.querySelector('.new-packSize') // for pharmacy
 var newstrips = document.querySelector('.new-strips') // for pharmacy
 var newtabPerStrip = document.querySelector('.new-tabPerStrip') // for pharmacy
 var newprescription = document.querySelector('.new-prescription') // for pharmacy
+var newdeliveryTime = document.querySelector('.new-deliveryTime') // for both
 // var packForm = document.querySelector('.packForm') // for pharmacy
 // var stripForm = document.querySelector('.stripForm') // for pharmacy
 
@@ -238,7 +239,8 @@ createProductBtn.addEventListener('click', () => {
             type: newproducttype.value,
             category: productcategory.value,
             subcategory: productsubcategory.value,
-            featured: featuredFlag.checked
+            featured: featuredFlag.checked,
+            delivereytime : newdeliveryTime.value
         }
     } else if (productType.value.toLowerCase() === 'pharmacy') {
         productObj = {
@@ -260,7 +262,8 @@ createProductBtn.addEventListener('click', () => {
             packsize : newpackSize.value,
             strips : newstrips.value,
             tabletsperstrip : newtabPerStrip.value,
-            prescription : newprescription.value
+            prescription : newprescription.value,
+            delivereytime : newdeliveryTime.value
         }
     }
     createProduct(productObj)
