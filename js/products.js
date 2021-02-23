@@ -156,6 +156,7 @@ function getProductImg(productName) {
         })
         .then((response) => {
             // console.log(response)
+            productimage.innerHTML = ''
             // productimage.style.background = `url(data:image/jpeg;base64,${response.data})`
                 productimage.insertAdjacentHTML(`beforeend`,
                     `
@@ -197,20 +198,20 @@ function updateProduct() {
             featured: featuredFlag.checked,
             category: productCategory.value,
             type: producttype.value,
-            // cp : costPrice.value,
-            // cpStrip : costPriceStrip.value,  
-            // mrp : mrp.value,
-            // mrpStrip : mrpStrip.value,
-            // priceStrip : priceStrip.value,
-            // usedfor : usedFor.value,
-            // vendor : vendor.value,
-            // company : company.value,
-            // discount : discount.value,
-            // packsize : packSize.value,
-            // strips : strips.value,
-            // tabletsperstrip : tabPerStrip.value,
-            // prescription : prescription.value,
-            // formula : formula.value,
+            cp : costPrice.value,
+            cpStrip : costPriceStrip.value,  
+            mrp : mrp.value,
+            mrpStrip : mrpStrip.value,
+            priceStrip : priceStrip.value,
+            usedfor : usedFor.value,
+            vendor : vendor.value,
+            company : company.value,
+            discount : discount.value,
+            packsize : packSize.value,
+            strips : strips.value,
+            tabletsperstrip : tabPerStrip.value,
+            prescription : prescription.value,
+            formula : formula.value,
         }
     }
 
