@@ -242,22 +242,21 @@ addToOrderBtn.addEventListener('click',()=>{
     }
     else if(searchedProductDetails.type.toLowerCase()==='pharmacy')
     {
+        console.log(medicineForm.value.toLowerCase()==='strip',medicineForm.value.toLowerCase())
         updatedProductsArr = [...productDetails.products,{
             category: searchedProductDetails.category,
             productname: searchedProductDetails.productname,
-            price: searchedProductDetails.price,
+            price: medicineForm.value.toLowerCase()==='strip' ?  searchedProductDetails.priceStrip:searchedProductDetails.price,
             _id: searchedProductDetails._id,
             qt: addQuantity.value,
             vendor: searchedProductDetails.vendor,
             type: searchedProductDetails.type,
-            cp: searchedProductDetails.cp,
-            isStrip: medicineForm.value.toLowerCase()==='strip' ?true:false // TODO : craete a radio button than check if pack is selected or strip is selected than set isStrip accordingly.
+            cp: medicineForm.value.toLowerCase()==='strip' ?  searchedProductDetails.cpStrip:searchedProductDetails.cp,
+            isStrip: medicineForm.value.toLowerCase()==='strip' ?true:false
         }]
     }
-    // updating productDetails Object, this object will than be passed to the API
     productDetails.products = updatedProductsArr
     calculateUpdatedAmount(oldProductsArr,productDetails)
-    // AddProductAndUpdateOrder()
 })
 
 const calculateUpdatedAmount = (oldProductsArr,productDetails) => {
@@ -280,7 +279,6 @@ const calculateUpdatedAmount = (oldProductsArr,productDetails) => {
         discount: newDiscountinPrice // updated discount in price
     }
     AddProductAndUpdateOrder(newOrderObject,productDetails._id)
-    
 }
 
 function AddProductAndUpdateOrder(orderObj,orderId){
