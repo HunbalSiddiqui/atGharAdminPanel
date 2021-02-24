@@ -1,38 +1,34 @@
 .addProductsInOrder-container-wrapper {
     display: grid;
-    grid-template-columns: 20vw 80vw;
-    grid-template-rows: 10vh 90vh;
-    grid-template-areas: "top-bar-left top-bar-right"
-        "nav content";
+    grid-template-columns: 100vw;
+    grid-template-rows: 5vh 10vh minmax(85vh, min-content);
+    grid-template-areas: "message"
+        "nav"
+        "content";
 }
 
-.top-bar-left {
-    grid-area: top-bar-left;
-    background-color: red;
-    font-family: 'Fjalla One', sans-serif;
+.message {
+    grid-area: message;
+    background-color: #000000;
 }
 
-.top-bar-right {
-    grid-area: top-bar-right;
+.nav {
+    grid-area: nav;
+    /* background-color: #CAC9C9; */
     box-sizing: border-box;
-    padding-right: 2rem;
-    flex-wrap: wrap;
 }
 
-.top-bar-right button {
+.nav-item-custom {
     flex: 1;
     margin-left: 2%;
     margin-right: 2%;
 }
 
-.addProductsInOrder-container-nav {
-    grid-area: nav;
-    background-color: #2F363F;
-    box-sizing: border-box;
-    padding-top: 2rem;
-    font-family: 'Fjalla One', sans-serif;
+.content {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
-
 .nav-custom-item {
     color: #CAC9C9;
     background-color: transparent;

@@ -34,43 +34,15 @@
 
 <body>
     <div class="addProductsInOrder-container-wrapper">
-        <div class="top-bar-left white f3 flex">
-            At Ghar
+        <div class="message white flex">
+            <!-- Welcome message will be rendered dynamically -->
         </div>
-        <div class="top-bar-right flex-end">
-            <button type="button" class="btn btn-dark btn-lg newproduct" data-toggle="modal"
-                data-target="#newproduct">New
-                Product</button>
-            <button type="button" class="btn btn-dark btn-lg newpromocode" data-toggle="modal"
-                data-target="#newpromocode">New
-                PromoCode</button>
-            <button type="button" class="btn btn-dark btn-lg newdeal" data-toggle="modal" data-target="#newdeal">New
-                Deal</button>
-            <button type="button" class="btn btn-dark btn-lg newrider" data-toggle="modal" data-target="#newrider">New
-                Rider</button>
-            <button type="button" class="btn btn-dark btn-lg newadmin" data-toggle="modal" data-target="#newadmin">New
-                Admin</button>
-            <button type="button" class="btn btn-info btn-lg signout-btn">Signout</button>
-        </div>
-        <div class="addProductsInOrder-container-nav flex-col-start">
-            <button type="button" name="dashboard" class="btn nav-custom-item btn-lg btn-block">
-                <p class="f2 flex">Dashboard</p>
-            </button>
-            <button type="button" name="riders" class="btn nav-custom-item btn-lg btn-block">
-                <p class="f2 flex">Riders</p>
-            </button>
-            <button type="button" name="orders" class="btn nav-custom-item btn-lg btn-block">
-                <p class="f2 flex">Orders</p>
-            </button>
-            <button type="button" name="promocodes" class="btn nav-custom-item btn-lg btn-block">
-                <p class="f2 flex">Promo Codes</p>
-            </button>
-            <button type="button" name="users" class="btn nav-custom-item btn-lg btn-block">
-                <p class="f2 flex">Users</p>
-            </button>
-            <button type="button" name="products" class="btn nav-custom-item btn-lg btn-block">
-                <p class="f2 flex">Products</p>
-            </button>
+        <!-- Nav -->
+        <div class="nav flex">
+            <!-- <button type="button" class="nav-item-custom btn btn-info btn-lg riderdashboardBtn">Dashboard</button> -->
+            <button type="button" class="nav-item-custom btn btn-danger btn-lg refreshBtn">Refresh</button>
+            <!-- <button type="button" class="nav-item-custom btn btn-info btn-lg profileBtn">Profile</button> -->
+            <button type="button" class="nav-item-custom btn btn-danger btn-lg signoutBtn">Signout</button>
         </div>
         <div class="content">
             <div class="content-order-products">
@@ -511,8 +483,8 @@
 
     <!-- Axios -->
     <script src="../node_modules/axios/dist/axios.min.js"></script>
-    <script src="../js/navfunctionality.js"></script>
-    <script src="../js/newAuth.js"></script>
+    <!-- <script src="../js/navfunctionality.js"></script> -->
+    <!-- <script src="../js/newAuth.js"></script> -->
     <script src="../js/addProductsInOrder.js"></script>
 
 </body>

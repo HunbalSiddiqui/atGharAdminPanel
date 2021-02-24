@@ -1,6 +1,7 @@
 const orderId = window.location.hash.split('#')[1]
-if(!orderId||orderId===undefined)
-    location.assign('./orders.html')
+console.log(orderId)
+// if(!orderId||orderId===undefined)
+    // location.assign('./riderDashboard.html')
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -15,32 +16,32 @@ function getOrderDetails () {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/admin/${admin._id}`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    })
-    .then((response)=>{
-        closeLoader()
-        var products = response.data.products
-        products.map((product)=>{
-            return(
-                contentOrderProducts.insertAdjacentHTML('beforeend',
-                `
-                <div class="order-products-display-bar">
-                <p>Name: ${product.productname}</p>
-                <p>Type: ${product.type}</p>
-                <p>Category: ${product.category}</p>
-                <p>Price: ${product.price}</p>
-                <p>Qt: ${product.qt}</p>
-                </div>
-                `)
-            )
-        })
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
+    // axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/admin/${admin._id}`, {
+    //     headers: {
+    //         Authorization: `Bearer ${token}`
+    //     }
+    // })
+    // .then((response)=>{
+    //     closeLoader()
+    //     var products = response.data.products
+    //     products.map((product)=>{
+    //         return(
+    //             contentOrderProducts.insertAdjacentHTML('beforeend',
+    //             `
+    //             <div class="order-products-display-bar">
+    //             <p>Name: ${product.productname}</p>
+    //             <p>Type: ${product.type}</p>
+    //             <p>Category: ${product.category}</p>
+    //             <p>Price: ${product.price}</p>
+    //             <p>Qt: ${product.qt}</p>
+    //             </div>
+    //             `)
+    //         )
+    //     })
+    // })
+    // .catch((err)=>{
+    //     console.log(err)
+    // })
 }
 getOrderDetails()
 

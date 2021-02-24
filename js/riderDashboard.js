@@ -120,7 +120,9 @@ displayCancelledOrders()
 
 // Confirmed
 var confirmedordersTable = document.querySelector('.confirmedordersTable')
-
+function navigate (orderId)  {
+    location.assign(`./addProductsInOrder.html#${orderId}`)
+}
 function displayConfirmedOrders() {
     loadLoader()
     const token = JSON.parse(localStorage.getItem('jwt')).token
@@ -160,6 +162,8 @@ function displayConfirmedOrders() {
                     <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},cancelled')" class="btn btn-danger" data-toggle="modal">Cancel</button></th>
                     <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},dispatched')" class="btn btn-warning" data-toggle="modal">Dispatch</button></th>
                     <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},delivered')" class="btn btn-success" data-toggle="modal">Delivered</button></th>
+                    <th class="flex"><button type="button" class="btn btn-info"
+                    onclick="navigate('${order._id}')">Add products</button></th>
                 </tr>
                 `)
                 )

@@ -9,9 +9,6 @@ function closeLoader() {
 }
 var confirmedTable = document.querySelector('.confirmedTable')
 
-function navigate (orderId)  {
-    location.assign(`./addProductsInOrder.html#${orderId}`)
-}
 function setConfirmedOrders() {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
@@ -51,8 +48,6 @@ function setConfirmedOrders() {
                     data-target="#orderdetails" id="${order.name}"   onclick="displayOrderDetails('${order._id}')">View Details</button></th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
                     data-target="#orderproducts" id="${order.name}"   onclick="displayOrderProducts('${order._id}')">View products</button></th>
-                    <th class="flex"><button type="button" class="btn btn-info"
-                    onclick="navigate('${order._id}')">Add products</button></th>
                 </tr>
                 `)
                 )
