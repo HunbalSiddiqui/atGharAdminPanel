@@ -26,6 +26,10 @@ function closeLoader() {
     loader.style.display = 'none'
 }
 loadLoader()
+var riderdashboardBtn = document.querySelector('.riderdashboardBtn')
+riderdashboardBtn.addEventListener('click',()=>{
+    location.assign('./riderDashboard.html')
+})
 var refreshBtn = document.querySelector('.refreshBtn')
 refreshBtn.addEventListener('click', () => {
     loadLoader()
@@ -399,7 +403,7 @@ function removeProductFromOrder(compound) {
             // console.log(order)
             var orignalAmountWithDiscount = order.delivery //init to discount i.e 100
             order.products.forEach(product => {
-                orignalAmountWithDiscount = orignalAmountWithDiscount + (product.price * product.qt) // getting price products qwise
+                orignalAmountWithDiscount = orignalAmountWithDiscount + (product.price * product.qt) // getting price products wise
             });
             var discountinPercentage = ((order.discount)*100)/(orignalAmountWithDiscount-order.delivery); // calculating % is percentage
             const result = order.products.filter(product => product._id !== productToBeRemovedId); // removing choosen product

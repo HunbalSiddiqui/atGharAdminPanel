@@ -51,23 +51,28 @@
     background-color: #CAC9C9;
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: minmax(90vh,min-content);
+    grid-template-rows: minmax(85vh,min-content);
 }
 /* Div 1 */
 .content-order-products{
-    background-color: blueviolet;
     display: flex;
     flex-flow: column;
+    overflow-y: auto;
 }
 /* Div 2  */
 .content-order-add-products{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 20% 80%;
-    background-color: burlywood;
+    grid-template-rows: 20vh 65vh;
+    background-color: white;
 }
+/* Div2 -> div1 */
 .content-order-add-products-search-bar{
     background-color: #2C3335;
+}
+/* Div2 -> div2 */
+.content-order-add-products-details{
+    overflow-y: auto;
 }
 .order-products-display-bar{
     display: grid;
@@ -75,7 +80,7 @@
     grid-template-rows: min-content;
     max-height: min-content;
     background-color: #4C4B4B;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     box-sizing: border-box;
     padding: 1rem 1rem;
     color: white;
@@ -83,7 +88,21 @@
     cursor: pointer;
     transition: 0.5s ease-in;
 }
-
+.total-amount-bar{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: min-content;
+    max-height: min-content;
+    background-color: #BA2F16;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    padding: 1rem 1rem;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 0.5s ease-in;
+    text-align: center;
+}
 .order-products-display-bar:hover{
     background-color: #2C3335;
 }
@@ -99,6 +118,7 @@
     overflow-y: auto;
     box-sizing: border-box;
     padding-top: 2rem;
+    z-index: 2;
 }
 .suggestionBox2-product-item{
     width: 100%;min-height: 4rem;height: 4rem;max-height: 4rem;
