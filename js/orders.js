@@ -129,7 +129,6 @@ function setShippedOrders() {
         })
         .then((response) => {
             closeLoader()
-            // console.log(response.data)
             shippedTable.innerHTML = ''
             shippedTable.insertAdjacentHTML('beforeend',
                 `
@@ -138,11 +137,14 @@ function setShippedOrders() {
             <th>Rider Name</th>
             <th>User Name</th>
             <th>Total Amount</th>
+            <th>Total Profit</th>
             <th></th>
             <th></th>
         </tr>
         `)
-            response.data.map((order) => {
+            response.data.map(async(order) => {
+                let profit = await calculateProfit(order)
+                console.log(profit)
                 return (
                     shippedTable.insertAdjacentHTML('beforeend',
                         `
@@ -151,6 +153,7 @@ function setShippedOrders() {
                     <th>${order.rider.name}</th>
                     <th>${order.user.fullname}</th>
                     <th>${order.amount}-PKR</th>
+                    <th>${profit}-PKR</th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
                     data-target="#orderdetails" id="${order.name}"   onclick="displayOrderDetails('${order._id}')">View Details</button></th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
@@ -168,6 +171,25 @@ function setShippedOrders() {
 
 setShippedOrders()
 
+const calculateProfit = async(order) => {
+        console.log(order)
+        const totalAmount = order.amount;
+        const products = order.products
+        var totalCostPrice = 0
+        var profit = 0;
+        products.forEach(product => {
+            if(product.type.toLowerCase()==='grocery')
+            {
+                totalCostPrice +=  (product.cp*product.qt)
+            }
+            else if(product.type.toLowerCase()==='pharmacy')
+            {
+                totalCostPrice +=  (product.cp*product.qt)
+            }
+        });
+        profit = totalAmount-totalCostPrice
+        return profit
+}
 
 // CancelledOrders
 var cancelledTable = document.querySelector('.cancelledTable')
@@ -189,7 +211,7 @@ function setCancelledOrders() {
                 `
         <tr>
             <th></th>
-            <th>Rider Name</th>
+            <th>Status</th>
             <th>User Name</th>
             <th>Total Amount</th>
             <th></th>
@@ -197,13 +219,12 @@ function setCancelledOrders() {
         </tr>
         `)
             response.data.map((order) => {
-                // console.log(order)
                 return (
                     cancelledTable.insertAdjacentHTML('beforeend',
                         `
                 <tr>
                     <th></th>
-                    <th>${order.rider.name}</th>
+                    <th>${order.status}</th>
                     <th>${order.user.fullname}</th>
                     <th>${order.amount}-PKR</th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
