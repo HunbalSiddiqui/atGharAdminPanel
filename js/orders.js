@@ -144,7 +144,7 @@ function setShippedOrders() {
         `)
             response.data.map(async(order) => {
                 let profit = await calculateProfit(order)
-                console.log(profit)
+                // console.log(profit)
                 return (
                     shippedTable.insertAdjacentHTML('beforeend',
                         `
@@ -172,7 +172,7 @@ function setShippedOrders() {
 setShippedOrders()
 
 const calculateProfit = async(order) => {
-        console.log(order)
+        // console.log(order)
         const totalAmount = order.amount;
         const products = order.products
         var totalCostPrice = 0

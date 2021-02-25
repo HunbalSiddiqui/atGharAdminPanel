@@ -58,6 +58,7 @@ newadminButton.addEventListener('click', () => {
 
 
 var ridername = document.querySelector('.ridername')
+var riderphone = document.querySelector('.riderphone')
 var rideremail = document.querySelector('.rideremail')
 var riderpassword = document.querySelector('.riderpassword')
 var newriderButton = document.querySelector('.newriderButton')
@@ -66,6 +67,7 @@ function riderSignup() {
     loadLoader()
     axios.post('https://atghar-testing.herokuapp.com/api/rider/signup', {
             name: ridername.value,
+            phone: riderphone.value,
             email: rideremail.value,
             password: riderpassword.value
         })
