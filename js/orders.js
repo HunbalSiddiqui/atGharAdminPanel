@@ -187,7 +187,8 @@ const calculateProfit = async(order) => {
                 totalCostPrice +=  (product.cp*product.qt)
             }
         });
-        profit = totalAmount-totalCostPrice
+        // profit = totalAmount-totalCostPrice
+        profit = totalAmount-totalCostPrice-order.delivery
         return profit
 }
 
