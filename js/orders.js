@@ -33,7 +33,6 @@ function setConfirmedOrders() {
             </tr>
             `)
             response.data.map((order) => {
-                console.log(order)
                 return (
                     confirmedTable.insertAdjacentHTML('beforeend',
                         `
@@ -48,6 +47,15 @@ function setConfirmedOrders() {
                     data-target="#orderdetails" id="${order.name}"   onclick="displayOrderDetails('${order._id}')">View Details</button></th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
                     data-target="#orderproducts" id="${order.name}"   onclick="displayOrderProducts('${order._id}')">View products</button></th>
+                    ${
+                        order.hasprescription ?
+                        `
+                        <th class="flex"><button type="button" class="btn btn-dark" data-toggle="modal"
+                        data-target="#orderprescription" id="${order.name}"   onclick="displayPrescription('${order._id}','${order.transaction_id}')">View Prescription</button></th>
+                        `
+                        :
+                        null
+                    }
                 </tr>
                 `)
                 )
@@ -142,7 +150,7 @@ function setShippedOrders() {
             <th></th>
         </tr>
         `)
-            response.data.map(async(order) => {
+            response.data.map(async (order) => {
                 let profit = await calculateProfit(order)
                 // console.log(profit)
                 return (
@@ -171,25 +179,22 @@ function setShippedOrders() {
 
 setShippedOrders()
 
-const calculateProfit = async(order) => {
-        // console.log(order)
-        const totalAmount = order.amount;
-        const products = order.products
-        var totalCostPrice = 0
-        var profit = 0;
-        products.forEach(product => {
-            if(product.type.toLowerCase()==='grocery')
-            {
-                totalCostPrice +=  (product.cp*product.qt)
-            }
-            else if(product.type.toLowerCase()==='pharmacy')
-            {
-                totalCostPrice +=  (product.cp*product.qt)
-            }
-        });
-        // profit = totalAmount-totalCostPrice
-        profit = totalAmount-totalCostPrice-order.delivery
-        return profit
+const calculateProfit = async (order) => {
+    // console.log(order)
+    const totalAmount = order.amount;
+    const products = order.products
+    var totalCostPrice = 0
+    var profit = 0;
+    products.forEach(product => {
+        if (product.type.toLowerCase() === 'grocery') {
+            totalCostPrice += (product.cp * product.qt)
+        } else if (product.type.toLowerCase() === 'pharmacy') {
+            totalCostPrice += (product.cp * product.qt)
+        }
+    });
+    // profit = totalAmount-totalCostPrice
+    profit = totalAmount - totalCostPrice - order.delivery
+    return profit
 }
 
 // CancelledOrders
@@ -318,28 +323,51 @@ function displayOrderDetails(orderId) {
 }
 
 
-function updateOrderStatus(statusObj){
+function updateOrderStatus(statusObj) {
     const splitting = statusObj.split(',')
     const orderId = splitting[0]
     const statusL = splitting[1]
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     // console.log(statusL)
-    axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/changestatus/admin/${admin._id}`,{
-        status : statusL
-    },{
-        headers:{
-            Authorization: `Bearer ${token}`
-        }
-    })
-    .then((response)=>{
-        location.reload()
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
+    axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/changestatus/admin/${admin._id}`, {
+            status: statusL
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((response) => {
+            location.reload()
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 }
 
+
+// Prescription popup
+
+const orderPrescripition = document.querySelector('.orderPrescripition')
+
+function displayPrescription(orderId, transaction_id) {
+    console.log(orderId, transaction_id)
+    orderPrescripition.innerHTML = ''
+    loadLoader()
+    const admin = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/prescription/getfilename/${transaction_id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((response) => {
+            console.log(response)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
 
 
 // RemoveProduct
@@ -365,17 +393,17 @@ function removeProductFromOrder(compound) {
             order.products.forEach(product => {
                 orignalAmountWithDiscount = orignalAmountWithDiscount + (product.price * product.qt) // getting price products qwise
             });
-            var discountinPercentage = ((order.discount)*100)/(orignalAmountWithDiscount-order.delivery); // calculating % is percentage
+            var discountinPercentage = ((order.discount) * 100) / (orignalAmountWithDiscount - order.delivery); // calculating % is percentage
             const result = order.products.filter(product => product._id !== productToBeRemovedId); // removing choosen product
             // new amount for recalculating after removal of product i.e new array 
             var amount = order.delivery //init to delivery price
             result.forEach(product => {
                 amount = amount + (product.price * product.qt)
             });
-            var newDiscountinPrice = ((amount-order.delivery)*discountinPercentage)/100 // calculating new discount in price after new priducts arr
+            var newDiscountinPrice = ((amount - order.delivery) * discountinPercentage) / 100 // calculating new discount in price after new priducts arr
             const newOrderObject = {
-                amount: amount-newDiscountinPrice,//delivery price was already set during init
-                subtotal: amount - order.delivery-newDiscountinPrice, // subtotal only contains product wise amounts
+                amount: amount - newDiscountinPrice, //delivery price was already set during init
+                subtotal: amount - order.delivery - newDiscountinPrice, // subtotal only contains product wise amounts
                 delivery: order.delivery, // same  
                 user: order.user, // same
                 products: result, // setting new products arr
@@ -390,12 +418,10 @@ function removeProductFromOrder(compound) {
 }
 
 function updateOrder(orderObj, orderId) {
-    if(orderObj.amount <= 100)
-    {
+    if (orderObj.amount <= 100) {
         alert("Can not remove more products. Please cancel the order instead.")
         closeLoader()
-    }
-    else{
+    } else {
         const admin = JSON.parse(localStorage.getItem('jwt')).user
         const token = JSON.parse(localStorage.getItem('jwt')).token
         axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/updateorderadmin/${admin._id}`,

@@ -72,7 +72,6 @@ function getAllRiders() {
             }
         })
         .then((response) => {
-            // console.log(response.data)
             closeLoader()
             riderTable.innerHTML = ''
             riderTable.insertAdjacentHTML('beforeend',
@@ -105,12 +104,17 @@ getAllRiders()
 async function getProcessedOrdersOfRider(riderId) {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
-    const response = await axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/pendingorder/rider/${riderId}`, {
+    return await axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/pendingorder/rider/${riderId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     })
-    return response.data.length
+    .then((response)=>{
+        return response.data
+    })
+    .catch((err)=>{
+        console.log()
+    })
 }
 // Assignment to rider
 
