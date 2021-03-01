@@ -33,7 +33,7 @@ function setConfirmedOrders() {
             </tr>
             `)
             response.data.map((order) => {
-                // console.log(order)
+                console.log(order)
                 return (
                     confirmedTable.insertAdjacentHTML('beforeend',
                         `

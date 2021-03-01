@@ -105,7 +105,7 @@ getAllRiders()
 async function getProcessedOrdersOfRider(riderId) {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
-    const response = await axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/rider/${riderId}/Processed`, {
+    const response = await axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/pendingorder/rider/${riderId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -183,8 +183,8 @@ function displayOrderProducts(orderId) {
                 Authorization: `Bearer ${token}`
             }
         })
-    .then((response)=>{
-        closeLoader()
+        .then((response) => {
+            closeLoader()
             response.data.products.map((product) => {
                 return (
                     orderProducts.insertAdjacentHTML('beforeend',
@@ -198,10 +198,10 @@ function displayOrderProducts(orderId) {
                 `)
                 )
             })
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 }
 
 // Assign selected order to selected rider
@@ -274,17 +274,17 @@ function removeProductFromOrder(compound) {
             order.products.forEach(product => {
                 orignalAmountWithDiscount = orignalAmountWithDiscount + (product.price * product.qt) // getting price products qwise
             });
-            var discountinPercentage = ((order.discount)*100)/(orignalAmountWithDiscount-order.delivery); // calculating % is percentage
+            var discountinPercentage = ((order.discount) * 100) / (orignalAmountWithDiscount - order.delivery); // calculating % is percentage
             const result = order.products.filter(product => product._id !== productToBeRemovedId); // removing choosen product
             // new amount for recalculating after removal of product i.e new array 
             var amount = order.delivery //init to delivery price
             result.forEach(product => {
                 amount = amount + (product.price * product.qt)
             });
-            var newDiscountinPrice = ((amount-order.delivery)*discountinPercentage)/100 // calculating new discount in price after new priducts arr
+            var newDiscountinPrice = ((amount - order.delivery) * discountinPercentage) / 100 // calculating new discount in price after new priducts arr
             const newOrderObject = {
-                amount: amount-newDiscountinPrice,//delivery price was already set during init
-                subtotal: amount - order.delivery-newDiscountinPrice, // subtotal only contains product wise amounts
+                amount: amount - newDiscountinPrice, //delivery price was already set during init
+                subtotal: amount - order.delivery - newDiscountinPrice, // subtotal only contains product wise amounts
                 delivery: order.delivery, // same  
                 user: order.user, // same
                 products: result, // setting new products arr
@@ -299,12 +299,10 @@ function removeProductFromOrder(compound) {
 }
 
 function updateOrder(orderObj, orderId) {
-    if(orderObj.amount <= 100)
-    {
+    if (orderObj.amount <= 100) {
         alert("Can not remove more products. Please cancel the order instead.")
         closeLoader()
-    }
-    else{
+    } else {
         const admin = JSON.parse(localStorage.getItem('jwt')).user
         const token = JSON.parse(localStorage.getItem('jwt')).token
         axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/updateorderadmin/${admin._id}`,
