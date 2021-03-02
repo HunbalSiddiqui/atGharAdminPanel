@@ -7,6 +7,33 @@ function closeLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'none'
 }
+
+var pendingOrderscount = document.querySelector('.pendingOrderscount')
+
+function setpendingOrderscount() {
+    const token = JSON.parse(localStorage.getItem("jwt")).token
+    const admin = JSON.parse(localStorage.getItem("jwt")).user
+    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/pendingorders`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((response) => {
+            console.log(response.data,response.data.length === 0)
+            if (pendingOrderscount && response.data,response.data.length !== 0) {
+                pendingOrderscount.innerHTML = ''
+                pendingOrderscount.insertAdjacentHTML('afterbegin',
+                    `
+            ${response.data}
+            `)
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+setpendingOrderscount()
+
 var usercount = document.querySelector('.usercount')
 
 function setUserCount() {

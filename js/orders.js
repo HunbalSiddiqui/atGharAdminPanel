@@ -362,6 +362,7 @@ function displayPrescription(orderId, transaction_id) {
             }
         })
         .then((response) => {
+            closeLoader()
             console.log(response)
         })
         .catch((err) => {
