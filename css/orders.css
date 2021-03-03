@@ -55,7 +55,7 @@
     background-color: #CAC9C9;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10vh minmax(40vh, min-content) minmax(50vh, min-content) minmax(50vh, min-content) minmax(50vh, min-content);
+    grid-template-rows: 10vh minmax(80vh, min-content) minmax(80vh, min-content) minmax(80vh, min-content) minmax(80vh, min-content);
     overflow-y: auto;
 }
 
@@ -65,7 +65,7 @@
 .content-assigned-orders-tables {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10vh minmax(30vh, min-content);
+    grid-template-rows: 10vh minmax(60vh, min-content);
     overflow-y: auto;
 }
 
@@ -108,7 +108,7 @@ tr:nth-child(even) {
 .content-delivered-orders-tables {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10vh minmax(40vh, min-content);
+    grid-template-rows: 10vh minmax(60vh, min-content);
     overflow-y: auto;
 }
 
@@ -129,7 +129,7 @@ tr:nth-child(even) {
 .content-shipped-orders-tables {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10vh minmax(40vh, min-content);
+    grid-template-rows: 10vh minmax(60vh, min-content);
     overflow-y: auto;
 }
 
@@ -150,8 +150,8 @@ tr:nth-child(even) {
 .content-cancelled-orders-tables {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 10vh minmax(40vh, min-content);
-    overflow-y: auto;
+    grid-template-rows: 10vh minmax(60vh, min-content);
+    /* overflow-y: auto; */
 }
 
 .content-cancelled-orders-tables h2 {
@@ -194,4 +194,15 @@ tr:nth-child(even) {
             "content";
     }
 
+}
+
+
+
+
+
+.prescription-image-box{
+    min-width: 30rem;
+    width: 30rem;
+    height: 30rem;
+    background-color: red;
 }

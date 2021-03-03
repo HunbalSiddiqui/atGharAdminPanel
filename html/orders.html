@@ -44,9 +44,8 @@
             <button type="button" class="btn btn-dark btn-lg newpromocode" data-toggle="modal"
                 data-target="#newpromocode">New
                 PromoCode</button>
-            <button type="button" class="btn btn-dark btn-lg newdeal" data-toggle="modal"
-            data-target="#newdeal">New
-            Deal</button>                
+            <button type="button" class="btn btn-dark btn-lg newdeal" data-toggle="modal" data-target="#newdeal">New
+                Deal</button>
             <button type="button" class="btn btn-dark btn-lg newrider" data-toggle="modal" data-target="#newrider">New
                 Rider</button>
             <button type="button" class="btn btn-dark btn-lg newadmin" data-toggle="modal" data-target="#newadmin">New
@@ -101,7 +100,7 @@
             <!-- Table Of Cancelled Orders -->
             <div class="content-cancelled-orders-tables">
                 <h2 class="f2 flex-start fb" style="padding-left: 1%;">Cancelled Orders</h2>
-                <table class="cancelledTable">
+                <table class="cancelledTable" style="overflow-y: auto;">
                     <!-- Table will be rendered dynamically -->
                 </table>
             </div>
@@ -129,7 +128,7 @@
                         </div>
                         <select class="custom-select new-producttype" id="inputGroupSelect01">
                             <option value="grocery" selected>Choose</option>
-                            <option value="grocery" >Grocery</option>
+                            <option value="grocery">Grocery</option>
                             <option value="pharmacy">Pharmacy</option>
                         </select>
                     </div>
@@ -182,7 +181,7 @@
                         </div>
                         <input type="number" class="form-control new-costpriceStrip" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
-                    </div>                              
+                    </div>
                     <!-- mrp -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -214,7 +213,7 @@
                         </div>
                         <input type="number" class="form-control new-discount" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
-                    </div>  
+                    </div>
                     <!-- used for -->
                     <div class="input-group mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
@@ -230,7 +229,7 @@
                         </div>
                         <input type="text" class="form-control new-vendor" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
-                    </div>                    
+                    </div>
                     <!-- company -->
                     <div class="input-group mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
@@ -238,7 +237,7 @@
                         </div>
                         <input type="text" class="form-control new-company" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
-                    </div>  
+                    </div>
                     <!-- formula -->
                     <div class="input-group mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
@@ -246,7 +245,7 @@
                         </div>
                         <input type="text" class="form-control new-formula" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
-                    </div>  
+                    </div>
                     <!-- packsize -->
                     <div class="input-group mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
@@ -270,7 +269,7 @@
                         </div>
                         <input type="number" class="form-control new-tabPerStrip" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
-                    </div>  
+                    </div>
                     <!-- Delivery time -->
                     <div class="input-group mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
@@ -278,7 +277,7 @@
                         </div>
                         <input type="text" class="form-control new-deliveryTime" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
-                    </div>                                                                                                                   
+                    </div>
                     <!-- Prescription -->
                     <div class="input-group mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
@@ -288,7 +287,7 @@
                             <option value="yes">yes</option>
                             <option value="no">No</option>
                         </select>
-                    </div>                                                                                                                                                 
+                    </div>
                     <!-- Featured -->
                     <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
@@ -362,8 +361,7 @@
         </div>
     </div>
     <!-- new deal -->
-    <div class="modal fade" id="newdeal" tabindex="-1" role="dialog" aria-labelledby="newdeal"
-        aria-hidden="true">
+    <div class="modal fade" id="newdeal" tabindex="-1" role="dialog" aria-labelledby="newdeal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -380,7 +378,7 @@
                         </div>
                         <select class="custom-select new-bannerType" id="inputGroupSelect01">
                             <option value="banner1" selected>banner1</option>
-                            <option value="banner2" >banner2</option>
+                            <option value="banner2">banner2</option>
                             <option value="banner3">banner3</option>
                         </select>
                     </div>
@@ -402,7 +400,7 @@
                 </div>
             </div>
         </div>
-    </div>      
+    </div>
     <!-- new rider -->
     <div class="modal fade" id="newrider" tabindex="-1" role="dialog" aria-labelledby="newrider" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -429,7 +427,7 @@
                         </div>
                         <input type="tel" class="form-control riderphone" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
-                    </div>                    
+                    </div>
                     <!-- Rider email -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -561,15 +559,15 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body flex-col orderPrescripition">
-                    <!-- TODO: data will be dynamically rendered. -->
+                <div class="modal-body flex" style="grid-gap: 1rem;display: grid;overflow-y: auto;" id="orderPrescripitionDiv">
+                        <!-- TODO: data will be dynamically rendered. -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
     <!-- Axios -->
     <script src="../node_modules/axios/dist/axios.min.js"></script>
     <script src="../js/navfunctionality.js"></script>

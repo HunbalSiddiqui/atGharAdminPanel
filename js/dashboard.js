@@ -13,7 +13,7 @@ var pendingOrderscount = document.querySelector('.pendingOrderscount')
 function setpendingOrderscount() {
     const token = JSON.parse(localStorage.getItem("jwt")).token
     const admin = JSON.parse(localStorage.getItem("jwt")).user
-    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/pendingorders`, {
+    axios.get(`https://atghar-testing.herokuapp.com/api/portal/admin/${admin._id}/totalorders/`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
