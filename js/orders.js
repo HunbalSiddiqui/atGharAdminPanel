@@ -374,16 +374,8 @@ async function displayPrescription(orderId, transaction_id) {
             <div class="prescription-image-box" style="background-image:url(data:image/jpeg;base64,${response2.data});background-size: 100% 100%,cover;"></div>
 
         `)
-        console.log(response2.data)
     });
-    // console.log(response2)
-    // .then((response) => {
-    //     closeLoader()
-    //     console.log(response)
-    // })
-    // .catch((err) => {
-    //     console.log(err)
-    // })
+
 }
 
 

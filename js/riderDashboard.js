@@ -160,6 +160,15 @@ function displayConfirmedOrders() {
                     data-target="#orderdetails" id="${order.name}"   onclick="displayOrderDetails('${order._id}')">View Details</button></th>
                     <th class="flex"><button type="button" class="btn btn-info" data-toggle="modal"
                     data-target="#orderproducts" id="${order.name}"   onclick="displayOrderProducts('${order._id}')">View products</button></th>
+                    ${
+                        order.hasprescription ?
+                        `
+                        <th class="flex"><button type="button" class="btn btn-dark" data-toggle="modal"
+                        data-target="#orderprescription" id="${order.name}"   onclick="displayPrescription('${order._id}','${order.transaction_id}')">View Prescription</button></th>
+                        `
+                        :
+                        null
+                    }
                     <th>${order.user.fullname}</th>
                     <th>${order.user.phone}</th>
                     <th>${order.amount}-PKR</th>
@@ -381,6 +390,38 @@ function displayOrderDetails(orderId) {
             console.log(err)
         })
 }
+
+// Prescription popup
+
+const orderPrescripition = document.querySelector('#orderPrescripitionDiv')
+
+async function displayPrescription(orderId, transaction_id) {
+    orderPrescripition.innerHTML = ''
+    // loadLoader()
+    const rider = JSON.parse(localStorage.getItem('jwt')).user
+    const token = JSON.parse(localStorage.getItem('jwt')).token
+    const response1 = await axios.get(`https://atghar-testing.herokuapp.com/api/rider/${rider._id}/prescription/getfilename/${transaction_id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    const imagesNames = response1.data
+    var response2;
+    imagesNames.forEach(async imageName => {
+        response2 = await axios.get(`https://atghar-testing.herokuapp.com/api/rider/${rider._id}/prescription/show/${transaction_id}/${imageName}`,{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }  
+        })
+        orderPrescripition.insertAdjacentHTML('beforeend',
+        `
+            <div class="prescription-image-box" style="background-image:url(data:image/jpeg;base64,${response2.data});background-size: 100% 100%,cover;"></div>
+
+        `)
+    });
+
+}
+
 
 
 // RemoveProduct
