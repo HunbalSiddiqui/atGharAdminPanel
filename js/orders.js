@@ -353,7 +353,7 @@ const orderPrescripition = document.querySelector('#orderPrescripitionDiv')
 async function displayPrescription(orderId, transaction_id) {
     console.log(orderId, transaction_id)
     orderPrescripition.innerHTML = ''
-    // loadLoader()
+    loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const response1 = await axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/prescription/getfilename/${transaction_id}`, {
@@ -369,6 +369,7 @@ async function displayPrescription(orderId, transaction_id) {
                 Authorization: `Bearer ${token}`
             }  
         })
+        closeLoader()
         orderPrescripition.insertAdjacentHTML('beforeend',
         `
             <div class="prescription-image-box" style="background-image:url(data:image/jpeg;base64,${response2.data});background-size: 100% 100%,cover;"></div>
