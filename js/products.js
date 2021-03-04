@@ -77,6 +77,7 @@ var strips = document.querySelector('.strips') // for pharmacy
 var tabPerStrip = document.querySelector('.tabletsPerStrip') // for pharmacy
 var prescription = document.querySelector('.prescription') // for pharmacy
 var deliverytime = document.querySelector('.deliverytime') // for both
+var bannerType = document.querySelector('.bannerType') // for both
 function getProductDetails(productId) {
     loadLoader()
     // console.log(productId)
@@ -87,6 +88,7 @@ function getProductDetails(productId) {
         .then((response) => {
             productedit.style.display = "grid"
             const product = response.data
+            console.log(product)
             closeLoader()
             if (product.type.toLowerCase() === 'grocery') {
                 productsubCategory.value = product.subcategory
@@ -116,6 +118,9 @@ function getProductDetails(productId) {
             product.featured ?
                 featuredFlag.checked = true :
                 featuredFlag.checked = false
+            product.deal ?
+                bannerType.value = product.deal :
+                bannerType.value = "none"
             producttype.value = product.type
             productCategory.value = product.category
             deliverytime.value = product.deliverytime
@@ -157,8 +162,8 @@ function getProductImg(productName) {
             // console.log(response)
             productimage.innerHTML = ''
             // productimage.style.background = `url(data:image/jpeg;base64,${response.data})`
-                productimage.insertAdjacentHTML(`beforeend`,
-                    `
+            productimage.insertAdjacentHTML(`beforeend`,
+                `
             <img style="width: 100%;height: 50%;" src="data:image/jpeg;base64,${response.data}"/>
             `)
         })
@@ -188,11 +193,12 @@ function updateProduct() {
             category: productCategory.value,
             type: producttype.value,
             subcategory: productsubCategory.value,
-            cp : costPrice.value,
-            mrp : mrp.value,
-            discount : discount.value,
-            vendor : vendor.value,
-            deliverytime: deliverytime.value
+            cp: costPrice.value,
+            mrp: mrp.value,
+            discount: discount.value,
+            vendor: vendor.value,
+            deliverytime: deliverytime.value,
+            deal: bannerType.value === 'none' ? null: bannerType.value
         }
     } else if (producttype.value.toLowerCase() === 'pharmacy') {
         // TODO : add all the fields in productState which shall be sent while updating.
@@ -202,21 +208,22 @@ function updateProduct() {
             featured: featuredFlag.checked,
             category: productCategory.value,
             type: producttype.value,
-            cp : costPrice.value,
-            cpStrip : costPriceStrip.value,  
-            mrp : mrp.value,
-            mrpStrip : mrpStrip.value,
-            priceStrip : priceStrip.value,
-            usedfor : usedFor.value,
-            vendor : vendor.value,
-            company : company.value,
-            discount : discount.value,
-            packsize : packSize.value,
-            strips : strips.value,
-            tabletsperstrip : tabPerStrip.value,
-            prescription : prescription.value,
-            formula : formula.value,
-            deliverytime: deliverytime.value
+            cp: costPrice.value,
+            cpStrip: costPriceStrip.value,
+            mrp: mrp.value,
+            mrpStrip: mrpStrip.value,
+            priceStrip: priceStrip.value,
+            usedfor: usedFor.value,
+            vendor: vendor.value,
+            company: company.value,
+            discount: discount.value,
+            packsize: packSize.value,
+            strips: strips.value,
+            tabletsperstrip: tabPerStrip.value,
+            prescription: prescription.value,
+            formula: formula.value,
+            deliverytime: deliverytime.value,
+            deal: bannerType.value === 'none' ? null: bannerType.value
         }
     }
 
