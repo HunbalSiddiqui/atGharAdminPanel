@@ -88,7 +88,6 @@ function getProductDetails(productId) {
         .then((response) => {
             productedit.style.display = "grid"
             const product = response.data
-            console.log(product)
             closeLoader()
             if (product.type.toLowerCase() === 'grocery') {
                 productsubCategory.value = product.subcategory
