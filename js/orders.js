@@ -351,7 +351,7 @@ function updateOrderStatus(statusObj) {
 const orderPrescripition = document.querySelector('#orderPrescripitionDiv')
 
 async function displayPrescription(orderId, transaction_id) {
-    console.log(orderId, transaction_id)
+    // console.log(orderId, transaction_id)
     orderPrescripition.innerHTML = ''
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
