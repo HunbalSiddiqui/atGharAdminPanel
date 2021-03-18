@@ -8,6 +8,8 @@
 .top-bar-left{
     grid-area: top-bar-left;
     background-color: red;
+    background-image: url(../Assets/icon.png);
+    background-size: 100% 100%, cover;
     font-family: 'Fjalla One', sans-serif;  
 }
 .top-bar-right{

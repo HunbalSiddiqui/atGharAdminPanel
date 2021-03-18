@@ -9,6 +9,8 @@
 .top-bar-left {
     grid-area: top-bar-left;
     background-color: red;
+    background-image: url(../Assets/icon.png);
+    background-size: 100% 100%, cover;
     font-family: 'Fjalla One', sans-serif;
 }
 
@@ -69,13 +71,16 @@
     font-family: 'Bebas Neue', cursive;
     overflow-y: auto;
 }
+
 /* Scrollbar */
-.content-boxes::-webkit-scrollbar{
+.content-boxes::-webkit-scrollbar {
     width: 5px;
 }
-.content-boxes::-webkit-scrollbar-thumb{
+
+.content-boxes::-webkit-scrollbar-thumb {
     background-color: blue;
 }
+
 /* Div 3 */
 /* New orders table */
 .content-new-orders-tables {
@@ -104,17 +109,19 @@ tr:nth-child(even) {
 }
 
 /* Scrollbar */
-.content-new-orders-tables::-webkit-scrollbar{
+.content-new-orders-tables::-webkit-scrollbar {
     width: 5px;
 }
-.content-new-orders-tables::-webkit-scrollbar-thumb{
+
+.content-new-orders-tables::-webkit-scrollbar-thumb {
     background-color: red;
 }
 
-.select-rider{
+.select-rider {
     /*  */
 }
-.select-rider:hover{
+
+.select-rider:hover {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -124,11 +131,11 @@ tr:nth-child(even) {
     .dashboard-container-wrapper {
         display: grid;
         grid-template-columns: 100vw;
-        grid-template-rows: 10vh minmax(20vh,min-content) 10vh minmax(80vh,min-content);
+        grid-template-rows: 10vh minmax(20vh, min-content) 10vh minmax(80vh, min-content);
         grid-template-areas: "top-bar-left"
-                            "nav"
-                            "top-bar-right"
-                            "content";
+            "nav"
+            "top-bar-right"
+            "content";
     }
-    
-  }
+
+}
