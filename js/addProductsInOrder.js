@@ -233,7 +233,7 @@ addToOrderBtn.addEventListener('click',()=>{
             productname: searchedProductDetails.productname,
             price: searchedProductDetails.price,
             _id: searchedProductDetails._id,
-            qt: addQuantity,
+            qt: addQuantity.value,
             vendor: searchedProductDetails.vendor,
             type: searchedProductDetails.type,
             subcategory: searchedProductDetails.subcategory,
@@ -293,6 +293,7 @@ function AddProductAndUpdateOrder(orderObj,orderId){
         location.reload()
     })
     .catch((err)=>{
+        console.log(err)
         alert("Unable To Add Product",err)
     })
     
