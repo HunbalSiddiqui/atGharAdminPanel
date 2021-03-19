@@ -65,7 +65,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     box-sizing: border-box;
-    padding-top: 2rem;
+    padding-top: 10%;
 }
 .suggestionBox-product-item{
     width: 100%;min-height: 4rem;height: 4rem;max-height: 4rem;
