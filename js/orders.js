@@ -1,3 +1,6 @@
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var API = 'https://www.atghar.com/api'
+
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -13,7 +16,7 @@ function setConfirmedOrders() {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/confirmed`, {
+    axios.get(`${HEROKU_API}/admin/${admin._id}/confirmed`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -75,7 +78,7 @@ function setDispatchedOrders() {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/dispatched`, {
+    axios.get(`${HEROKU_API}/admin/${admin._id}/dispatched`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -130,7 +133,7 @@ function setShippedOrders() {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/delivered`, {
+    axios.get(`${HEROKU_API}/admin/${admin._id}/delivered`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -204,7 +207,7 @@ function setCancelledOrders() {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/cancelled`, {
+    axios.get(`${HEROKU_API}/admin/${admin._id}/cancelled`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -261,7 +264,7 @@ function displayOrderProducts(orderId) {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/admin/${admin._id}`, {
+    axios.get(`${HEROKU_API}/order/${orderId}/admin/${admin._id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -296,7 +299,7 @@ function displayOrderDetails(orderId) {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/admin/${admin._id}`, {
+    axios.get(`${HEROKU_API}/order/${orderId}/admin/${admin._id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -330,7 +333,7 @@ function updateOrderStatus(statusObj) {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     // console.log(statusL)
-    axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/changestatus/admin/${admin._id}`, {
+    axios.put(`${HEROKU_API}/order/${orderId}/changestatus/admin/${admin._id}`, {
             status: statusL
         }, {
             headers: {
@@ -356,7 +359,7 @@ async function displayPrescription(orderId, transaction_id) {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    const response1 = await axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/prescription/getfilename/${transaction_id}`, {
+    const response1 = await axios.get(`${HEROKU_API}/admin/${admin._id}/prescription/getfilename/${transaction_id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -364,7 +367,7 @@ async function displayPrescription(orderId, transaction_id) {
     const imagesNames = response1.data
     var response2;
     imagesNames.forEach(async imageName => {
-        response2 = await axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/prescription/show/${transaction_id}/${imageName}`,{
+        response2 = await axios.get(`${HEROKU_API}/admin/${admin._id}/prescription/show/${transaction_id}/${imageName}`,{
             headers: {
                 Authorization: `Bearer ${token}`
             }  
@@ -391,7 +394,7 @@ function removeProductFromOrder(compound) {
     // Fetching order
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/admin/${admin._id}`, {
+    axios.get(`${HEROKU_API}/order/${orderId}/admin/${admin._id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -434,7 +437,7 @@ function updateOrder(orderObj, orderId) {
     } else {
         const admin = JSON.parse(localStorage.getItem('jwt')).user
         const token = JSON.parse(localStorage.getItem('jwt')).token
-        axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/updateorderadmin/${admin._id}`,
+        axios.put(`${HEROKU_API}/order/${orderId}/updateorderadmin/${admin._id}`,
                 orderObj, {
                     headers: {
                         Authorization: `Bearer ${token}`

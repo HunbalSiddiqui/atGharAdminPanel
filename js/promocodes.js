@@ -1,3 +1,6 @@
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var API = 'https://www.atghar.com/api'
+
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -14,7 +17,7 @@ function getAllPromoCodes() {
     const token = JSON.parse(localStorage.getItem('jwt')).token;
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     loadLoader()
-    axios.get(`https://atghar-testing.herokuapp.com/api/promocodes`, {
+    axios.get(`${HEROKU_API}/promocodes`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -76,7 +79,7 @@ function deletePromoCode(promo) {
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     // console.log(token, promo)
     loadLoader()
-    axios.post(`https://atghar-testing.herokuapp.com/api/promocode/delete/${promo}`,{}, {
+    axios.post(`${HEROKU_API}/promocode/delete/${promo}`,{}, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -99,7 +102,7 @@ function disablePromoCode(promoCompound) {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     // console.log(token, admin._id)
     loadLoader()
-    axios.put(`https://atghar-testing.herokuapp.com/api/promocode/${promoid}`, {
+    axios.put(`${HEROKU_API}/promocode/${promoid}`, {
             name: promoname,
             isValid: false,
             offPercentage: promoOff
@@ -123,7 +126,7 @@ function activtePromoCode(promoCompound) {
     const promoOff = promo[2];
     const token = JSON.parse(localStorage.getItem('jwt')).token
     loadLoader()
-    axios.put(`https://atghar-testing.herokuapp.com/api/promocode/${promoid}`, {
+    axios.put(`${HEROKU_API}/promocode/${promoid}`, {
             name: promoname,
             isValid: true,
             offPercentage: promoOff

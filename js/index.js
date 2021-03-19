@@ -1,9 +1,11 @@
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var API = 'https://www.atghar.com/api'
+
 // Verifyin if user is logout
 if(localStorage.getItem('jwt'))
 {
     location.assign('./html/dashboard.html')
 }
-
 // Inputs
 const inputEmail = document.querySelector('.credential-email')
 const inputPasscode = document.querySelector('.credential-passcode')
@@ -35,7 +37,7 @@ loginButton.addEventListener('click', () => {
 function verifyCredentials(email, password) {
     if(loginas.value==='admin')
     {
-        axios.post('https://atghar-testing.herokuapp.com/api/admin/signin', {
+        axios.post(`${HEROKU_API}/admin/signin`, {
             email,
             password
         })

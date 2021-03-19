@@ -1,3 +1,6 @@
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var API = 'https://www.atghar.com/api'
+
 // Verifyin if user is login and has admin controls
 if (!localStorage.getItem('jwt')) {
     location.assign('../index.html')
@@ -23,7 +26,7 @@ var newadminButton = document.querySelector('.newadminButton')
 // admin signup
 function adminSignup() {
     loadLoader()
-    axios.post('https://atghar-testing.herokuapp.com/api/admin/signup', {
+    axios.post(`${HEROKU_API}/admin/signup`, {
             name: adminname.value,
             email: adminemail.value,
             password: adminpassword.value
@@ -65,7 +68,7 @@ var newriderButton = document.querySelector('.newriderButton')
 // admin signup
 function riderSignup() {
     loadLoader()
-    axios.post('https://atghar-testing.herokuapp.com/api/rider/signup', {
+    axios.post(`${HEROKU_API}/rider/signup`, {
             name: ridername.value,
             phone: riderphone.value,
             email: rideremail.value,

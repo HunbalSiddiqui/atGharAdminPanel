@@ -1,3 +1,6 @@
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var API = 'https://www.atghar.com/api'
+
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -15,7 +18,7 @@ function getUsers() {
     loadLoader()
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
-    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/users`, {
+    axios.get(`${HEROKU_API}/admin/${admin._id}/users`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -60,7 +63,7 @@ function setOrderHistory(userId) {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     loadLoader()
-    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/orders/by/user/${userId}`, {
+    axios.get(`${HEROKU_API}/admin/${admin._id}/orders/by/user/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

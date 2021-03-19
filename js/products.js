@@ -1,3 +1,6 @@
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var API = 'https://www.atghar.com/api'
+
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -27,7 +30,7 @@ function searchFunction() {
 }
 
 function fetchSearchProducts() {
-    axios.get(`https://atghar-testing.herokuapp.com/api//products/search?search=${forminput}&category=All`)
+    axios.get(`${HEROKU_API}//products/search?search=${forminput}&category=All`)
         .then((response) => {
             suggestionBox.innerHTML = ''
             response.data.map((product) => {
@@ -84,7 +87,7 @@ function getProductDetails(productId) {
     // Close suggestion box on click
     productsearcbar.value = ""
     searchFunction()
-    axios.get(`https://atghar-testing.herokuapp.com/api/product/${productId}`)
+    axios.get(`${HEROKU_API}/product/${productId}`)
         .then((response) => {
             productedit.style.display = "grid"
             const product = response.data
@@ -152,7 +155,7 @@ var productimage = document.querySelector('.product-img')
 function getProductImg(productName) {
 
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/admin/photo/${productName}`, {
+    axios.get(`${HEROKU_API}/admin/photo/${productName}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -230,7 +233,7 @@ function updateProduct() {
         const admin = JSON.parse(localStorage.getItem('jwt')).user
         const token = JSON.parse(localStorage.getItem('jwt')).token
         // console.log(productState)
-        axios.put(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/${productid}`,
+        axios.put(`${HEROKU_API}/admin/${admin._id}/product/${productid}`,
                 productState, {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -258,7 +261,7 @@ function deleteProduct() {
     loadLoader()
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
-    axios.delete(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/${productid}`, {
+    axios.delete(`${HEROKU_API}/admin/${admin._id}/product/${productid}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

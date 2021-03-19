@@ -1,3 +1,6 @@
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var API = 'https://www.atghar.com/api'
+
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -13,7 +16,7 @@ var pendingOrderscount = document.querySelector('.pendingOrderscount')
 function setpendingOrderscount() {
     const token = JSON.parse(localStorage.getItem("jwt")).token
     const admin = JSON.parse(localStorage.getItem("jwt")).user
-    axios.get(`https://atghar-testing.herokuapp.com/api/portal/admin/${admin._id}/totalorders/`, {
+    axios.get(`${HEROKU_API}/portal/admin/${admin._id}/totalorders/`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -39,7 +42,7 @@ var usercount = document.querySelector('.usercount')
 function setUserCount() {
     const token = JSON.parse(localStorage.getItem("jwt")).token
     const admin = JSON.parse(localStorage.getItem("jwt")).user
-    axios.get(`https://atghar-testing.herokuapp.com/api//admin/${admin._id}/users/count`, {
+    axios.get(`${HEROKU_API}//admin/${admin._id}/users/count`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -66,7 +69,7 @@ function settotalOrders() {
     const token = JSON.parse(localStorage.getItem("jwt")).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     // console.log(admin._id, token)
-    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/orders/count`, {
+    axios.get(`${HEROKU_API}/admin/${admin._id}/orders/count`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -93,7 +96,7 @@ var riderTable = document.querySelector('.riderTable')
 function getAllRiders() {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     // loadLoader()
-    axios.get('https://atghar-testing.herokuapp.com/api/allriders', {
+    axios.get('${HEROKU_API}/allriders', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -131,7 +134,7 @@ getAllRiders()
 async function getProcessedOrdersOfRider(riderId) {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
-    return await axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/pendingorder/rider/${riderId}`, {
+    return await axios.get(`${HEROKU_API}/admin/${admin._id}/pendingorder/rider/${riderId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -152,7 +155,7 @@ function getPendingOrders() {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     loadLoader()
-    axios.get(`https://atghar-testing.herokuapp.com/api//admin/${admin._id}/being processed`, {
+    axios.get(`${HEROKU_API}//admin/${admin._id}/being processed`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -209,7 +212,7 @@ function displayOrderProducts(orderId) {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/admin/${admin._id}`, {
+    axios.get(`${HEROKU_API}/order/${orderId}/admin/${admin._id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -241,7 +244,7 @@ function assignOrder(riderId) {
     const orderId = JSON.parse(localStorage.getItem('npo'))
     const token = JSON.parse(localStorage.getItem('jwt')).token
     loadLoader()
-    axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/assignrider/${riderId}`, {}, {
+    axios.put(`${HEROKU_API}/order/${orderId}/assignrider/${riderId}`, {}, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

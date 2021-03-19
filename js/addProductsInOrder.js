@@ -1,3 +1,6 @@
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var API = 'https://www.atghar.com/api'
+
 const orderId = window.location.hash.split('#')[1]
 if(!orderId||orderId===undefined)
     location.assign('./riderDashboard.html')
@@ -32,7 +35,7 @@ function signoutRider(next) {
     loadLoader()
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const rider = JSON.parse(localStorage.getItem('jwt')).user
-    axios.get(`https://atghar-testing.herokuapp.com/api/rider/signout/`, {
+    axios.get(`${HEROKU_API}/rider/signout/`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -60,7 +63,7 @@ function getOrderDetails () {
     loadLoader()
     const rider = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.get(`https://atghar-testing.herokuapp.com/api/order/${orderId}/rider/${rider._id}`, {
+    axios.get(`${HEROKU_API}/order/${orderId}/rider/${rider._id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -116,7 +119,7 @@ function searchFunction() {
 }
 
 function fetchSearchProducts() {
-    axios.get(`https://atghar-testing.herokuapp.com/api//products/search?search=${forminput}&category=All`)
+    axios.get(`${HEROKU_API}//products/search?search=${forminput}&category=All`)
         .then((response) => {
             suggestionBox.innerHTML = ''
             response.data.map((product) => {
@@ -176,7 +179,7 @@ function getProductDetails(productId) {
     // Close suggestion box on click
     productsearcbar.value = ""
     searchFunction()
-    axios.get(`https://atghar-testing.herokuapp.com/api/product/${productId}`)
+    axios.get(`${HEROKU_API}/product/${productId}`)
         .then((response) => {
             contentOrderAddProductsDetails.style.display = "block"
             const product = response.data
@@ -284,7 +287,7 @@ const calculateUpdatedAmount = (oldProductsArr,productDetails) => {
 function AddProductAndUpdateOrder(orderObj,orderId){
     const rider = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.put(`https://atghar-testing.herokuapp.com/api/order/${orderId}/updateorderrider/${rider._id}`,orderObj,{
+    axios.put(`${HEROKU_API}/order/${orderId}/updateorderrider/${rider._id}`,orderObj,{
         headers:{
             Authorization: `Bearer ${token}`
         }

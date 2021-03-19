@@ -1,3 +1,6 @@
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var API = 'https://www.atghar.com/api'
+
 function loadLoader() {
     var loader = document.querySelector('.loader')
     loader.style.display = 'block'
@@ -12,7 +15,7 @@ var riderTable = document.querySelector('.riderTable')
 function getAllRiders() {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     loadLoader()
-    axios.get('https://atghar-testing.herokuapp.com/api/allriders', {
+    axios.get(`${HEROKU_API}/allriders`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -57,7 +60,7 @@ function deleteRider(riderId) {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.delete(`https://atghar-testing.herokuapp.com/api//admin/${admin._id}/rider/${riderId}`, {
+    axios.delete(`${HEROKU_API}/admin/${admin._id}/rider/${riderId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -78,7 +81,7 @@ function displayRiderHistory(riderId) {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     loadLoader()
-    axios.get(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/rider/deliveryhistory/${riderId}`, {
+    axios.get(`${HEROKU_API}/admin/${admin._id}/rider/deliveryhistory/${riderId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

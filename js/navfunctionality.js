@@ -1,3 +1,5 @@
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var API = 'https://www.atghar.com/api'
 
 function loadLoader() {
     var loader = document.querySelector('.loader')
@@ -47,7 +49,7 @@ function signout(next) {
         const userId = JSON.parse(localStorage.getItem("jwt")).user._id;
         const token = JSON.parse(localStorage.getItem("jwt")).token
         loadLoader()
-        axios.get(`https://atghar-testing.herokuapp.com/api/admin/signout/`, {
+        axios.get(`${HEROKU_API}/admin/signout/`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -81,7 +83,7 @@ function introduceNewpromocode() {
     }
     loadLoader()
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.post('https://atghar-testing.herokuapp.com/api/promocode/create', {
+    axios.post('${HEROKU_API}/promocode/create', {
             name: promocodename.value,
             offPercentage: promocodediscount.value
         }, {
@@ -149,7 +151,7 @@ function displayCategories(type) {
         `)
         if (type.toLowerCase() === 'grocery') {
             // Grocery
-            axios.get(`https://atghar-testing.herokuapp.com/api/categories/grocery`)
+            axios.get(`${HEROKU_API}/categories/grocery`)
                 .then((response) => {
                     response.data.map((category) => {
                         return (
@@ -164,7 +166,7 @@ function displayCategories(type) {
                 })
         } else {
             // Pharmacy
-            axios.get(`https://atghar-testing.herokuapp.com/api/categories/pharmacy`)
+            axios.get(`${HEROKU_API}/categories/pharmacy`)
                 .then((response) => {
                     response.data.map((category) => {
                         return (
@@ -189,7 +191,7 @@ var productsubcategory = document.querySelector('.new-productsubcategory')
 function displaySubCategories(category) {
     // Grocery
     productsubcategory.innerHTML = ''
-    axios.get(`https://atghar-testing.herokuapp.com/api/subcategories/${category}`)
+    axios.get(`${HEROKU_API}/subcategories/${category}`)
         .then((response) => {
             response.data.map((category) => {
                 return (
@@ -274,7 +276,7 @@ function createProduct(productDetails) {
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
     // console.log(productDetails)
-    axios.post(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/create/`,
+    axios.post(`${HEROKU_API}/admin/${admin._id}/product/create/`,
             productDetails, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -307,7 +309,7 @@ function uploadProductImage() {
     formData.append('file', productimg.files[0]);
     formData.append('name', productimg.files[0].name);
     // console.log(formData)
-    axios.post(`https://atghar-testing.herokuapp.com/api/admin/${admin._id}/product/uploadimage/`,
+    axios.post(`${HEROKU_API}/admin/${admin._id}/product/uploadimage/`,
             formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -344,7 +346,7 @@ var addNewBanner = () => {
     formData.append('file', dealImg.files[0]);
     formData.append('name', newBannerType.value);
     // console.log(formData)
-    axios.post(`https://atghar-testing.herokuapp.com/api/admin/5ff6fd72e301d2483565adc1/product/uploadbanner/`,
+    axios.post(`${HEROKU_API}/admin/5ff6fd72e301d2483565adc1/product/uploadbanner/`,
     formData,{
         headers:{
             Authorization: `Bearer ${token}`,
