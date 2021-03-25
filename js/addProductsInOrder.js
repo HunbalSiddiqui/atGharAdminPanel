@@ -1,4 +1,4 @@
-// var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
 // var HEROKU_API = 'https://www.atghar.com/api'
 var API = 'https://www.atghar.com/api'
 

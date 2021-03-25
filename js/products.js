@@ -1,6 +1,6 @@
-// var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
 // var API = 'https://www.atghar.com/api'
-var HEROKU_API = 'https://www.atghar.com/api'
+// var HEROKU_API = 'https://www.atghar.com/api'
 
 function loadLoader() {
     var loader = document.querySelector('.loader')
@@ -55,6 +55,7 @@ function fetchSearchProducts() {
 var productname = document.querySelector('.productname')
 var productprice = document.querySelector('.productprice')
 var featuredFlag = document.querySelector('.featuredFlag')
+var importedFlag = document.querySelector('.importedFlag')
 var producttype = document.querySelector('.producttype')
 var productCategory = document.querySelector('.productCategory')
 var productsubCategory = document.querySelector('.productsubCategory')
@@ -124,6 +125,9 @@ function getProductDetails(productId) {
             product.deal ?
                 bannerType.value = product.deal :
                 bannerType.value = "none"
+            product.imported ? 
+            importedFlag.checked = true:
+            importedFlag.checked = false
             producttype.value = product.type
             productCategory.value = product.category
             deliverytime.value = product.deliverytime
@@ -193,6 +197,7 @@ function updateProduct() {
             productname: productname.value,
             price: productprice.value,
             featured: featuredFlag.checked,
+            imported: importedFlag.checked,
             category: productCategory.value,
             type: producttype.value,
             subcategory: productsubCategory.value,
@@ -209,6 +214,7 @@ function updateProduct() {
             productname: productname.value,
             price: productprice.value,
             featured: featuredFlag.checked,
+            imported: importedFlag.checked,
             category: productCategory.value,
             type: producttype.value,
             cp: costPrice.value,

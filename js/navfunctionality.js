@@ -1,6 +1,6 @@
-// var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
 // var API = 'https://www.atghar.com/api'
-var HEROKU_API = 'https://www.atghar.com/api'
+// var HEROKU_API = 'https://www.atghar.com/api'
 
 function loadLoader() {
     var loader = document.querySelector('.loader')
@@ -213,6 +213,7 @@ var newproductname = document.querySelector('.new-productname') // for both
 var newproductprice = document.querySelector('.new-productprice') // for both
 var newproducttype = document.querySelector('.new-producttype') // for both
 var newfeaturedFlag = document.querySelector('.new-featuredFlag') // for both
+var newimportedFlag = document.querySelector('.new-importedFlag') //for btoh
 var newcostprice = document.querySelector('.new-costprice') // for both
 var newcostPriceStrip = document.querySelector('.new-costpriceStrip') // for pharmacy 
 var newmrp = document.querySelector('.new-mrp') // for both
@@ -238,11 +239,12 @@ createProductBtn.addEventListener('click', () => {
         productObj = {
             productname: newproductname.value,
             price: newproductprice.value,
-            cp : costprice.value,
+            cp : newcostprice.value,
             type: newproducttype.value,
             category: productcategory.value,
             subcategory: productsubcategory.value,
-            featured: featuredFlag.checked,
+            featured: newfeaturedFlag.checked,
+            imported: newimportedFlag.checked,
             delivereytime : newdeliveryTime.value
         }
     } else if (productType.value.toLowerCase() === 'pharmacy') {
@@ -253,6 +255,7 @@ createProductBtn.addEventListener('click', () => {
             type: newproducttype.value,
             category: newproductcategory.value,
             featured: newfeaturedFlag.checked,
+            imported: newimportedFlag.checked,
             cp : newcostprice.value,
             cpStrip : newcostPriceStrip.value,  
             mrp : newmrp.value,
@@ -347,7 +350,7 @@ var addNewBanner = () => {
     formData.append('file', dealImg.files[0]);
     formData.append('name', newBannerType.value);
     // console.log(formData)
-    axios.post(`${HEROKU_API}/admin/5ff6fd72e301d2483565adc1/product/uploadbanner/`,
+    axios.post(`${HEROKU_API}/admin/${admin._id}/product/uploadbanner/`,
     formData,{
         headers:{
             Authorization: `Bearer ${token}`,
