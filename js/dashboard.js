@@ -1,6 +1,6 @@
-// var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
 // var API = 'https://www.atghar.com/api'
-var HEROKU_API = 'https://www.atghar.com/api'
+// var HEROKU_API = 'https://www.atghar.com/api'
 
 function loadLoader() {
     var loader = document.querySelector('.loader')
@@ -97,7 +97,7 @@ var riderTable = document.querySelector('.riderTable')
 function getAllRiders() {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     // loadLoader()
-    axios.get('${HEROKU_API}/allriders', {
+    axios.get(`${HEROKU_API}/allriders`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -156,7 +156,7 @@ function getPendingOrders() {
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     loadLoader()
-    axios.get(`${HEROKU_API}//admin/${admin._id}/being processed`, {
+    axios.get(`${HEROKU_API}/admin/${admin._id}/being processed`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

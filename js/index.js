@@ -1,6 +1,6 @@
-// var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
 // var API = 'https://www.atghar.com/api'
-var HEROKU_API = 'https://www.atghar.com/api'
+// var HEROKU_API = 'https://www.atghar.com/api'
 
 // Verifyin if user is logout
 if(localStorage.getItem('jwt'))
@@ -58,12 +58,11 @@ function verifyCredentials(email, password) {
     }
     else if(loginas.value==='rider')
     {
-        axios.post('https://atghar-testing.herokuapp.com/api/rider/signin', {
+        axios.post(`${HEROKU_API}/rider/signin`, {
             email,
             password
         })
         .then(response => {
-            console.log(response.data)
             if (response.data) {
                 invalidAlert.style.display = "none"
                 successAlert.style.display = "block"

@@ -1,6 +1,6 @@
-// var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
 // var API = 'https://www.atghar.com/api'
-var HEROKU_API = 'https://www.atghar.com/api'
+// var HEROKU_API = 'https://www.atghar.com/api'
 
 function loadLoader() {
     var loader = document.querySelector('.loader')
@@ -84,7 +84,7 @@ function introduceNewpromocode() {
     }
     loadLoader()
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    axios.post('${HEROKU_API}/promocode/create', {
+    axios.post(`${HEROKU_API}/promocode/create`, {
             name: promocodename.value,
             offPercentage: promocodediscount.value
         }, {
