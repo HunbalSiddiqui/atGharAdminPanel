@@ -1,6 +1,6 @@
-var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
-// var HEROKU_API = 'https://www.atghar.com/api'
-var API = 'https://www.atghar.com/api'
+// var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var HEROKU_API = 'https://www.atghar.com/api'
+// var API = 'https://www.atghar.com/api'
 
 const orderId = window.location.hash.split('#')[1]
 if(!orderId||orderId===undefined)
