@@ -156,6 +156,8 @@ function setShippedOrders() {
         `)
             response.data.map(async (order) => {
                 let profit = await calculateProfit(order)
+                // console.log('rider',order.rider.name,'user',order.user.fullname)
+                console.log('profit',profit)
                 // console.log(profit)
                 return (
                     shippedTable.insertAdjacentHTML('beforeend',
@@ -191,12 +193,15 @@ const calculateProfit = async (order) => {
     var profit = 0;
     products.forEach(product => {
         if (product.type.toLowerCase() === 'grocery') {
+            console.log(product)
+            console.log('product.cp',product.cp)
             totalCostPrice += (product.cp * product.qt)
         } else if (product.type.toLowerCase() === 'pharmacy') {
             totalCostPrice += (product.cp * product.qt)
         }
     });
     // profit = totalAmount-totalCostPrice
+    // console.log('totalAmount',totalAmount,'totalCostPrice',totalCostPrice)
     profit = totalAmount - totalCostPrice - order.delivery
     return profit
 }

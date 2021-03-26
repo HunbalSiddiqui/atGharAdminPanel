@@ -279,7 +279,7 @@ function createProduct(productDetails) {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    // console.log(productDetails)
+    console.log(productDetails)
     axios.post(`${HEROKU_API}/admin/${admin._id}/product/create/`,
             productDetails, {
                 headers: {
@@ -287,6 +287,7 @@ function createProduct(productDetails) {
                 }
             })
         .then((response) => {
+            // console.log(response.data)
             closeLoader()
             var productsuccess = document.querySelector('.productsuccess')
             productsuccess.style.display = "block"
@@ -295,6 +296,7 @@ function createProduct(productDetails) {
             uploadProductImage()
         })
         .catch((err) => {
+            console.log(err)
             closeLoader()
             var productfailure = document.querySelector('.productfailure')
             productfailure.style.display = "block"
