@@ -188,6 +188,9 @@ function getProductDetails(productId) {
             closeLoader()
             if (product.type.toLowerCase() === 'grocery') {
                 productsubCategory.value = product.subcategory
+                pharmacyDiv.forEach(element => {
+                    element.style.display = 'none' // hiding all the div by default. in case of grocery this will remain same, in case of pharmacy product this will be altered
+                });
             } else if (product.type.toLowerCase() === 'pharmacy') {
                 productsubCategory.value = 'none'
                 pharmacyDiv.forEach(element => {
