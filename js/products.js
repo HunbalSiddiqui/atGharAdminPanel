@@ -1,6 +1,6 @@
 var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
 var API = 'https://www.atghar.com/api'
-var HEROKU_API = 'https://www.atghar.com/api'
+// var HEROKU_API = 'https://www.atghar.com/api'
 
 function loadLoader() {
     var loader = document.querySelector('.loader')
@@ -17,6 +17,7 @@ var forminput = ""
 var updateProductBtn = document.querySelector('.updateProductBtn')
 
 productsearcbar.addEventListener('keyup', async () => {
+    forminput = ''
     searchFunction()
 })
 
@@ -95,26 +96,29 @@ function getProductDetails(productId) {
             const product = response.data
             closeLoader()
             if (product.type.toLowerCase() === 'grocery') {
-                productsubCategory.value = product.subcategory
+                productsubCategory.value = product.subcategory;
+                pharmacyDiv.forEach(element => {
+                    element.style.display = 'none' // hiding all the div by default. in case of grocery this will remain same, in case of pharmacy product this will be altered
+                });
             } else if (product.type.toLowerCase() === 'pharmacy') {
                 productsubCategory.value = 'none'
                 pharmacyDiv.forEach(element => {
                     element.style.display = 'flex' // displaying all pharmacy specific div
                 });
                 costPriceStrip.value = product.cpStrip
-                mrp.value = product.mrp
                 mrpStrip.value = product.mrpStrip
                 priceStrip.value = product.priceStrip
                 usedFor.value = product.usedfor
                 vendor.value = product.vendor
                 company.value = product.company
-                discount.value = product.discount
                 formula.value = product.formula
                 packSize.value = product.packsize
                 strips.value = product.strips
                 tabPerStrip.value = product.tabletsperstrip
                 prescription.value = product.prescription
             }
+            mrp.value = product.mrp
+            discount.value = product.discount
             productid = product._id
             productname.value = product.productname
             productprice.value = product.price
@@ -125,9 +129,9 @@ function getProductDetails(productId) {
             product.deal ?
                 bannerType.value = product.deal :
                 bannerType.value = "none"
-            product.imported ? 
-            importedFlag.checked = true:
-            importedFlag.checked = false
+            product.imported ?
+                importedFlag.checked = true :
+                importedFlag.checked = false
             producttype.value = product.type
             productCategory.value = product.category
             deliverytime.value = product.deliverytime
@@ -206,7 +210,7 @@ function updateProduct() {
             discount: discount.value,
             vendor: vendor.value,
             deliverytime: deliverytime.value,
-            deal: bannerType.value === 'none' ? null: bannerType.value
+            deal: bannerType.value === 'none' ? null : bannerType.value
         }
     } else if (producttype.value.toLowerCase() === 'pharmacy') {
         // TODO : add all the fields in productState which shall be sent while updating.
@@ -232,7 +236,7 @@ function updateProduct() {
             prescription: prescription.value,
             formula: formula.value,
             deliverytime: deliverytime.value,
-            deal: bannerType.value === 'none' ? null: bannerType.value
+            deal: bannerType.value === 'none' ? null : bannerType.value
         }
     }
 
