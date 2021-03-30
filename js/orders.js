@@ -37,6 +37,7 @@ function setConfirmedOrders() {
             </tr>
             `)
             response.data.map((order) => {
+                console.log(order,order.userstatus.toLowerCase() === 'being processed')
                 return (
                     confirmedTable.insertAdjacentHTML('beforeend',
                         `
@@ -58,7 +59,15 @@ function setConfirmedOrders() {
                         data-target="#orderprescription" id="${order.name}"   onclick="displayPrescription('${order._id}','${order.transaction_id}')">View Prescription</button></th>
                         `
                         :
-                        null
+                        order.userstatus && order.userstatus.toLowerCase() === 'being processed' ?
+                        `
+                        <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},confirmed')" class="btn btn-dark" data-toggle="modal">Confirm User</button></th>
+                        `
+                        :
+                        `
+                        <th class="flex"><button type="button" class="btn btn-dark" data-toggle="modal"
+                        data-target="#orderprescription" id="${order.name}"   onclick="updateOrderStatus('${order._id},confirmed')" disabled>Confirmed User</button></th>
+                        `
                     }
                 </tr>
                 `)
@@ -157,7 +166,7 @@ function setShippedOrders() {
             response.data.map(async (order) => {
                 let profit = await calculateProfit(order)
                 // console.log('rider',order.rider.name,'user',order.user.fullname)
-                console.log('profit',profit)
+                // console.log('profit',profit)
                 // console.log(profit)
                 return (
                     shippedTable.insertAdjacentHTML('beforeend',
@@ -193,8 +202,8 @@ const calculateProfit = async (order) => {
     var profit = 0;
     products.forEach(product => {
         if (product.type.toLowerCase() === 'grocery') {
-            console.log(product)
-            console.log('product.cp',product.cp)
+            // console.log(product)
+            // console.log('product.cp',product.cp)
             totalCostPrice += (product.cp * product.qt)
         } else if (product.type.toLowerCase() === 'pharmacy') {
             totalCostPrice += (product.cp * product.qt)
@@ -340,7 +349,8 @@ function updateOrderStatus(statusObj) {
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     // console.log(statusL)
     axios.put(`${HEROKU_API}/order/${orderId}/changestatus/admin/${admin._id}`, {
-            status: statusL
+            status: statusL,
+            userstatus: statusL
         }, {
             headers: {
                 Authorization: `Bearer ${token}`

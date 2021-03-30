@@ -23,7 +23,7 @@ function setpendingOrderscount() {
             }
         })
         .then((response) => {
-            console.log(response.data,response.data.length === 0)
+            // console.log(response.data,response.data.length === 0)
             if (pendingOrderscount && response.data,response.data.length !== 0) {
                 pendingOrderscount.innerHTML = ''
                 pendingOrderscount.insertAdjacentHTML('afterbegin',
@@ -37,6 +37,8 @@ function setpendingOrderscount() {
         })
 }
 setpendingOrderscount()
+
+
 
 var usercount = document.querySelector('.usercount')
 
@@ -201,6 +203,9 @@ function getPendingOrders() {
 }
 getPendingOrders()
 
+
+
+
 // Setting not processed order to localstorage for time being for accesability
 function setNPOtoLS(orderId) {
     localStorage.setItem('npo', JSON.stringify(orderId))
@@ -252,7 +257,7 @@ function assignOrder(riderId) {
         })
         .then((response) => {
             // updating order status
-            updateOrderStatus(orderId)
+            // updateOrderStatus(orderId)
             getPendingOrders()
             localStorage.removeItem('npo')
         })
