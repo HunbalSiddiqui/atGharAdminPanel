@@ -171,7 +171,15 @@ function displayConfirmedOrders() {
                         data-target="#orderprescription" id="${order.name}"   onclick="displayPrescription('${order._id}','${order.transaction_id}')">View Prescription</button></th>
                         `
                         :
-                        null
+                        order.userstatus && order.userstatus.toLowerCase() === 'being processed' ?
+                        `
+                        <th class="flex"><button type="button" onclick="updateOrderStatus('${order._id},confirmed')" class="btn btn-dark" data-toggle="modal">Confirm User</button></th>
+                        `
+                        :
+                        `
+                        <th class="flex"><button type="button" class="btn btn-dark" data-toggle="modal"
+                        data-target="#orderprescription" id="${order.name}"   onclick="updateOrderStatus('${order._id},confirmed')" disabled>Confirmed User</button></th>
+                        `
                     }
                     <th>${order.user.fullname}</th>
                     <th>${order.user.phone}</th>
@@ -347,7 +355,8 @@ function updateOrderStatus(statusObj) {
     const rider = JSON.parse(localStorage.getItem('jwt')).user
     // console.log(statusL)
     axios.put(`${HEROKU_API}/order/${orderId}/changestatus/rider/${rider._id}`, {
-            status: statusL
+            status: statusL,
+            userstatus: statusL
         }, {
             headers: {
                 Authorization: `Bearer ${token}`
