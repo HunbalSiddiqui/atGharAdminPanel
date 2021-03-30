@@ -197,13 +197,11 @@ function getProductDetails(productId) {
                     element.style.display = 'flex' // displaying all pharmacy specific div
                 });
                 costPriceStrip.value = product.cpStrip
-                mrp.value = product.mrp
                 mrpStrip.value = product.mrpStrip
                 priceStrip.value = product.priceStrip
                 usedFor.value = product.usedfor
                 vendor.value = product.vendor
                 company.value = product.company
-                discount.value = product.discount
                 formula.value = product.formula
                 packSize.value = product.packsize
                 strips.value = product.strips
@@ -214,6 +212,8 @@ function getProductDetails(productId) {
             productname.value = product.productname
             productprice.value = product.price
             costPrice.value = product.cp
+            mrp.value = product.mrp
+            discount.value = product.discount
             product.featured ?
                 featuredFlag.checked = true :
                 featuredFlag.checked = false
@@ -249,7 +249,7 @@ addToOrderBtn.addEventListener('click',()=>{
     }
     else if(searchedProductDetails.type.toLowerCase()==='pharmacy')
     {
-        console.log(medicineForm.value.toLowerCase()==='strip',medicineForm.value.toLowerCase())
+        // console.log(medicineForm.value.toLowerCase()==='strip',medicineForm.value.toLowerCase())
         updatedProductsArr = [...productDetails.products,{
             category: searchedProductDetails.category,
             productname: searchedProductDetails.productname,
