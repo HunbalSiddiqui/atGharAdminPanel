@@ -112,7 +112,7 @@ productsearcbar.addEventListener('keyup', async () => {
 function searchFunction() {
     forminput = productsearcbar.value
     if (forminput !== "") {
-        suggestionBox.style.display = 'flex'
+        suggestionBox.style.display = 'list-item'
         fetchSearchProducts()
     } else if (forminput === "") {
         suggestionBox.style.display = 'none'

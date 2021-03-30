@@ -59,13 +59,14 @@
     border-top: 1px solid red;
     width: 90.5%;height: 30rem;
     background-color: white;
+    display: list-item;
     position: absolute;
     top: 100%;
     display: none;
     overflow-x: hidden;
     overflow-y: auto;
     box-sizing: border-box;
-    padding-top: 10%;
+    padding-top: 1%;
 }
 .suggestionBox-product-item{
     width: 100%;min-height: 4rem;height: 4rem;max-height: 4rem;
