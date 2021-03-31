@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/polarplate.css">
-    <link rel="stylesheet" href="../css/addProductsInOrder.css">
     <link rel="stylesheet" href="../css/content.css">
-
+    <link rel="stylesheet" href="../css/addProductsInOrder.css">
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -28,7 +27,7 @@
     <script src="https://kit.fontawesome.com/ddc246510f.js" crossorigin="anonymous"></script>
     <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link rel="shortcut icon" type="image/jpg" href="../images/favicon.ico"/>
+    <link rel="shortcut icon" type="image/jpg" href="../images/favicon.ico" />
 
     <title>Admin-addProductsInOrder</title>
 </head>
@@ -45,7 +44,7 @@
             <!-- <button type="button" class="nav-item-custom btn btn-info btn-lg profileBtn">Profile</button> -->
             <button type="button" class="nav-item-custom btn btn-danger btn-lg signoutBtn">Signout</button>
         </div>
-        <div class="content">
+        <div class="content-c">
             <div class="content-order-products">
                 <!-- Data will be rendered dynamically -->
             </div>
@@ -98,21 +97,21 @@
                             aria-describedby="inputGroup-sizing-default" disabled>
                     </div>
                     <!-- mrp -->
-                    <div class="input-group input-group-lg mb-3">
+                    <!-- <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Mrp</span>
                         </div>
                         <input type="number" class="form-control mrp" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- mrpStrip -->
-                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                    <!-- <div class="input-group input-group-lg mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">mrpStrip</span>
                         </div>
                         <input type="number" class="form-control mrpStrip" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- PriceStrip -->
                     <div class="input-group input-group-lg mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
@@ -122,13 +121,13 @@
                             aria-describedby="inputGroup-sizing-default" disabled>
                     </div>
                     <!-- discount -->
-                    <div class="input-group input-group-lg mb-3">
+                    <!-- <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Discount</span>
                         </div>
                         <input type="text" class="form-control discount" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- packsize -->
                     <div class="input-group input-group-lg mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
@@ -146,31 +145,31 @@
                             aria-describedby="inputGroup-sizing-default" disabled>
                     </div>
                     <!-- tablets per strip -->
-                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                    <!-- <div class="input-group input-group-lg mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">TabPerStrip</span>
                         </div>
                         <input type="number" class="form-control tabletsPerStrip" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- UsedFor -->
-                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                    <!-- <div class="input-group input-group-lg mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">UsedFor</span>
                         </div>
                         <input type="text" class="form-control usedFor" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- Formula -->
-                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                    <!-- <div class="input-group input-group-lg mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Formula</span>
                         </div>
                         <input type="text" class="form-control formula" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- Vendor -->
-                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                    <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Vendor</span>
                         </div>
@@ -178,15 +177,15 @@
                             aria-describedby="inputGroup-sizing-default" disabled>
                     </div>
                     <!-- Company -->
-                    <div class="input-group input-group-lg mb-3 pharmacyDiv">
+                    <!-- <div class="input-group input-group-lg mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Company</span>
                         </div>
                         <input type="text" class="form-control company" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- Featured -->
-                    <div class="input-group input-group-lg mb-3">
+                    <!-- <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
                                 <input type="checkbox" class="featuredFlag"
@@ -195,9 +194,9 @@
                         </div>
                         <input type="text" class="form-control" aria-label="Text input with checkbox"
                             placeholder="Featured Product" disabled>
-                    </div>
+                    </div> -->
                     <!-- prescription -->
-                    <div class="input-group mb-3 pharmacyDiv">
+                    <!-- <div class="input-group mb-3 pharmacyDiv">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Prescription</span>
                         </div>
@@ -205,39 +204,39 @@
                             <option value="yes">yes</option>
                             <option value="no">no</option>
                         </select>
-                    </div>
+                    </div> -->
                     <!-- deliverytime -->
-                    <div class="input-group input-group-lg mb-3">
+                    <!-- <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">DeliveryTime</span>
                         </div>
                         <input type="text" class="form-control deliverytime" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- Type -->
-                    <div class="input-group input-group-lg mb-3">
+                    <!-- <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Type</span>
                         </div>
                         <input type="text" class="form-control producttype" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- Category -->
-                    <div class="input-group input-group-lg mb-3">
+                    <!-- <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Category</span>
                         </div>
                         <input type="text" class="form-control productCategory" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- Sub Category -->
-                    <div class="input-group input-group-lg mb-3">
+                    <!-- <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Sub-Category</span>
                         </div>
                         <input type="text" class="form-control productsubCategory" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" disabled>
-                    </div>
+                    </div> -->
                     <!-- Add Qt -->
                     <div class="input-group input-group-lg mb-3">
                         <div class="input-group-prepend">
@@ -255,9 +254,9 @@
                             <option value="strip" selected>Strip</option>
                             <option value="pack">Pack</option>
                         </select>
-                    </div>               
+                    </div>
                     <!-- Add to order button -->
-                    <button type="button" class="btn btn-success addToOrderBtn">Add to order</button>                    
+                    <button type="button" class="btn btn-success addToOrderBtn">Add to order</button>
                 </div>
             </div>
         </div>

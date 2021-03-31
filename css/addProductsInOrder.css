@@ -24,10 +24,11 @@
     margin-right: 2%;
 }
 
-.content {
+.content-c {
     grid-area: content;
     display: grid;
     grid-template-columns: 25% 75%;
+    grid-template-rows: minmax(85vh,min-content);
 }
 .nav-custom-item {
     color: #CAC9C9;
