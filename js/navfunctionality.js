@@ -245,7 +245,10 @@ createProductBtn.addEventListener('click', () => {
             subcategory: productsubcategory.value,
             featured: newfeaturedFlag.checked,
             imported: newimportedFlag.checked,
-            delivereytime : newdeliveryTime.value
+            delivereytime : newdeliveryTime.value,
+            mrp : newmrp.value,
+            vendor : newvendor.value,
+            discount : `${newdiscount.value}%`,
         }
     } else if (productType.value.toLowerCase() === 'pharmacy') {
         productObj = {
@@ -258,18 +261,18 @@ createProductBtn.addEventListener('click', () => {
             imported: newimportedFlag.checked,
             cp : newcostprice.value,
             cpStrip : newcostPriceStrip.value,  
-            mrp : newmrp.value,
             mrpStrip : newmrpStrip.value,
             priceStrip : newpriceStrip.value,
             usedfor : newusedFor.value,
-            vendor : newvendor.value,
             company : newcompany.value,
-            discount : newdiscount.value,
             packsize : newpackSize.value,
             strips : newstrips.value,
             tabletsperstrip : newtabPerStrip.value,
             prescription : newprescription.value,
-            delivereytime : newdeliveryTime.value
+            delivereytime : newdeliveryTime.value,
+            mrp : newmrp.value,
+            vendor : newvendor.value,
+            discount : `${newdiscount.value}%`,
         }
     }
     createProduct(productObj)
@@ -279,7 +282,6 @@ function createProduct(productDetails) {
     loadLoader()
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
-    console.log(productDetails)
     axios.post(`${HEROKU_API}/admin/${admin._id}/product/create/`,
             productDetails, {
                 headers: {
@@ -312,8 +314,12 @@ function uploadProductImage() {
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const formData = new FormData()
-    formData.append('file', productimg.files[0]);
-    formData.append('name', productimg.files[0].name);
+    if(productimg.files[0] && productimg.files[0]!==null)
+    {
+        formData.append('file', productimg.files[0]);
+        formData.append('name', productimg.files[0].name);
+    }
+
     // console.log(formData)
     axios.post(`${HEROKU_API}/admin/${admin._id}/product/uploadimage/`,
             formData, {
@@ -329,6 +335,7 @@ function uploadProductImage() {
         })
         .catch((err) => {
             console.log(err)
+            location.reload()
         })
 }
 

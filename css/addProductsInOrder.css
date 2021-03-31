@@ -27,7 +27,7 @@
 .content {
     grid-area: content;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 25% 75%;
 }
 .nav-custom-item {
     color: #CAC9C9;

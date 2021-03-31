@@ -109,7 +109,6 @@ function getProductDetails(productId) {
                 mrpStrip.value = product.mrpStrip
                 priceStrip.value = product.priceStrip
                 usedFor.value = product.usedfor
-                vendor.value = product.vendor
                 company.value = product.company
                 formula.value = product.formula
                 packSize.value = product.packsize
@@ -135,6 +134,7 @@ function getProductDetails(productId) {
             producttype.value = product.type
             productCategory.value = product.category
             deliverytime.value = product.deliverytime
+            vendor.value = product.vendor
             getProductImg(productname.value)
         })
         .catch((err) => {
