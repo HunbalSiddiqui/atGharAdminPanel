@@ -130,7 +130,7 @@ productType.addEventListener('change', () => {
             element.style.display = 'flex' // hiding all the div by default. in case of grocery this will remain same, in case of pharmacy product this will be altered
         });
         // pharmacyProductFormDiv.style.display = 'flex'
-    } else if (productType.value.toLowerCase() === 'grocery'){
+    } else if (productType.value.toLowerCase() === 'grocery') {
         productsubcategoryDiv.style.display = 'flex' // sub category div
         // pharmacyProductFormDiv.style.display = 'none'
         pharmacyDiv.forEach(element => {
@@ -239,40 +239,40 @@ createProductBtn.addEventListener('click', () => {
         productObj = {
             productname: newproductname.value,
             price: newproductprice.value,
-            cp : newcostprice.value,
+            cp: newcostprice.value,
             type: newproducttype.value,
             category: productcategory.value,
             subcategory: productsubcategory.value,
             featured: newfeaturedFlag.checked,
             imported: newimportedFlag.checked,
-            delivereytime : newdeliveryTime.value,
-            mrp : newmrp.value,
-            vendor : newvendor.value,
-            discount : `${newdiscount.value}%`,
+            delivereytime: newdeliveryTime.value,
+            mrp: newmrp.value,
+            vendor: newvendor.value,
+            discount: `${newdiscount.value}%`,
         }
     } else if (productType.value.toLowerCase() === 'pharmacy') {
         productObj = {
             productname: newproductname.value,
-            formula : newformula.value,
+            formula: newformula.value,
             price: newproductprice.value,
             type: newproducttype.value,
             category: newproductcategory.value,
             featured: newfeaturedFlag.checked,
             imported: newimportedFlag.checked,
-            cp : newcostprice.value,
-            cpStrip : newcostPriceStrip.value,  
-            mrpStrip : newmrpStrip.value,
-            priceStrip : newpriceStrip.value,
-            usedfor : newusedFor.value,
-            company : newcompany.value,
-            packsize : newpackSize.value,
-            strips : newstrips.value,
-            tabletsperstrip : newtabPerStrip.value,
-            prescription : newprescription.value,
-            delivereytime : newdeliveryTime.value,
-            mrp : newmrp.value,
-            vendor : newvendor.value,
-            discount : `${newdiscount.value}%`,
+            cp: newcostprice.value,
+            cpStrip: newcostPriceStrip.value,
+            mrpStrip: newmrpStrip.value,
+            priceStrip: newpriceStrip.value,
+            usedfor: newusedFor.value,
+            company: newcompany.value,
+            packsize: newpackSize.value,
+            strips: newstrips.value,
+            tabletsperstrip: newtabPerStrip.value,
+            prescription: newprescription.value,
+            delivereytime: newdeliveryTime.value,
+            mrp: newmrp.value,
+            vendor: newvendor.value,
+            discount: `${newdiscount.value}%`,
         }
     }
     createProduct(productObj)
@@ -314,29 +314,30 @@ function uploadProductImage() {
     const admin = JSON.parse(localStorage.getItem('jwt')).user
     const token = JSON.parse(localStorage.getItem('jwt')).token
     const formData = new FormData()
-    if(productimg.files[0] && productimg.files[0]!==null)
-    {
+    if (productimg.files[0] && productimg.files[0] !== null) {
         formData.append('file', productimg.files[0]);
         formData.append('name', productimg.files[0].name);
-    }
 
-    // console.log(formData)
-    axios.post(`${HEROKU_API}/admin/${admin._id}/product/uploadimage/`,
-            formData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'multipart/form-data'
-                }
+        // console.log(formData)
+        axios.post(`${HEROKU_API}/admin/${admin._id}/product/uploadimage/`,
+                formData, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+            .then((response) => {
+                // console.log(response)
+                closeLoader()
+                location.reload()
             })
-        .then((response) => {
-            // console.log(response)
-            closeLoader()
-            location.reload()
-        })
-        .catch((err) => {
-            console.log(err)
-            location.reload()
-        })
+            .catch((err) => {
+                console.log(err)
+                location.reload()
+            })
+    } else {
+        location.reload()
+    }
 }
 
 
@@ -348,7 +349,7 @@ var newBannerType = document.querySelector('.new-bannerType')
 var introducenewdeal = document.querySelector('.introducenewdeal')
 var dealImg = document.querySelector('.dealImg')
 
-introducenewdeal.addEventListener('click',()=>{
+introducenewdeal.addEventListener('click', () => {
     addNewBanner()
 })
 var addNewBanner = () => {
@@ -360,16 +361,16 @@ var addNewBanner = () => {
     formData.append('name', newBannerType.value);
     // console.log(formData)
     axios.post(`${HEROKU_API}/admin/${admin._id}/product/uploadbanner/`,
-    formData,{
-        headers:{
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data'
-        }
-    })
-    .then((response)=>{
-        location.reload()
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
+            formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+        .then((response) => {
+            location.reload()
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 }
