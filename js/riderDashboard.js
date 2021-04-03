@@ -1,6 +1,5 @@
-var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
-// var API = 'https://www.atghar.com/api'
-// var HEROKU_API = 'https://www.atghar.com/api'
+// var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var HEROKU_API = 'https://www.atghar.com/api'
 
 // Verifyin if user is login and has admin controls
 if (!localStorage.getItem('jwt')) {

@@ -1,6 +1,5 @@
-var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
-// var API = 'https://www.atghar.com/api'
-// var HEROKU_API = 'https://www.atghar.com/api'
+// var HEROKU_API = 'https://atghar-testing.herokuapp.com/api'
+var HEROKU_API = 'https://www.atghar.com/api'
 
 function loadLoader() {
     var loader = document.querySelector('.loader')
@@ -321,10 +320,12 @@ function displayOrderDetails(orderId) {
         })
         .then((response) => {
             const details = response.data
+            const date = new Date(`${details.createdAt}`).toDateString()
             orderDetails.insertAdjacentHTML('beforeend',
                 `
             <div class="alert alert-dark flex-col details-box" role="alert">
                 <p>TransactionId: ${details.transaction_id}</p>
+                <p>Date: ${date}</p>
                 <p>TotalAmount: ${details.amount}</p>
                 <p>Sub-total: ${details.subtotal}</p>
                 <p>Delivery: ${details.delivery}</p>
