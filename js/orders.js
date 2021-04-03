@@ -37,7 +37,6 @@ function setConfirmedOrders() {
             </tr>
             `)
             response.data.map((order) => {
-                console.log(order,order.userstatus.toLowerCase() === 'being processed')
                 return (
                     confirmedTable.insertAdjacentHTML('beforeend',
                         `
@@ -294,6 +293,7 @@ function displayOrderProducts(orderId) {
                   <p>ProductName : ${product.productname}</p>
                   <p>Quantity : ${product.qt}</p>
                   <p>Price : ${product.price}</p>
+                  <p>Vendor : ${product.vendor}</p>
                   <button type="button" class="btn btn-danger" onclick="removeProductFromOrder('${product._id},${orderId},${product.price}')">Remove</button>
                 </div>
                 `)
@@ -324,6 +324,7 @@ function displayOrderDetails(orderId) {
             orderDetails.insertAdjacentHTML('beforeend',
                 `
             <div class="alert alert-dark flex-col details-box" role="alert">
+                <p>TransactionId: ${details.transaction_id}</p>
                 <p>TotalAmount: ${details.amount}</p>
                 <p>Sub-total: ${details.subtotal}</p>
                 <p>Delivery: ${details.delivery}</p>
