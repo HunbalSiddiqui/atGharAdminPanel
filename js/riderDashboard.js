@@ -9,11 +9,12 @@ if (JSON.parse(localStorage.getItem("jwt")).user.role === 1) {
     // TODO: redirect to required page
 }
 var message = document.querySelector('.message')
-function setWelcomeMessage(){
+
+function setWelcomeMessage() {
     const user = JSON.parse(localStorage.getItem('jwt')).user
     message.innerHTML = ''
     message.insertAdjacentHTML('beforeend',
-    `
+        `
     <h3 class="white f1-5">Welcome ${user.name}</h3>
     `)
 }
@@ -30,7 +31,7 @@ function closeLoader() {
 }
 loadLoader()
 var riderdashboardBtn = document.querySelector('.riderdashboardBtn')
-riderdashboardBtn.addEventListener('click',()=>{
+riderdashboardBtn.addEventListener('click', () => {
     location.assign('./riderDashboard.html')
 })
 var refreshBtn = document.querySelector('.refreshBtn')
@@ -127,9 +128,11 @@ displayCancelledOrders()
 
 // Confirmed
 var confirmedordersTable = document.querySelector('.confirmedordersTable')
-function navigate (orderId)  {
+
+function navigate(orderId) {
     location.assign(`./addProductsInOrder.html#${orderId}`)
 }
+
 function displayConfirmedOrders() {
     loadLoader()
     const token = JSON.parse(localStorage.getItem('jwt')).token
@@ -334,6 +337,7 @@ function displayOrderProducts(orderId) {
                   <p>ProductName : ${product.productname}</p>
                   <p>Quantity : ${product.qt}</p>
                   <p>Price : ${product.price}</p>
+                  <p>Vendor : ${product.vendor}</p>
                   <button type="button" class="btn btn-danger" onclick="removeProductFromOrder('${product._id},${orderId}')">Remove</button>
                 </div>
                 `)
@@ -384,9 +388,13 @@ function displayOrderDetails(orderId) {
         })
         .then((response) => {
             const details = response.data
+            const date = new Date(`${details.createdAt}`).toDateString()
+
             orderDetails.insertAdjacentHTML('beforeend',
                 `
             <div class="alert alert-dark flex-col details-box" role="alert">
+            <p>TransactionId: ${details.transaction_id}</p>
+            <p>Date: ${date}</p>
                 <p>TotalAmount: ${details.amount}</p>
                 <p>Sub-total: ${details.subtotal}</p>
                 <p>Delivery: ${details.delivery}</p>
@@ -420,13 +428,13 @@ async function displayPrescription(orderId, transaction_id) {
     const imagesNames = response1.data
     var response2;
     imagesNames.forEach(async imageName => {
-        response2 = await axios.get(`${HEROKU_API}/rider/${rider._id}/prescription/show/${transaction_id}/${imageName}`,{
+        response2 = await axios.get(`${HEROKU_API}/rider/${rider._id}/prescription/show/${transaction_id}/${imageName}`, {
             headers: {
                 Authorization: `Bearer ${token}`
-            }  
+            }
         })
         orderPrescripition.insertAdjacentHTML('beforeend',
-        `
+            `
             <div class="prescription-image-box" style="background-image:url(data:image/jpeg;base64,${response2.data});background-size: 100% 100%,cover;"></div>
 
         `)
@@ -458,17 +466,17 @@ function removeProductFromOrder(compound) {
             order.products.forEach(product => {
                 orignalAmountWithDiscount = orignalAmountWithDiscount + (product.price * product.qt) // getting price products wise
             });
-            var discountinPercentage = ((order.discount)*100)/(orignalAmountWithDiscount-order.delivery); // calculating % is percentage
+            var discountinPercentage = ((order.discount) * 100) / (orignalAmountWithDiscount - order.delivery); // calculating % is percentage
             const result = order.products.filter(product => product._id !== productToBeRemovedId); // removing choosen product
             // new amount for recalculating after removal of product i.e new array 
             var amount = order.delivery //init to delivery price
             result.forEach(product => {
                 amount = amount + (product.price * product.qt)
             });
-            var newDiscountinPrice = ((amount-order.delivery)*discountinPercentage)/100 // calculating new discount in price after new priducts arr
+            var newDiscountinPrice = ((amount - order.delivery) * discountinPercentage) / 100 // calculating new discount in price after new priducts arr
             const newOrderObject = {
-                amount: amount-newDiscountinPrice,//delivery price was already set during init
-                subtotal: amount - order.delivery-newDiscountinPrice, // subtotal only contains product wise amounts
+                amount: amount - newDiscountinPrice, //delivery price was already set during init
+                subtotal: amount - order.delivery - newDiscountinPrice, // subtotal only contains product wise amounts
                 delivery: order.delivery, // same  
                 user: order.user, // same
                 products: result, // setting new products arr
@@ -483,12 +491,10 @@ function removeProductFromOrder(compound) {
 }
 
 function updateOrder(orderObj, orderId) {
-    if(orderObj.amount <= 100)
-    {
+    if (orderObj.amount <= 100) {
         alert("Can not remove more products. Please cancel the order instead.")
         closeLoader()
-    }
-    else{
+    } else {
         const rider = JSON.parse(localStorage.getItem('jwt')).user
         const token = JSON.parse(localStorage.getItem('jwt')).token
         axios.put(`${HEROKU_API}/order/${orderId}/updateorderrider/${rider._id}`,
